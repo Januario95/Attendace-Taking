@@ -1,0 +1,777 @@
+{% load static %}
+{%load gateway_lat_lng %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        {% block title %}
+            <title>Bluguard Portal</title>
+        {% endblock %}
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .base-div {
+                margin: auto;
+                width: 100%;
+                height: 100%;
+            }
+            .homepage a {
+                text-decoration: none;
+            }
+            .homepage a img,
+            .communication a img,
+            .covid-news a img,
+            .vitals a img,
+            .quarentine a img {
+                width: 100%;
+                max-width: 25px;
+                min-width: 25px;
+                height: auto;
+            }
+            .quarentine a {
+                font-size: 15px;
+            }
+            .list-header {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: auto;
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+            .list-header li {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid #ccc;
+                width: 100%;
+                padding: 3px 6px;
+            }
+            .list-header .li-user {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .list-header .home-logout-section {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            .list-header .li-user {
+                width: 82%;
+            }
+            .list-header .list-alert {
+                width: 18%;
+            }
+            .list-header .second-li .first {
+                padding: 0px;
+            }
+            .list-header .second-li .first .first-row {
+                border: 0px;
+                padding: 0px;
+                height: 35px;
+            }
+            .list-header .second-li .first .third-row {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 0px;
+                padding: 0px;
+            }
+            .list-header .second-li .first .third-row .third-row-left {
+                border: none;
+            }
+            .list-header .second-li .first .third-row .third-row-right {
+                border: none;
+            }
+            .list-header .second-li .first .third-row img {
+                width: 20px;
+                height: 45px;
+                margin-right: 10px;
+            }
+            .second-li .first .second-row {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                margin-bottom: 4px;
+            }
+            .second-li .first .second-row,
+            .second-li .first .third-row {
+                padding: 0px;
+                border: 0px;
+                height: 50px;
+            }
+            .second-li .first .second-row .left-div {
+                border: 0px;
+                border: none;
+            }
+            .second-li .first .second-row .right-div {
+                margin: auto;
+                border: none;
+            }
+            .second-li .first .second-row .right-div p {
+                width: 100%;
+            }
+            .third, .first-li, .second-li, .third-li {
+                height: 100%;
+            }
+            .list-header .first-li {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 82%;
+                padding: 0px;
+            }
+            .list-header .first-li .first {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                height: 86%;
+                width: 100%;
+                border: 1px solid #C1BBBB;
+            }
+            .list-header .first-li .first .first-div {
+                width: 30%;
+                height: 100%;
+                border: 1px solid #C1BBBB;
+            }
+            .list-header .first-li .first .first-div .first-div-left {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+            .list-header .first-li .first .first-div .first-div-left .div-first-left-top {
+                height: 90%;
+                width: 100%;
+                border: 1px solid #C1BBBB;
+            }
+            .list-header .first-li .first .first-div .first-div-left .div-first-left-bottom {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                height: 10%;
+                width: 100%;
+                border: 1px solid #C1BBBB;
+            }
+            .list-header .first-li .first .first-div .first-div-left .div-first-left-bottom .right {
+                border: 1px solid #ccc;
+                width: 88px;
+                margin-top: 7px;
+                text-align: center;
+                background: #ccc;
+            }
+            .list-header .first-li .first .second-div {
+                overflow-x: scroll;
+                padding: 5px 40px;
+                width: 100%;
+                height: 100%;
+                border: 1px solid #C1BBBB;
+            }
+            .list-header .first-li .third {
+                background: black;
+            }
+            .list-header .first-li .third .first-cell,
+            .list-header .first-li .third .second-cell {
+                color: white;
+            }
+            .list-header .first-li .second,
+            .list-header .first-li .third {
+                height: 7%;
+                width: 100%;
+                border: 1px solid #C1BBBB;
+            }
+            .list-header .first-li .second {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0px;
+            }
+            .list-header .first-li .second .first-cell {
+                border-right: 1px solid #C1BBBB;
+                width: 33%;
+                margin: 0px;
+                text-align: center;
+            }
+            .list-header .first-li .second .second-cell {
+                border-right: 1px solid #C1BBBB;
+                width: 33%;
+                text-align: center;
+            }
+            .list-header .first-li .second .third-cell {
+                width: 33%;
+                text-align: center;
+            }
+            .list-header .first-li .third {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0px;
+            }
+            .list-header .first-li .third .first-cell {
+                border-right: 1px solid #C1BBBB;
+                width: 33%;
+                text-align: center;
+            }
+            .list-header .first-li .third .second-cell {
+                width: 33%;
+                text-align: center;
+            }
+            .communication-title,
+            .vitails-suerve,
+            .cnn-news {
+                text-decoration: none;
+            }
+            .base-div .third-header {
+                height: 653px;
+                padding-left: 0px;
+            }
+            .base-div .second-header {
+                padding-left: 0px;
+            }
+            .base-div .third-header .second-li .first {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 5px;
+            }
+            .temp-symbol {
+                width: 100%;
+                max-width: 25px;
+                background-color: #F5F3F3;
+            }
+            .fa-heartbeat {
+                color: red;
+            }
+            .oxygen-symbol {
+                width: 100%;
+                max-width: 20px;
+            }
+            .div-first-left-top {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .base-div .feeds {
+                height: 10%;
+                background: black;
+                padding-left: 0px;
+            }
+            .base-div .feeds li {
+                color: white;
+            }
+            .base-div .main-bar {
+                background: #0B2C4B;
+                padding-left: 0px;
+            }
+            .base-div .main-bar li a {
+                color: white;
+                text-transform: uppercase;
+            }
+            #map {
+                height: 495px;
+                width: 100%;
+            }
+            #wearer_nickname {
+                font-size: 14px;
+                text-decoration: underline;
+            }
+            #date-time {
+                font-size: 10px;
+            }
+            #second-li #first {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                background: #f2f2f2;
+                margin: 2px 0px;
+                border-radius: 4px;
+                min-width: 169px;
+                width: 100%;
+                height: 100%;
+                border: 1px solid #C1BBBB;
+            }
+            #image_icon {
+                max-width: 25px;
+                max-height: 35px;
+            }
+            #nickname_icon,
+            #alert_reading {
+                width: 35px;
+                height: 35px;
+            }
+            #left-div {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            #left-div span span {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+            #second-li {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 18%;
+                overflow-y: scroll;
+                /*background-color: #53c68c;*/
+            }
+            @media screen and (max-width: 1151px) {
+                #second-li #first {
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                #second-li #first #second-li-first {
+                    width: 100%;
+                }
+                #second-li #first #second-li-first-row {
+                    width: 100%;
+                }
+            }
+            #second-row {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 0;
+                margin: 0px;
+                margin-top: 5px;
+            }
+            #device-id {
+                font-size: 12px;
+            }
+            #online-gateway-link {
+                text-decoration: none;
+            }
+            #second-li #first {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                /*background-color: #99d6ff;*/
+                /*box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.7);*/
+                padding: 5px;
+            }
+            #second-li #first:nth-child(even) {
+                background-image: linear-gradient(to right, #a9c4de, #a9c3df);
+            }
+            #second-li #first:nth-child(odd) {
+                background-image: linear-gradient(to right, #76a1cb, #749fcc);
+            }
+            #second-li #first #second-li-first {
+                width: 25%;
+                flex-direction: column;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            #second-li #first #second-li-first-row {
+                width: 70%;
+            }
+            #second-li #first #second-li-first #alert_reading {
+                width: 100%;
+                height: 100%;
+                max-height: 60px;
+                max-width: 60px;
+            }
+            #second-li #first #second-li-first #alert-reading-value {
+                font-weight: bold;
+                font-size: 18px;
+            }
+            #second-li #first #second-li-first-row #wearer_nickname {
+                font-weight: bold;
+            }
+            #alert-reading-value {
+                font-size: 14px;
+            }
+            @media screen and (max-width: 1070px) {
+                .base-div {
+                    height: 100%;
+                }
+                .base-div .third-header {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100% !important;
+                    height: 1250px;
+                }
+                .base-div .third-header .first-li {
+                    display: flex;
+                    height: 100%;
+                    width: 100%;
+                    min-height: 700px;
+                    margin-top: 2px;
+                }
+                .base-div .third-header .first-li .first {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .base-div #first-header li {
+                    list-style: block;
+                }
+                #first-header {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border: 1px solid #ccc;
+                    width: 100%;
+                }
+                .list-header .first-li .first .first-div {
+                    height: 100%;
+                    width: 100%;
+                    border: 1px solid #C1BBBB;
+                    padding: 0px;
+                    margin: 0px;
+                }
+                .list-header .first-li .first .first-div .first-div-left {
+                    height: 100%;
+                    width: 100%;
+                    border: 1px solid #C1BBBB;
+                }
+                .list-header .first-li .first .first-div .first-div-left .div-first-left-top {
+                    height: 100px;
+                    width: 100%;
+                    border: 1px solid #C1BBBB;
+                }
+                #map {
+                    height: 257px;
+                    width: 100%;
+                }
+                #second-li {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    height: 100% !important;
+                }
+                #second-li .first {
+                    display: none;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #99d6ff;
+                    /*box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.7);*/
+                    padding: 5px;
+                    height: 100px;
+                }
+            }
+        </style>
+        {% block style %}
+        {% endblock %}
+        <!-- <link rel="stylesheet" href="{% static 'main.css' %}"> -->
+        {% block googlemap %}
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLU-BsprUwoj-kRf8Q7Iidu9Th1jRBzjw&callback=initMap&libraries=&v=weekly" async></script>
+            <script>
+                // Initialize and add the map
+
+
+                let locations = '{{ value|latitude_longitude }}';
+                locations = JSON.parse(locations);
+                // locations = [];
+                for (let i = 0; i < locations.length; i++) {
+                    locations[i][1] = Number(locations[i][1]);
+                    locations[i][2] = Number(locations[i][2]);
+                }
+
+                let username = '{{ request.user }}';
+
+                function initialCoords(username) {
+                    let lat;
+                    let lng
+                    for (let i = 0; i < locations.length; i++) {
+                        if (username === 'singapore') {
+                            lat = 1.3717726;
+                            lng = 103.9409175;
+                        }else if (username === locations[i][5]) {
+                            lat = locations[i][1];
+                            lng = locations[i][2];
+                        } else if (username === 'hayysoft') {
+                            lat = 1.3717726;
+                            lng = 103.9409175;
+                        }
+                    }
+                    return {lat, lng};
+                }
+
+                function initMap() {
+                    let coords = initialCoords(username);
+                    let lat = coords['lat'];
+                    let lng = coords['lng'];
+
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 17,
+                        center: new google.maps.LatLng(lat, lng),
+                        // mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        mapTypeId: 'satellite'
+                    });
+
+                    var infowindow = new google.maps.InfoWindow();
+
+                    var maker, i;
+
+                    for (i = 0; i < locations.length; i++) {
+                        marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                            map: map,
+                            title: locations[i][0],
+                            icon: locations[i][4]
+                        });
+
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                                infowindow.setContent(locations[i][0]);
+                                infowindow.open(map, marker);
+                            }
+                        })(marker, i));
+                    }
+                }
+                // initMap();
+            </script>
+        {% endblock %}
+    </head>
+    <body onload="setTimer();">
+            <div class="base-div">
+                <ul class="list-header feeds">
+                    <li>
+                        <marquee width="100%" direction="right">
+                            RSS Feeds
+                        </marquee>
+                    </li>
+                </ul>
+                <ul class="list-header first main-bar" id="first-header">
+                    <li class="homepage">
+                        <a href="{% url 'apiapp:device' %}">
+                            <img src="{% static 'PortalMenu/ADMIN ICON.png' %}" alt="">
+                            &nbsp;ADMIN
+                        </a>
+                    </li>
+                    <li class="vitals">
+                        <a class="vitails-suerve" href="{% url 'apiapp:vitals_page' %}">
+                            <img src="{% static 'PortalMenu/VITAL SURVEILANCE ICON.png' %}" alt="">
+                            &nbsp;VITAL SURVEILLANCE
+                        </a>
+                    </li>
+                    <li class="quarentine">
+                        <a class="vitails-suerve" href="#">
+                            <img src="{% static 'PortalMenu/VITAL SURVEILANCE ICON.png' %}" alt="">
+                            &nbsp;QUARANTINE SURVEILLANCE
+                        </a>
+                    </li>
+                    <li class="covid-news">
+                        <a class="cnn-news" href="https://edition.cnn.com/" target="cnnnews">
+                            <img src="{% static 'PortalMenu/COVID NEWS ICON.png' %}" alt="">
+                            &nbsp;COVID NEWS
+                        </a>
+                    </li>
+                    <li class="home-logout-section" id="home-logout-section">
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                        </a>
+                        <a href="{% url 'apiapp:homepage' %}">
+                            <i class="fas fa-home"></i>
+                        </a>
+                        <a href="{% url 'apiapp:logout_page' %}">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="list-header second second-header" id="second-header">
+                    <li class="li-user">
+                        <span>Welcome, <strong>{{ request.user }}</strong></span>
+                        <span>
+                            <a id="online-gateway-link" href="#">
+                                Online Gateways
+                            </a>
+                        </span>
+                        <span class="date">Date: </span>
+                        <span class="time">Time:</span>
+                    </li>
+                    <li class="list-alert">Latest Alerts</li>
+                </ul>
+                <ul class="list-header third-header" id="third-header">
+                    <li class="first-li">
+                        <div class="first">
+                            <div class="first-div">
+                                <div class="first-div-left">
+                                    <div class="div-first-left-top">
+                                        <div id="map"></div>
+                                    </div>
+                                    <div class="div-first-left-bottom">
+                                        <h5 class="left">Gateway</h5>
+                                        <h5 class="right">G2</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="second-div">
+                                {% block content %}
+                                {% endblock %}
+                            </div>
+                        </div>
+                        <div class="second">
+                            <div class="first-cell">
+                                {{ wearers }}
+                                <img class="temp-symbol" src="{% static 'thermometer-removebg.jpg' %}" alt="">
+                            </div>
+                            <div class="second-cell">
+                                {{ wearers }} <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <div class="third-cell">
+                                {{ wearers }} <img class="oxygen-symbol" src="{% static 'oxygen-structure.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="third">
+                            <div class="first-cell">
+                                Monitoring {{ gateways }} Gateways
+                            </div>
+                            <div class="second-cell">
+                                {{ wearers }} Wearers
+                            </div>
+                        </div>
+                    </li>
+                    <li class="second-li" id="second-li">
+
+                    </li>
+                </ul>
+            </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
+        <script>
+
+            let MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                          'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+            let date = document.querySelector('.date');
+            let time = document.querySelector('.time');
+            let date_ = new Date();
+            date.textContent = 'Date: ' + MONTHS[date_.getMonth()] + ' ' + date_.getDate() + ', ' + date_.getFullYear()
+
+            const formatDate = (time) => {
+                if (time < 10) {
+                    return '0' + time;
+                }
+                return time;
+            }
+
+            const setTimer = () => {
+                let date_ = new Date();
+                let hours = date_.getHours()
+                let mins = date_.getMinutes()
+                let secs = date_.getSeconds()
+                time.textContent = 'Time: ' + formatDate(hours) + ':' + formatDate(mins) + ':' + formatDate(secs);
+            }
+            let setInterval1 = setInterval(setTimer, 1000);
+
+
+            function TimeFormating(time) {
+                let t = time.replace("P0DT", "");
+                t = t.replace("H", ":");
+                t = t.replace("M", ":");
+                t = t.replace("S", "");
+                return t;
+            }
+
+            let second_id = document.querySelector('#second-li');
+            function alertSection() {
+                second_id.innerHTML = '';
+                fetch('http://52.237.83.22:5050/top_five_alerts_api/')
+                    .then(res => res.json())
+                    .then(data => {
+                        alerts = data.alerts;
+
+                        for (let row of alerts) {
+                            let first = document.createElement('div');
+                            first.setAttribute('id', 'first');
+                            first.setAttribute('class', 'first');
+
+                            let second_li_first = document.createElement('div');
+                            second_li_first.setAttribute('id', 'second-li-first');
+
+                            let vital_icon = document.createElement('img');
+                            vital_icon.setAttribute('id', 'alert_reading');
+                            vital_icon.src = `{% static '${row.vital_icon}' %}`;
+
+                            let alert_reading = document.createElement('p');
+                            alert_reading.setAttribute('id', 'alert-reading-value');
+                            if (parseInt(row.Alert_Code) === 1 || parseInt(row.Alert_Code) === 2) {
+                                alert_reading.textContent = row.Device_Temp.slice(0, 5) + '℃'
+                            } else {
+                                alert_reading.textContent = row.Device_Temp.slice(0, 5);
+                            }
+
+                            second_li_first.appendChild(vital_icon);
+                            second_li_first.appendChild(alert_reading);
+
+                            let second_li_second_row = document.createElement('div');
+                            second_li_second_row.setAttribute('id', 'second-li-first-row');
+
+                            let wearer_nickname = document.createElement('span');
+                            wearer_nickname.setAttribute('id', 'wearer_nickname');
+                            wearer_nickname.textContent = row.Wearer_Nick;
+                            wearer_nickname.style.textDecoration = 'underline';
+                            wearer_nickname.appendChild(document.createElement('br'))
+
+                            let device_id = document.createElement('span');
+                            device_id.setAttribute('id', 'device-id');
+                            device_id.textContent = row.Device_ID;
+                            device_id.style.fontSize = '10px';
+                            device_id.appendChild(document.createElement('br'));
+
+                            let alertDescription = document.createElement('span');
+                            alertDescription.setAttribute('id', 'device-id');
+                            alertDescription.textContent = 'Alert Type: ' + row.Alert_Description;
+                            alertDescription.style.fontSize = '10px';
+                            alertDescription.appendChild(document.createElement('br'));
+
+                            let alert_datetime = document.createElement('span');
+                            alert_datetime.textContent = 'Date: ' + row.Alert_Datetime;
+                            alert_datetime.style.fontSize = '10px';
+
+                            second_li_second_row.appendChild(wearer_nickname);
+                            second_li_second_row.appendChild(device_id);
+                            second_li_second_row.appendChild(alertDescription);
+                            second_li_second_row.appendChild(alert_datetime);
+
+                            first.appendChild(second_li_first);
+                            first.appendChild(second_li_second_row);
+
+                            second_id.appendChild(first);
+                        }
+                    })
+                    .catch(err => console.log(err));
+            }
+
+            // alertSection();
+            // let setInterval3 = setInterval(alertSection, 15000);
+        </script>
+
+
+        {% block javascript %}
+        {% endblock %}
+    </body>
+</html>

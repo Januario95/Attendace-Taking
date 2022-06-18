@@ -1,0 +1,372 @@
+{% extends "homepage.html" %}
+{% load static %}
+{%load gateway_lat_lng %}
+
+{% block title %}
+    <title>Vitals Surveillance</title>
+{% endblock %}
+
+{% block style %}
+    <style>
+        .vitals-main {
+            /*margin-top: 10px;*/
+        }
+        .vitals-header {
+            margin: auto;
+            width: 50%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .vitals-header li {
+            background: #0B2C4B;
+            padding: 7px 0px;
+            width: 33%;
+        }
+        .vitals-header li a {
+            text-decoration: none;
+            color: white;
+        }
+        .gateways-table {
+            margin-top: 10px;
+        }
+        .gateways,
+        .devices,
+        .alerts {
+            display: none;
+        }
+        .vitals-header .alert-icon a img  {
+            max-width: 17px;
+            min-width: 17px;
+        }
+        .vitals-header .device-icon a img,
+        .vitals-header .gateway-icon a img {
+            width: 100%;
+            max-width: 20px;
+            min-width: 20px;
+        }
+        th, td {
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+{% endblock %}
+
+{% block googlemap %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLU-BsprUwoj-kRf8Q7Iidu9Th1jRBzjw&callback=initMap&libraries=&v=weekly" async></script>
+    <script>
+        // Initialize and add the map
+
+        let locations = '{{ value|latitude_longitude }}';
+        locations = JSON.parse(locations);
+        for (let i = 0; i < locations.length; i++) {
+            locations[i][1] = Number(locations[i][1]);
+            locations[i][2] = Number(locations[i][2]);
+        }
+
+        let username = '{{ request.user }}';
+
+        function initialCoords(username) {
+            let lat;
+            let lng
+            for (let i = 0; i < locations.length; i++) {
+                if (username === 'singapore') {
+                    lat = 1.3717726;
+                    lng = 103.9409175;
+                }else if (username === locations[i][5]) {
+                    lat = locations[i][1];
+                    lng = locations[i][2];
+                } else if (username === 'hayysoft') {
+                    lat = 1.3717726;
+                    lng = 103.9409175;
+                }
+            }
+            return {lat, lng};
+        }
+
+        function initMap() {
+            let coords = initialCoords(username);
+            let lat = coords['lat'];
+            let lng = coords['lng'];
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom:17,
+                center: new google.maps.LatLng(lat, lng),
+                // mapTypeId: google.maps.MapTypeId.ROADMAP,
+                mapTypeId: 'satellite',
+            });
+
+
+            var infowindow = new google.maps.InfoWindow();
+
+            var maker, i;
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map,
+                    title: locations[i][0],
+                    icon: locations[i][4]
+                });
+
+                google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                    return function() {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
+        }
+        // initMap();
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="vitals-main">
+        <ul class="vitals-header">
+            <li class="gateway-icon">
+                <a class="gateway-select" href="#">
+                    <img src="{% static 'GATEWAY ICON.png' %}" alt="">
+                    &nbsp;GATEWAYS
+                </a>
+            </li>
+            <li class="device-icon">
+                <a class="device-select" href="#">
+                    <img src="{% static 'AdminPage/DEVICE ICON.png' %}" alt="">
+                    &nbsp;DEVICES
+                </a>
+            </li>
+            <li class="alert-icon">
+                <a class="alert-select" href="#">
+                    <img src="{% static 'AdminPage/ALERT ICON.png' %}" alt="">
+                    &nbsp;ALERTS
+                </a>
+            </li>
+        </ul>
+
+        <div class="gateways-table gateways">
+            <table class="table table-striped table-hover" id="device-table">
+                <thead>
+                    <tr>
+                        <th>Animated</th>
+                        <th>Gateway_ID</th>
+                        <th>Location</th>
+                        <th>Last Read</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gateway in gateways_ %}
+                        <tr>
+                            <td>{{ gateway.Alert_ID }}</td>
+                            <td>{{ gateway.Gateway_ID }}</td>
+                            <td>{{ gateway.Gateway_Location }}</td>
+                            <td>{{ gateway.Ack }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="devices-table">
+            <table class="table table-striped table-hover" id="device-table">
+                <thead>
+                    <tr>
+                        <th>Device_Status</th>
+                        <th>Temp</th>
+                        <th>O2</th>
+                        <th>Bat</th>
+                        <th>HR</th>
+                        <th>Quality</th>
+                        <th>Last Read Date</th>
+                        <th>Last Read Time</th>
+                        <th>Device Mac</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody-data">
+                    {% for row in devices_ %}
+                        <tr>
+                            <td>{{ row.Device_Status }}</td>
+                            <td>{{ row.Device_Temp }}</td>
+                            <td>{{ row.Device_O2 }}</td>
+                            <td>{{ row.Device_Bat_Level }}</td>
+                            <td>{{ row.Device_HR }}</td>
+                            <td>
+                                {% if row.Incorrect_Data_Flag == 0 %}
+                                    Bad
+                                {% else %}
+                                    Good
+                                {% endif %}
+                            </td>
+                            <td>{{ row.Device_Last_Updated_Date }}</td>
+                            <td>{{ row.Device_Last_Updated_Time }}</td>
+                            <td>{{ row.Device_Mac }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+    <script>
+        const checkToggle = (tag, class_) => {
+            if (tag.hasClass(class_)) {
+                tag.toggle(class_)
+            }
+        }
+
+        const toggleClasseVisibility = (tag1, tag2, class_) => {
+            tag1.click(function(e) {
+                tag2.toggle(class_);
+            });
+        }
+
+        let tbody = document.querySelector('.tbody-data');
+
+        // function fetchDevices () {
+        //     fetch('/Lastest_Device_Data/')
+        //         .then(res => res.json())
+        //         .then(data => {
+        //             tbody.innerHTML = '';
+        //             let latest_data = data;
+        //             ProcessLastestData(latest_data.lastest);
+        //         })
+        //         .catch(err => console.log(err));
+        // }
+
+        // fetchDevices();
+        // let setInterval2 = setInterval(fetchDevices, 1000);
+
+        function TimeFormating(time) {
+            if (time === null) {
+                return '';
+            } else {
+                let t = time.replace("P0DT", "");
+                t = t.replace("H", ":");
+                t = t.replace("M", ":");
+                t = t.replace("S", "");
+                return t;
+            }
+        }
+
+        function ProcessLastestData(latest_data) {
+            for (let i = 0; i < latest_data.length; i++) {
+                let row = latest_data[i];
+                let tr = document.createElement('tr');
+
+                let deviceTemp = row.Device_Temp;
+                let deviceTempTag = document.createElement('td');
+                deviceTempTag.textContent = deviceTemp;
+                if (deviceTemp > 37) {
+                    deviceTempTag.style.color = 'red';
+                } else if (deviceTemp < 33) {
+                    deviceTempTag.style.color = 'red';
+                } else {
+                    deviceTempTag.style.color = 'blue';
+                }
+
+                let deviceO2 = row.Device_O2;
+                let deviceO2Tag = document.createElement('td');
+                deviceO2Tag.textContent = deviceO2;
+                if (deviceO2 > 100) {
+                    deviceO2Tag.style.color = 'red';
+                } else if (deviceO2 < 90) {
+                    deviceO2Tag.style.color = 'red';
+                } else {
+                    deviceO2Tag.style.color = 'blue';
+                }
+
+                let deviceBatLevel = row.Device_Bat_Level;
+                let deviceBatLevelTag = document.createElement('td');
+                deviceBatLevelTag.textContent = deviceBatLevel;
+                if (deviceBatLevel > 180) {
+                    deviceBatLevelTag.style.color = 'red';
+                } else if (deviceBatLevel < 50) {
+                    deviceBatLevelTag.style.color = 'red';
+                } else {
+                    deviceBatLevelTag.style.color = 'blue';
+                }
+
+                let deviceHR = row.Device_HR;
+                let deviceHRTag = document.createElement('td');
+                deviceHRTag.textContent = deviceHR;
+
+                if (deviceHR > 100) {
+                    deviceHRTag.style.color = 'red';
+                } else if (deviceHR < 60) {
+                    deviceHRTag.style.color = 'red';
+                } else {
+                    deviceHRTag.style.color = 'blue';
+                }
+
+                let deviceIncorrectDataFlag = row.Incorrect_Data_Flag;
+                let deviceIncorrectDataFlagTag = document.createElement('td');
+                if (deviceIncorrectDataFlag === 1) {
+                    deviceIncorrectDataFlagTag.textContent = "Bad";
+                    deviceIncorrectDataFlagTag.style.color = 'red';
+                } else {
+                    deviceIncorrectDataFlagTag.textContent = "Good";
+                    deviceIncorrectDataFlagTag.style.color = 'green';
+                }
+
+                let deviceStatus = row.Device_Status;
+                let deviceStatusTag = document.createElement('td');
+                deviceStatusTag.textContent = deviceStatus;
+                if (deviceStatus === 'OFFLINE') {
+                    deviceStatusTag.style.color = 'red';
+                    deviceIncorrectDataFlagTag.textContent = "NA";
+                    deviceIncorrectDataFlagTag.style.color = 'red';
+                } else if (deviceStatus === 'ONLINE') {
+                    deviceStatusTag.style.color = 'green';
+                }
+
+                let deviceLastUpdateDate = row.Device_Last_Updated_Date;
+                let deviceLastUpdateDateTag = document.createElement('td');
+                deviceLastUpdateDateTag.textContent = deviceLastUpdateDate;
+
+                let deviceLastUpdateTime = TimeFormating(row.Device_Last_Updated_Time);
+                let deviceLastUpdateTimeTag = document.createElement('td');
+                deviceLastUpdateTimeTag.textContent = deviceLastUpdateTime;
+
+                let deviceMac = row.Device_Mac;
+                let deviceMacTag = document.createElement('td');
+
+                if (row.Is_Link === true) {
+                    let deviceMacLink = document.createElement('a');
+                    deviceMacLink.href = row.Device_Mac_Link;
+                    deviceMacLink.title = `${deviceMac} details`
+                    deviceMacLink.textContent = deviceMac;
+                    deviceMacLink.style.textDecoration = 'none';
+                    deviceMacTag.appendChild(deviceMacLink);
+                } else {
+                    deviceMacTag.textContent = deviceMac;
+                }
+
+                let device_Tag = row.Device_Tag;
+                let device_TagTag = document.createElement('td');
+                device_TagTag.textContent = device_Tag;
+
+                let status = row.Status;
+                let statusTag = document.createElement('td');
+                statusTag.textContent = status;
+
+                tr.appendChild(deviceStatusTag);
+                tr.appendChild(deviceTempTag);
+                tr.appendChild(deviceO2Tag);
+                tr.appendChild(deviceBatLevelTag);
+                tr.appendChild(deviceHRTag);
+                tr.appendChild(deviceIncorrectDataFlagTag);
+                tr.appendChild(deviceLastUpdateDateTag);
+                tr.appendChild(deviceLastUpdateTimeTag);
+                tr.appendChild(device_TagTag);
+                tr.appendChild(deviceMacTag);
+                tr.appendChild(statusTag);
+
+                tbody.appendChild(tr);
+            }
+        }
+    </script>
+{% endblock %}
+
+
