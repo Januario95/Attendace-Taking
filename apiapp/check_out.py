@@ -48,17 +48,8 @@ def checkout_attendee():
                 data = res.json()
                 print(data)
 
-                # print(f'attendee_id = {attendee_id}')
-                # check_in = data['check_in']
-                # check_out = data['check_out']
-                # url = f'http://localhost:8000/create_attendance/{attendee_id}/{check_in}/{check_out}/'
-                # res = requests.get(url, headers=headers)  # , data=data)
-                # data = res.json()
-                # print(data)
-
 
 # checkout_attendee()
-
 while True:
     checkout_attendee()
     sleep(4)

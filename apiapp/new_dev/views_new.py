@@ -146,11 +146,11 @@ def dictfetchall(cursor):
     ]
 
 
-Connector = mysql.connect(**config)
-Cursor = Connector.cursor()
+# Connector = mysql.connect(**config)
+# Cursor = Connector.cursor()
 
-# Connector = ''
-# Cursor = ''
+Connector = ''
+Cursor = ''
 
 
 @api_view(['GET', ])
