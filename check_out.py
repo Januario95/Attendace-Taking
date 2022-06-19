@@ -5,10 +5,20 @@ from datetime import datetime
 
 
 def checkout_attendee():
-    token = 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
-    url = 'http://localhost:8000/attendee/'
+    Token = {
+        'dev': {
+            'URL': 'http://localhost:8000',
+            'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
+        },
+        'prod': {
+            'URL': 'https://bluguard-attendance.herokuapp.com',
+            'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
+        }
+    }
+
+    url = f"{Token['prod']['URL']}/attendee/"
     headers = {
-        'Authorization': f'Token {token}',
+        'Authorization': f"Token {Token['prod']['token']}",
     }
 
     res = requests.get(url, headers=headers)
@@ -27,7 +37,7 @@ def checkout_attendee():
             seconds = diff.seconds
             print(f'seconds = {seconds}')
             if seconds > 30:
-                url = f'http://localhost:8000/attendee/{attendee_id}/'
+                url = f"{Token['prod']['URL']}/attendee/{attendee_id}/"
                 data = {
                     'check_out_date': date,
                     'check_out_time': time,

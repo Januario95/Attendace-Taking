@@ -43,7 +43,7 @@ class AttendeeAdmin(admin.ModelAdmin):
                     'check_in_date', 'check_in_time',
                     'check_out_date', 'check_out_time', 'event',
                     'last_updated', 'is_online']
-    list_display_links = ['id', 'attendee_name']
+    # list_display_links = ['id', 'attendee_name']
     filter_fields = ['event']
     # list_editable = ['check_in_date', 'check_in_time',
     #  'check_out_date', 'check_out_time']
