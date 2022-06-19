@@ -38,7 +38,7 @@ config = {
     'host': 'attendance4.mysql.database.azure.com',
     'port': 3306,
     'ssl_disabled': True,
-    'ssl_ca': 'C:/Users/User/Desktop/From backup/From FILEU/bluguardprodNEW/apiapp\static/SSL/DigiCertGlobalRootCA.crt.pem'
+    'ssl_ca': '/SSL/DigiCertGlobalRootCA.crt.pem'
 }
 
 
