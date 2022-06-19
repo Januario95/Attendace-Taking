@@ -218,49 +218,49 @@ def Event_List(request):
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 def index(request):
-    global Connector, Cursor
-    query = '''
-    SELECT
-        Device_Status, Device_Temp, Device_O2, Device_Bat_Level,
-        Device_HR, Device_Last_Updated_Date, Device_Last_Updated_Time,
-        Device_Tag, Device_Mac, Device_Status
-    FROM
-        TBL_Device
-    WHERE
-        Device_Type <> %s
-    ORDER BY Device_Tag;
-    '''
-    parameter = ('HSWB004', )
-    Cursor.execute(query, parameter)
-    results = dictfetchall(Cursor)
-    print(len(results))
-    for row in results:
-        device_assignment = row['Device_Status']
-        device_temp = row['Device_Temp']
-        device_o2 = row['Device_O2']
-        device_bat = row['Device_Bat_Level']
-        device_hr = row['Device_HR']
-        last_read_date = row['Device_Last_Updated_Date']
-        last_read_time = row['Device_Last_Updated_Time']
-        device_tag = row['Device_Tag']
-        device_mac = row['Device_Mac']
-        device_status = row['Device_Status']
-        last_read_date = last_read_date if last_read_date is not None else '2022-06-19'
-        last_read_time = last_read_time if last_read_time is not None else '02:52:30'
+    # global Connector, Cursor
+    # query = '''
+    # SELECT
+    #     Device_Status, Device_Temp, Device_O2, Device_Bat_Level,
+    #     Device_HR, Device_Last_Updated_Date, Device_Last_Updated_Time,
+    #     Device_Tag, Device_Mac, Device_Status
+    # FROM
+    #     TBL_Device
+    # WHERE
+    #     Device_Type <> %s
+    # ORDER BY Device_Tag;
+    # '''
+    # parameter = ('HSWB004', )
+    # Cursor.execute(query, parameter)
+    # results = dictfetchall(Cursor)
+    # print(len(results))
+    # for row in results:
+    #     device_assignment = row['Device_Status']
+    #     device_temp = row['Device_Temp']
+    #     device_o2 = row['Device_O2']
+    #     device_bat = row['Device_Bat_Level']
+    #     device_hr = row['Device_HR']
+    #     last_read_date = row['Device_Last_Updated_Date']
+    #     last_read_time = row['Device_Last_Updated_Time']
+    #     device_tag = row['Device_Tag']
+    #     device_mac = row['Device_Mac']
+    #     device_status = row['Device_Status']
+    #     last_read_date = last_read_date if last_read_date is not None else '2022-06-19'
+    #     last_read_time = last_read_time if last_read_time is not None else '02:52:30'
 
-        device = TableDevice.objects.create(
-            device_tag=device_tag,
-            device_mac=device_mac,
-            device_status=device_status,
-            device_assignment=device_assignment,
-            device_temp=device_temp,
-            device_o2=device_o2,
-            device_bat=device_bat,
-            device_hr=device_hr,
-            last_read_date=str(last_read_date),
-            last_read_time=str(last_read_time)
-        )
-        device.save()
+    #     device = TableDevice.objects.create(
+    #         device_tag=device_tag,
+    #         device_mac=device_mac,
+    #         device_status=device_status,
+    #         device_assignment=device_assignment,
+    #         device_temp=device_temp,
+    #         device_o2=device_o2,
+    #         device_bat=device_bat,
+    #         device_hr=device_hr,
+    #         last_read_date=str(last_read_date),
+    #         last_read_time=str(last_read_time)
+    #     )
+    #     device.save()
 
     return Response({
         'data': 'Yes'
