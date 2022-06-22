@@ -344,8 +344,8 @@ def Process_Quarentine_Band(data, gateway_mac, Device_Mac, Device_Type):
 def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_Mac):
     populate_metadata = Populate_MetaData(data, gateway_mac)
 
-    Connector = mysql.connect(**config)
-    Cursor = Connector.cursor()
+    # Connector = mysql.connect(**config)
+    # Cursor = Connector.cursor()
 
     query_to_tbl_device = '''
 		UPDATE TBL_Device
@@ -421,13 +421,13 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
     #     print('ERROR')
 
     last_read_date, last_read_time, temp, heart_rate, spo2, batlevel, incorrect_data_flag, device_mac = parameters_to_tbl_device
-    print('YES')
     # headers = {
     #     'Authorization': f'Token {token}',
     #     'Content-Type': 'application/json'
     # }
     # url = f'http://localhost:8000/search_device_mac/{device_mac}/'
     # token = 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
+    # print(f'token = {token}')
     # res = requests.get(url, headers=headers)
     # data = res.json()
     # print(data)
@@ -436,8 +436,8 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
 
 def Get_Mqtt_Data(data_from_gateway):
     # print(data_from_gateway)
-    Connector = mysql.connect(**config)
-    Cursor = Connector.cursor()
+    # Connector = mysql.connect(**config)
+    # Cursor = Connector.cursor()
 
     Token = {
         'dev': {
@@ -459,7 +459,7 @@ def Get_Mqtt_Data(data_from_gateway):
             'Content-Type': 'application/json'
         })
         data_ = res.json()
-        # print(data_)
+        print(data_)
 
         if len(data_['attendee']) != 0:
             attendee = data_['attendee']
@@ -493,26 +493,26 @@ def Get_Mqtt_Data(data_from_gateway):
             data_ = res.json()
             print(data_)
 
-        if data['type'] == 'Gateway':
-            gateway_mac = data['mac']
-            query = '''
-        		UPDATE TBL_Gateway
-        		SET Last_Updated_Time = CURRENT_TIMESTAMP(),
-        			Gateway_Status = %s
-        		WHERE Gateway_Mac = %s
-        	'''
-            parameter = ('ONLINE', gateway_mac,)
-            Cursor.execute(query, parameter)
-            Connector.commit()
+        # if data['type'] == 'Gateway':
+        #     gateway_mac = data['mac']
+            # query = '''
+            # 	UPDATE TBL_Gateway
+            # 	SET Last_Updated_Time = CURRENT_TIMESTAMP(),
+            # 		Gateway_Status = %s
+            # 	WHERE Gateway_Mac = %s
+            # '''
+            # parameter = ('ONLINE', gateway_mac,)
+            # Cursor.execute(query, parameter)
+            # Connector.commit()
 
         # if data['type'] != 'Gateway':
         #     Device_Mac = data['mac']
         #     Device_Type = Get_Device_Type(Device_Mac)
 
         #     if Device_Type == 'HSWB004':
-        #         # pass
-        #         Process_Quarentine_Band(
-        #             data, gateway_mac, Device_Mac, Device_Type)
+        #         pass
+        #         # Process_Quarentine_Band(
+        #         #     data, gateway_mac, Device_Mac, Device_Type)
         #     elif data.get('rawData') is not None:
         #         try:
         #             # results = Validate_Raw_Data_Length(Device_Type, data['rawData'])

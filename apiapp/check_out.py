@@ -23,8 +23,10 @@ def checkout_attendee():
 
     res = requests.get(url, headers=headers)
     data = res.json()
+    # print(data)
     for row in data:
         is_online = row['is_online']
+        print(f'is_online = {is_online}')
 
         if is_online:
             attendee_id = row['id']
