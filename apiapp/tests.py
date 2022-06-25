@@ -4,7 +4,26 @@ import datetime as dt
 from pytz import timezone
 from datetime import datetime
 import mysql.connector as mysql
-from .models import TableDevice
+# from .models import TableDevice
+
+TOKEN = {
+    'dev': {
+        'URL': 'http://localhost:8000',
+        'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
+    },
+    'prod': {
+        'URL': 'https://bluguard37.herokuapp.com',
+        'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
+    }
+}
+url = TOKEN['dev']['URL']
+token = TOKEN['dev']['token']
+headers = {
+    'Authorization': f'Token {token}',
+    'Content-Type': 'application/json'
+}
+res = requests.get(url + "/events/", headers=headers)
+print(json.dumps(res.json(), indent=4))
 
 
 config = {
@@ -46,35 +65,35 @@ def default(obj):
     return obj
 
 
-Connector = mysql.connect(**config)
-Cursor = Connector.cursor()
+# Connector = mysql.connect(**config)
+# Cursor = Connector.cursor()
 
 
-query = '''
-SELECT
-    Device_Status, Device_Temp, Device_O2, Device_Bat_Level,
-    Device_HR, Device_Last_Updated_Date, Device_Last_Updated_Time,
-    Device_Tag, Device_Mac, Device_Status
-FROM
-    TBL_Device
-WHERE
-    Device_Type = %s
-ORDER BY Device_Tag;
-'''
-parameter = ('HSWB004', )
-Cursor.execute(query, parameter)
-results = dictfetchall(Cursor)
-row1 = results[0]
-Device_Status = row1['Device_Status']
-Device_Temp = row1['Device_Temp']
-Device_O2 = row1['Device_O2']
-Device_Bat_Level = row1['Device_Bat_Level']
-Device_HR = row1['Device_HR']
-Device_Last_Updated_Date = row1['Device_Last_Updated_Date']
-Device_Last_Updated_Time = row1['Device_Last_Updated_Time']
-Device_Tag = row1['Device_Tag']
-Device_Mac = row1['Device_Mac']
-Device_Status = row1['Device_Status']
+# query = '''
+# SELECT
+#     Device_Status, Device_Temp, Device_O2, Device_Bat_Level,
+#     Device_HR, Device_Last_Updated_Date, Device_Last_Updated_Time,
+#     Device_Tag, Device_Mac, Device_Status
+# FROM
+#     TBL_Device
+# WHERE
+#     Device_Type = %s
+# ORDER BY Device_Tag;
+# '''
+# parameter = ('HSWB004', )
+# Cursor.execute(query, parameter)
+# results = dictfetchall(Cursor)
+# row1 = results[0]
+# Device_Status = row1['Device_Status']
+# Device_Temp = row1['Device_Temp']
+# Device_O2 = row1['Device_O2']
+# Device_Bat_Level = row1['Device_Bat_Level']
+# Device_HR = row1['Device_HR']
+# Device_Last_Updated_Date = row1['Device_Last_Updated_Date']
+# Device_Last_Updated_Time = row1['Device_Last_Updated_Time']
+# Device_Tag = row1['Device_Tag']
+# Device_Mac = row1['Device_Mac']
+# Device_Status = row1['Device_Status']
 
 # for row in results:
 #     Device_Status=row['Device_Status']
