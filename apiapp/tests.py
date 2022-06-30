@@ -6,24 +6,101 @@ from datetime import datetime
 import mysql.connector as mysql
 # from .models import TableDevice
 
+
+def Process_IoTData():
+    Token = {
+        'dev': {
+            'URL': 'http://localhost:8000',
+            'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
+        },
+        'prod': {
+            'URL': 'https://bluguard-attendance.herokuapp.com',
+            'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
+        }
+    }
+
+    tag_id = 'FEFDD727C6F5'  # data['mac']
+    url = f"{Token['dev']['URL']}/search_attended_by_gatewaymac/{tag_id}/"
+    res = requests.get(url, headers={
+        'Authorization': f"Token {Token['dev']['token']}",
+        'Content-Type': 'application/json'
+    })
+    data_ = res.json()
+    print(data_)
+
+    if len(data_['attendee']) != 0:
+        event_id = data_['attendee'][0]['event']
+        url = f"{Token['dev']['URL']}/get_event_name/{event_id}/"
+        res = requests.get(url, headers={
+            'Authorization': f"Token {Token['dev']['token']}"
+        })
+        data = res.json()
+        event_name = data['event_name']
+
+        attendee = data_['attendee'][0]
+        attendee_id = attendee['id']
+        attendee_name = attendee['attendee_name']
+        timestamp = datetime.now()
+        date = timestamp.date()  # attendee['check_in_date']
+        time = timestamp.time()  # attendee['check_in_time']
+        check_in_date = attendee['check_in_date']
+        check_in_time = attendee['check_in_time']
+        # check_out_date = attendee['check_out_date']
+        # check_out_time = attendee['check_out_time']
+        attendee_id = attendee['id']
+        # print(f'attendee = {attendee}')
+
+        data_ = {}
+        if check_in_date is None:
+            timestamp = datetime.now()
+            date = timestamp.date()
+            time = timestamp.time()
+            data_ = {
+                'check_in_date': date,
+                'check_in_time': time,
+                'is_online': True,
+                'last_updated': datetime.now()
+            }
+
+            url = f"{Token['dev']['URL']}/create_attendance/{attendee_name}/{date}/{time}/"
+            res = requests.get(url, headers={
+                'Authorization': f"Token {Token['dev']['token']}",
+                'Content-Type': 'application/json'
+            })
+            d = res.json()
+            print(d)
+        else:
+            data_ = {'last_updated': datetime.now()}
+
+        url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
+        res = requests.patch(url, headers={
+            'Authorization': f"Token {Token['dev']['token']}",
+        }, data=data_)
+        data_ = res.json()
+
+
+# Process_IoTData()
+
+
 TOKEN = {
     'dev': {
         'URL': 'http://localhost:8000',
         'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
     },
     'prod': {
-        'URL': 'https://bluguard37.herokuapp.com',
+        'URL': 'https://bluguard-attendance.herokuapp.com',
         'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
     }
 }
-url = TOKEN['dev']['URL']
-token = TOKEN['dev']['token']
-headers = {
-    'Authorization': f'Token {token}',
-    'Content-Type': 'application/json'
-}
-res = requests.get(url + "/events/", headers=headers)
-print(json.dumps(res.json(), indent=4))
+# url = TOKEN['prod']['URL'] + "/events/"
+# print(url)
+# token = TOKEN['prod']['token']
+# headers = {
+#     'Authorization': f'Token {token}',
+#     'Content-Type': 'application/json'
+# }
+# res = requests.get(url, headers=headers)
+# print(json.dumps(res.json(), indent=4))
 
 
 config = {
@@ -42,13 +119,21 @@ config = {
     # 'ssl_disabled': False,
     # 'ssl_ca': '/SSL/DigiCertGlobalRootCA.crt.pem'
 
-    'user': 'attendance4',
-    'password': 'AskPermission2022!',
+    # 'user': 'attendance4',
+    # 'password': 'AskPermission2022!',
+    # 'database': 'bluguarddb',
+    # 'host': 'attendance4.mysql.database.azure.com',
+    # 'port': 3306,
+    # 'ssl_disabled': False,
+    # 'ssl_ca': '/SSL/DigiCertGlobalRootCA.crt.pem'
+
+    'user': 'januario95',
+    'password': 'Jaci1995',
     'database': 'bluguarddb',
-    'host': 'attendance4.mysql.database.azure.com',
+    'host': 'localhost',
     'port': 3306,
-    'ssl_disabled': False,
-    'ssl_ca': '/SSL/DigiCertGlobalRootCA.crt.pem'
+    # 'ssl_disabled': False,
+    # 'ssl_ca': '/SSL/DigiCertGlobalRootCA.crt.pem'
 }
 
 
@@ -65,25 +150,41 @@ def default(obj):
     return obj
 
 
-# Connector = mysql.connect(**config)
-# Cursor = Connector.cursor()
+Connector = mysql.connect(**config)
+Cursor = Connector.cursor()
 
 
-# query = '''
-# SELECT
-#     Device_Status, Device_Temp, Device_O2, Device_Bat_Level,
-#     Device_HR, Device_Last_Updated_Date, Device_Last_Updated_Time,
-#     Device_Tag, Device_Mac, Device_Status
-# FROM
-#     TBL_Device
-# WHERE
-#     Device_Type = %s
-# ORDER BY Device_Tag;
-# '''
-# parameter = ('HSWB004', )
-# Cursor.execute(query, parameter)
-# results = dictfetchall(Cursor)
+query = '''
+    SELECT * FROM TBL_Device;
+'''
+parameter = ('HSWB004', )
+Cursor.execute(query)  # , parameter)
+results = dictfetchall(Cursor)
+data = []
+fields = [
+    'device_tag', 'device_mac', 'device_type',
+    'device_status', 'device_assignment', 'device_temp',
+    'device_o2', 'device_bat', 'device_hr',
+    'incorrect_data_flag',
+    'last_read_date', 'last_read_time'
+]
+for row in results:
+    new_row = {}
+    for key, value in row.items():
+        key = key.lower()
+        if key in fields:
+            new_row[key.lower()] = value
+    data.append(new_row)
+
+data = json.dumps(data, default=default, indent=4)
+print(data)
+
+with open('all_devices.json', 'w') as f:
+    f.write(data)
+
+
 # row1 = results[0]
+# print(row1)
 # Device_Status = row1['Device_Status']
 # Device_Temp = row1['Device_Temp']
 # Device_O2 = row1['Device_O2']

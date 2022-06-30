@@ -16,9 +16,9 @@ def checkout_attendee():
         }
     }
 
-    url = f"{Token['prod']['URL']}/attendee/"
+    url = f"{Token['dev']['URL']}/attendee/"
     headers = {
-        'Authorization': f"Token {Token['prod']['token']}",
+        'Authorization': f"Token {Token['dev']['token']}",
     }
 
     res = requests.get(url, headers=headers)
@@ -26,20 +26,27 @@ def checkout_attendee():
     # print(data)
     for row in data:
         is_online = row['is_online']
-        print(f'is_online = {is_online}')
+        tag_id = row['tag_id']
+        print(f'{tag_id} = {is_online}')
 
         if is_online:
             attendee_id = row['id']
+            attendee_name = row['attendee_name']
+            check_in_date = row['check_in_date']
+            check_in_time = row['check_in_time']
+
             last_updated = row['last_updated'].split('.')[0]
             last_updated = datetime.strptime(last_updated, '%Y-%m-%dT%H:%M:%S')
-            now = datetime.now()  # timezone('Asia/Singapore'))
+            now = datetime.now()
             date = now.date()
             time = now.time()
             diff = now - last_updated
             seconds = diff.seconds
             print(f'seconds = {seconds}')
+            print(f'date = {date}')
+            print(f'time = {time}')
             if seconds > 30:
-                url = f"{Token['prod']['URL']}/attendee/{attendee_id}/"
+                url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
                 data = {
                     'check_out_date': date,
                     'check_out_time': time,
@@ -48,7 +55,26 @@ def checkout_attendee():
                 }
                 res = requests.patch(url, headers=headers, data=data)
                 data = res.json()
-                print(data)
+
+                url = f"{Token['dev']['URL']}/update_attendance/{attendee_name}/{check_in_date}/{check_in_time}/{date}/{time}/"
+                res = requests.get(url, headers={
+                    'Authorization': f"Token {Token['dev']['token']}",
+                    'Content-Type': 'application/json'
+                })
+                d = res.json()
+                print(d)
+
+                # url = f"{Token['dev']['URL']}/search_attendance/{attendee_name}/{check_in_date}/{check_in_time}/"
+                # res = requests.get(url, headers=headers)
+                # d = res.json()
+                # print(d)
+                # if d['exists']:
+                #     attendance_id = d['attendance']['attendance_id']
+                #     url = f"{Token['dev']['URL']}/check_out_attendance/{attendance_id}/{date}/{time}"
+                #     res = requests.get(url, headers=headers)
+                #     print(res.json())
+
+    print('\n')
 
 
 # checkout_attendee()

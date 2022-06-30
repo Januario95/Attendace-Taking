@@ -1,0 +1,18 @@
+[
+    {
+        "Device_Type": "HSWB001",
+        "Raw_Data_Length": "28"
+    },
+    {
+        "Device_Type": "HSWB002",
+        "Raw_Data_Length": "56"
+    },
+    {
+        "Device_Type": "HSWB003",
+        "Raw_Data_Length": "0"
+    },
+    {
+        "Device_Type": "HSWB004",
+        "Raw_Data_Length": "0"
+    }
+]

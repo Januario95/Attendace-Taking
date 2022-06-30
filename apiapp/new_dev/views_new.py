@@ -10,12 +10,17 @@ import json
 from datetime import datetime
 
 from ..models import (
-    Event, Attendee, Attendance,
-    TableDevice
+    Event, Attendee, Attendance, TableBeacon
+)
+from bluguard37.models import (
+    TableDevice, TableAllDevices
 )
 from ..serializers import (
     EventSerializer, AttendeeSerializer,
-    AttendanceSerializer, TableDeviceSerializer
+    AttendanceSerializer, BeaconSerializer
+)
+from bluguard37.serializers import (
+    TableDeviceSerializer
 )
 
 
@@ -23,6 +28,78 @@ def default(obj):
     if isinstance(obj, datetime):
         return obj.isoformat()
     return obj
+
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def get_event_name(request, event_id):
+    event = Event.objects.filter(id=event_id)
+    event_name = 'Not exist'
+    if event.exists():
+        event = event.first()
+        event_name = event.event_name
+
+    return Response({
+        'event_name': event_name
+    })
+
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def check_out_attendance(request, attendance_id, check_out_date, check_out_time):
+    attendance = Attendance.objects.filter(id=attendance_id)
+    updated = False
+    if attendance.exists():
+        attendance = attendance.first()
+        attendance.check_out_date = check_out_date
+        attendance.check_out_time = check_out_time
+        attendance.save()
+        updated = True
+
+    return Response({
+        'updated': updated
+    })
+
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def search_attendance(requet, attendee_name, check_in_date, check_in_time):
+    attendance = Attendance.objects.filter(
+        attendee_name=attendee_name,
+        check_in_date=check_in_date,
+        check_in_time=check_in_time
+    )
+    if attendance.exists():
+        exists = True
+        attendance = attendance.first().serialize()
+    else:
+        exists = False
+        attendance = {}
+
+    return Response({
+        'exists': exists,
+        'attendance': attendance
+    })
+
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def search_attendee_by_id(request, attendee_id):
+    try:
+        attendee = Attendee.objects.filter(id=attendee_id)
+        attendee = attendee.first()
+        attendence = Attendance.objects.create(attendee=attendee)
+        created = True
+    except:
+        created = False
+
+    return Response({
+        'created': created
+    })
 
 
 @api_view(['GET', ])
@@ -44,20 +121,65 @@ def search_device_mac(request, device_mac):
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
-def create_attendance(request, attendee_id, check_in, check_out):
-    attendee = Attendee.objects.filter(id=attendee_id)
+def update_attendance(request, attendee,
+                      check_in_date, check_in_time,
+                      check_out_date, check_out_time):
+    # check_out_date = datetime.strptime(check_out_date, '%Y-%m-%d')
+    # check_out_time = datetime.strptime(check_out_time, '%H:%M:%S.%f')
+    attendee = Attendee.objects.filter(attendee_name=attendee)
     if attendee.exists():
         attendee = attendee.first()
-
-    attendance = Attendance.objects.create(
-        attendee=attendee,
-        check_in=check_in,
-        check_out=check_out
-    )
-    attendance.save()
+        event_name = attendee.event.event_name
+        attendance = Attendance.objects.filter(
+            attendee=attendee,
+            check_in_date=check_in_date,
+            check_in_time=check_in_time
+        )
+        if attendance.exists():
+            exists = True
+            attendance = attendance.first()
+            print(f'check_out_date = {check_out_date}')
+            print(f'check_out_time = {check_out_time}')
+            attendance.check_out_date = check_out_date
+            attendance.check_out_time = check_out_time
+            attendance.save()
+            print('Attendance checked-out successfully!')
+    else:
+        attendee = {}
+        exists = False
 
     return Response({
-        'message': 'Attendace saved successfully'
+        'exists': exists,
+        'attendee': 'attendee'
+    })
+
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def create_attendance(request, attendee,
+                      check_in_date, check_in_time):
+    attendee = Attendee.objects.filter(attendee_name=attendee)
+    if attendee.exists():
+        attendee = attendee.first()
+        event_name = attendee.event.event_name
+        attendance = Attendance.objects.create(
+            attendee=attendee,
+            check_in_date=check_in_date,
+            check_in_time=check_in_time,
+            # check_out_date=check_out_date,
+            # check_out_time=check_out_time
+        )
+        attendance.save()
+        print('Attendance taken successfully!')
+        exists = True
+    else:
+        attendee = {}
+        exists = False
+
+    return Response({
+        'exists': exists,
+        'attendee': 'attendee'  # attendee
     })
 
 
@@ -91,6 +213,86 @@ def get_event_attendee(request, event_id):
     })
 
 
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def delete_event(request, event_id):
+    event = Event.objects.filter(pk=event_id)
+    if event.exists():
+        event = event.first()
+        event.delete()
+        deleted = True
+    else:
+        deleted = False
+
+    return JsonResponse({
+        'deleted': deleted
+    })
+
+
+def set_online_to_offline(table):
+    data = []
+    for device in table:
+        last_read_date = device.last_read_date
+        last_read_time = str(device.last_read_time)
+        if last_read_date is None:
+            pass
+        else:
+            last_read_time = last_read_time.split('.')[0]
+            date_time = f'{last_read_date} {last_read_time}'
+            date_time = datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S")
+            now = datetime.now()
+            time_diff = now - date_time
+
+            row = {}
+            if device.device_status == 'ONLINE':
+                if time_diff.seconds > 8:
+                    device.device_status = 'OFFLINE'
+                    device.save()
+                    row['device_mac'] = device.device_mac
+                    row['device_status'] = device.device_status
+                    data.append(row)
+
+    return data
+
+
+@ api_view(['GET', ])
+@ renderer_classes([JSONRenderer])
+@ renderer_classes([BrowsableAPIRenderer])
+def set_device_offline_online(request):
+    devices = TableDevice.objects.all()
+    alltables = TableAllDevices.objects.all()
+    data = set_online_to_offline(devices)
+    new_data = set_online_to_offline(alltables)
+    # data = []
+    # for device in devices:
+    #     last_read_date = device.last_read_date
+    #     last_read_time = str(device.last_read_time)
+    #     last_read_time = last_read_time.split('.')[0]
+    #     date_time = f'{last_read_date} {last_read_time}'
+    #     date_time = datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S")
+    #     now = datetime.now()
+    #     time_diff = now - date_time
+
+    #     row = {}
+    #     if device.device_status == 'ONLINE':
+    #         if time_diff.seconds > 6:
+    #             device.device_status = 'OFFLINE'
+    #             device.save()
+    #             row['device_mac'] = device.device_mac
+    #             row['device_status'] = device.device_status
+    #             data.append(row)
+
+    return Response({
+        'data': data
+    })
+
+
+class TableBeaconViewSet(ModelViewSet):
+    queryset = TableBeacon.objects.all()
+    serializer_class = BeaconSerializer
+
+
 class TableDeviceViewSet(ModelViewSet):
     queryset = TableDevice.objects.all()
     serializer_class = TableDeviceSerializer
@@ -121,14 +323,12 @@ config = {
     'raise_on_warnings': True,
     'ssl_ca': '/SSL/DigiCertGlobalRootCA.crt.pem'
 
-
     # 'user': 'attendance2',
     # 'password': 'AskPermission2022!',
     # 'database': 'bluguarddb',
     # 'host': 'attendance2.mysql.database.azure.com',
     # 'port': 3306,
     # 'ssl_disabled': True,
-
 
     # 'host': 'localhost',
     # 'user': 'januario95',

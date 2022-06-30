@@ -1,0 +1,192 @@
+[
+    {
+        "Device_Tag": "QB009",
+        "Device_Mac": "AC233F7C5ABE",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB010",
+        "Device_Mac": "AC233F7C5A9C",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB011",
+        "Device_Mac": "AC233F7C5AC8",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB012",
+        "Device_Mac": "AC233F7C5AB3",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB013",
+        "Device_Mac": "AC233F7C5AA8",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB014",
+        "Device_Mac": "AC233F7C5AA7",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB015",
+        "Device_Mac": "AC233F7C5ABB",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB016",
+        "Device_Mac": "AC233F7C5AB7",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB017",
+        "Device_Mac": "AC233F7C5AB9",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB018",
+        "Device_Mac": "AC233F7C5AAE",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB019",
+        "Device_Mac": "AC233F7C5A9B",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB020",
+        "Device_Mac": "AC233F7C5AC6",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB021",
+        "Device_Mac": "AC233F7C5AA2",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB022",
+        "Device_Mac": "AC233F7C5A9F",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB023",
+        "Device_Mac": "AC233F7C5AB4",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "CQ03-0011",
+        "Device_Mac": "FEFDD727C6F5",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0012",
+        "Device_Mac": "06CB88670302",
+        "Device_Type": "HSWB003"
+    },
+    {
+        "Device_Tag": "CQ03-0013",
+        "Device_Mac": "6306CF79A36B",
+        "Device_Type": "HSWB003"
+    },
+    {
+        "Device_Tag": "CQ03-0001",
+        "Device_Mac": "C0279257BAAF",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0002",
+        "Device_Mac": "C73A26F162EB",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0003",
+        "Device_Mac": "C8DDAA6B9BCD",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0004",
+        "Device_Mac": "DD1C27F408EF",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0005",
+        "Device_Mac": "D69AB84C277B",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0006",
+        "Device_Mac": "DFFE02679D28",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0008",
+        "Device_Mac": "E7659831789A",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0009",
+        "Device_Mac": "E6D2C09DE9E6",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "CQ03-0010",
+        "Device_Mac": "ED27ACAAB363",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "QB002",
+        "Device_Mac": "AC233F7C5AAF",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB003",
+        "Device_Mac": "AC233F7C5ABF",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB004",
+        "Device_Mac": "AC233F7C5AC0",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB005",
+        "Device_Mac": "AC233F7C5AC7",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB006",
+        "Device_Mac": "AC233F7C5AB0",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB007",
+        "Device_Mac": "AC233F7C5AB8",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB008",
+        "Device_Mac": "AC233F7C5A98",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB025",
+        "Device_Mac": "AC233F7C5A97",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "QB024",
+        "Device_Mac": "AC233F7C5ABC",
+        "Device_Type": "HSWB004"
+    },
+    {
+        "Device_Tag": "CR03-0007",
+        "Device_Mac": "D32E22308FB6",
+        "Device_Type": "HSWB001"
+    },
+    {
+        "Device_Tag": "QB001",
+        "Device_Mac": "AC233F7C5AAB",
+        "Device_Type": "HSWB004"
+    }
+]

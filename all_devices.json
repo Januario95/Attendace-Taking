@@ -1,0 +1,382 @@
+[
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5ABE",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB009"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5A9C",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB010"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AC8",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB011"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AB3",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB012"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AA8",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB013"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AA7",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB014"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5ABB",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB015"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AB7",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB016"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AB9",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB017"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AAE",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB018"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5A9B",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB019"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AC6",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB020"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AA2",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB021"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5A9F",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB022"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AB4",
+        "device_temp": null,
+        "device_hr": null,
+        "device_o2": null,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB023"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "FEFDD727C6F5",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 1,
+        "device_status": "ONLINE",
+        "device_tag": "CQ03-0011"
+    },
+    {
+        "device_type": "HSWB003",
+        "device_mac": "06CB88670302",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 1,
+        "device_status": "ONLINE",
+        "device_tag": "CQ03-0012"
+    },
+    {
+        "device_type": "HSWB003",
+        "device_mac": "6306CF79A36B",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 1,
+        "device_status": "ONLINE",
+        "device_tag": "CQ03-0013"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "C0279257BAAF",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 1,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0001"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "C73A26F162EB",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0002"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "C8DDAA6B9BCD",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0003"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "DD1C27F408EF",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0004"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "D69AB84C277B",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0005"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "DFFE02679D28",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0006"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "E7659831789A",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0008"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "E6D2C09DE9E6",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 1,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0009"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "ED27ACAAB363",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "CQ03-0010"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AAF",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB002"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5ABF",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB003"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AC0",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB004"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AC7",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB005"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AB0",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB006"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AB8",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB007"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5A98",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB008"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5A97",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB025"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5ABC",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "ONLINE",
+        "device_tag": "QB024"
+    },
+    {
+        "device_type": "HSWB001",
+        "device_mac": "D32E22308FB6",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "CR03-0007"
+    },
+    {
+        "device_type": "HSWB004",
+        "device_mac": "AC233F7C5AAB",
+        "device_temp": 0.0,
+        "device_hr": 0,
+        "device_o2": 0,
+        "incorrect_data_flag": 0,
+        "device_status": "OFFLINE",
+        "device_tag": "QB001"
+    }
+]

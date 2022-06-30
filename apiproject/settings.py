@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     # Internal apps
     'apiapp.apps.ApiappConfig',
+    'bluguard37.apps.Bluguard37Config',
 
     # Third-party
     'corsheaders',

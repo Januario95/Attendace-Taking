@@ -4,7 +4,6 @@
 Created at Thur Apr 22 2021 18:31:43
 """
 
-from email import header
 import time
 import json
 from wsgiref import headers
@@ -16,19 +15,6 @@ import mysql.connector as mysql
 from General_Functions import (
     Create_PK, Validate_Raw_Data_Length
 )
-
-
-Token = {
-    'dev': {
-        'URL': 'http://localhost:8000',
-        'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
-    },
-    'prod': {
-        'URL': 'https://bluguard-attendance.herokuapp.com',
-        'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
-    }
-}
-
 
 config = {
     # 'host': 'attendance1.mysql.database.azure.com',
@@ -70,74 +56,61 @@ def dictfetchall(cursor):
 
 
 def Insert_Alert(Alert_Code, Alert_Reading, Device_ID):
-    url = f"{Token['dev']['URL']}/filter_alert_by_code_and_device_id/"
-    headers = {
-        'Authorization': f"Token {Token['dev']['token']}",
-        'Content-Type': 'application/json'
-    }
-    data = {
-        'alert_code': Alert_Code,
-        'alert_reading': Alert_Reading,
-        'device_reading': Device_ID
-    }
-    res = requests.post(url, headers=headers, data=json.dumps(data))
-    print(res.status_code)
-    # Connector = mysql.connect(**config)
-    # Cursor = Connector.cursor()
-    # query = '''SELECT TIMEDIFF(CURRENT_TIMESTAMP(), Alert_Datetime) > TIME('00:01:00') AS TIMEDIFF
-    # 	FROM TBL_Alert WHERE Alert_Code = %s AND Device_ID = %s AND
-    # 		TIMEDIFF(CURRENT_TIMESTAMP(), Alert_Datetime) > TIME('00:00:30');
-    # '''
-    # parameters = (Alert_Code, Device_ID)
-    # Cursor.execute(query, parameters)
-    # results = dictfetchall(Cursor)
-    # for row in results:
-    #     time_diff = row['TIMEDIFF']
-    #     if time_diff == 1:
-    #         print(f'TIMEDIFF = {time_diff}')
-    #         query = """
-    # 			DELETE FROM TBL_Alert
-    # 				WHERE Alert_Code = %s AND Device_ID = %s AND
-    # 					TIMEDIFF(CURRENT_TIMESTAMP(), Alert_Datetime) > TIME('00:01:00')
-    # 		"""
+    Connector = mysql.connect(**config)
+    Cursor = Connector.cursor()
+    query = '''SELECT TIMEDIFF(CURRENT_TIMESTAMP(), Alert_Datetime) > TIME('00:01:00') AS TIMEDIFF
+		FROM TBL_Alert WHERE Alert_Code = %s AND Device_ID = %s AND
+			TIMEDIFF(CURRENT_TIMESTAMP(), Alert_Datetime) > TIME('00:00:30');
+	'''
+    parameters = (Alert_Code, Device_ID)
+    Cursor.execute(query, parameters)
+    results = dictfetchall(Cursor)
+    for row in results:
+        time_diff = row['TIMEDIFF']
+        if time_diff == 1:
+            print(f'TIMEDIFF = {time_diff}')
+            query = """
+				DELETE FROM TBL_Alert
+					WHERE Alert_Code = %s AND Device_ID = %s AND
+						TIMEDIFF(CURRENT_TIMESTAMP(), Alert_Datetime) > TIME('00:01:00')
+			"""
 
-    #         parameters = (Alert_Code, Device_ID)
-    #         Cursor.execute(query, parameters)
-    #         Connector.commit()
+            parameters = (Alert_Code, Device_ID)
+            Cursor.execute(query, parameters)
+            Connector.commit()
 
-    #         query = '''
-    # 	        INSERT INTO TBL_Alert
-    # 	            (Alert_ID, Alert_Code, Alert_Reading,
-    # 	             Alert_Date, Alert_Time, Device_ID, Alert_Datetime)
-    # 	            VALUES(%s, %s, %s, CURRENT_DATE(), CURRENT_TIME(), %s, CURRENT_TIMESTAMP())
-    # 	    '''
+            query = '''
+		        INSERT INTO TBL_Alert
+		            (Alert_ID, Alert_Code, Alert_Reading,
+		             Alert_Date, Alert_Time, Device_ID, Alert_Datetime)
+		            VALUES(%s, %s, %s, CURRENT_DATE(), CURRENT_TIME(), %s, CURRENT_TIMESTAMP())
+		    '''
 
-    #         parameters = (Create_PK('ALT'), Alert_Code,
-    #                       Alert_Reading, Device_ID)
-    #         Cursor.execute(query, parameters)
-    #         Connector.commit()
-    #         print(f'Updated Alert_Code: {Alert_Code}')
+            parameters = (Create_PK('ALT'), Alert_Code,
+                          Alert_Reading, Device_ID)
+            Cursor.execute(query, parameters)
+            Connector.commit()
+            print(f'Updated Alert_Code: {Alert_Code}')
 
-    # query = '''SELECT * FROM TBL_Alert WHERE Alert_Code = %s AND Device_ID = %s'''
-    # parameters = (Alert_Code, Device_ID)
-    # Cursor.execute(query, parameters)
-    # results = dictfetchall(Cursor)
-    # if len(results) == 0:
-    #     query = '''
-    #         INSERT INTO TBL_Alert
-    #             (Alert_ID, Alert_Code, Alert_Reading,
-    #              Alert_Date, Alert_Time, Device_ID, Alert_Datetime)
-    #             VALUES(%s, %s, %s, CURRENT_DATE(), CURRENT_TIME(), %s, CURRENT_TIMESTAMP())
-    #     '''
+    query = '''SELECT * FROM TBL_Alert WHERE Alert_Code = %s AND Device_ID = %s'''
+    parameters = (Alert_Code, Device_ID)
+    Cursor.execute(query, parameters)
+    results = dictfetchall(Cursor)
+    if len(results) == 0:
+        query = '''
+	        INSERT INTO TBL_Alert
+	            (Alert_ID, Alert_Code, Alert_Reading,
+	             Alert_Date, Alert_Time, Device_ID, Alert_Datetime)
+	            VALUES(%s, %s, %s, CURRENT_DATE(), CURRENT_TIME(), %s, CURRENT_TIMESTAMP())
+	    '''
 
-    #     parameters = (Create_PK('ALT'), Alert_Code, Alert_Reading, Device_ID)
-    #     Cursor.execute(query, parameters)
-    #     Connector.commit()
-    #     print(f'Inserted Alert_Code: {Alert_Code}')
+        parameters = (Create_PK('ALT'), Alert_Code, Alert_Reading, Device_ID)
+        Cursor.execute(query, parameters)
+        Connector.commit()
+        print(f'Inserted Alert_Code: {Alert_Code}')
 
 
 def Check_Highest_Score(Type, value_attr, device_id):
-    print('HERE')
     value = 0
     alert_code = 0
     if Type == 'temp':
@@ -260,18 +233,22 @@ def Get_Status_Batlevel(raw_data,
 
 
 def Get_Device_Type(Device_Mac):
-    url = f"{Token['dev']['URL']}/search_device_by_device_mac/{Device_Mac}/"
-    headers = {
-        'Authorization': f"Token {Token['dev']['token']}",
-        'Content-Type': 'application/json'
-    }
-    res = requests.get(url, headers=headers)
-    data = res.json()
-    if data['exists']:
-        device_type = data['device']['device_type']
-    else:
-        device_type = ''
-    return device_type
+    Connector = mysql.connect(**config)
+
+    Cursor = Connector.cursor()
+
+    query = '''
+		SELECT Device_Type FROM tbl_device
+		WHERE Device_Mac = %s
+	'''
+    parameter = (Device_Mac,)
+    Cursor.execute(query, parameter)
+    results = Cursor.fetchall()
+    try:
+        results = results[0][0]
+    except IndexError:
+        results = ''
+    return results
 
 
 def HSWB001_Process_Data(raw_data):
@@ -367,13 +344,6 @@ def Process_Quarentine_Band(data, gateway_mac, Device_Mac, Device_Type):
 
 def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_Mac):
     populate_metadata = Populate_MetaData(data, gateway_mac)
-    # print(populate_metadata)
-
-    url = f"{Token['dev']['URL']}/update_device/"
-    headers = {
-        'Authorization': f"Token {Token['dev']['token']}",
-        'Content-Type': 'application/json'
-    }
 
     # Connector = mysql.connect(**config)
     # Cursor = Connector.cursor()
@@ -406,25 +376,12 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
         # print(f'Device_Mac = {Device_Mac}')
         # print(f'device_type = {Device_Type}')
 
-        # parameters_to_tbl_device = (populate_metadata['date'],
-        #                             populate_metadata['time'], 0, 0, 0, 0, 1, Device_Mac)
-        # print(parameters_to_tbl_device)
-        data = {
-            'temp': 0, 'heart_rate': 0, 'spo2': 0, 'batlevel': 0,
-            'incorrect_data_flag': 0, 'date': populate_metadata['date'],
-            'time': populate_metadata['time'], 'device_mac': Device_Mac,
-            'device_status': 'ONLINE'
-        }
-        # print(json.dumps(data, indent=4))
-        res = requests.post(url, headers=headers, data=json.dumps(data))
-        data_ = res.json()
-        # print(data_)
-        device_id = data_['device']['id']
+        parameters_to_tbl_device = (populate_metadata['date'],
+                                    populate_metadata['time'], 0, 0, 0, 0, 1, Device_Mac)
     elif validated == True:
         # Data is correct
         populate_vitaldata = Process_RawData(Raw_Data, Device_Type)
         populate_vitaldata.update(populate_metadata)
-        # print(populate_vitaldata)
         # json_manager = ManageJson()
         # data_from_json = json_manager.load_json()
         # data_from_json.append(populate_vitaldata)
@@ -437,48 +394,25 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
         # print(f'device_type = {Device_Type}')
         # print(f'batlevel = {populate_vitaldata["batlevel"]}')
 
-        # parameters_to_tbl_device = (populate_metadata['date'], populate_metadata['time'],
-        #                             populate_vitaldata['temp'], populate_vitaldata['heart_rate'],
-        #                             populate_vitaldata['spo2'], populate_vitaldata['batlevel'], 0,
-        #                             Device_Mac)
+        parameters_to_tbl_device = (populate_metadata['date'], populate_metadata['time'],
+                                    populate_vitaldata['temp'], populate_vitaldata['heart_rate'],
+                                    populate_vitaldata['spo2'], populate_vitaldata['batlevel'], 0,
+                                    Device_Mac)
 
-        # print(populate_vitaldata)
-        temp = populate_vitaldata['temp']
-        heart_rate = populate_vitaldata['heart_rate']
-        spo2 = populate_vitaldata['spo2']
-        batlevel = populate_vitaldata['batlevel']
-        incorrect_data_flag = 1
-        date = populate_metadata['date']
-        time = populate_metadata['time']
-        data = {
-            'temp': temp, 'heart_rate': heart_rate, 'spo2': spo2,
-            'batlevel': batlevel, 'incorrect_data_flag': incorrect_data_flag,
-            'date': date, 'time': time, 'device_mac': Device_Mac,
-            'device_status': 'ONLINE'
-        }
-        # print(json.dumps(data, indent=4))
-        res = requests.post(url, headers=headers, data=json.dumps(data))
-        data_ = res.json()
-        # print(data_)
-        device_id = data_['device']['id']
-
-    print('Filter_Message function executed successfully!')
-    print('YES')
-
-    # query = '''
-    # 	SELECT Device_ID FROM TBL_Device
-    #         WHERE Device_Mac = %s
-    # '''
-    # parameter = (Device_Mac, )
-    # Cursor.execute(query, parameter)
-    # results = dictfetchall(Cursor)
-    # Device_ID = results[0]['Device_ID']
-    # Check_Highest_Score('temp', populate_vitaldata['temp'], device_id)
-    # Check_Highest_Score(
-    #     'heart_rate', populate_vitaldata['heart_rate'], device_id)
-    # Check_Highest_Score('spo2', populate_vitaldata['spo2'], device_id)
-    # Check_Highest_Score(
-    #     'batlevel', populate_vitaldata['batlevel'], device_id)
+        # query = '''
+        # 	SELECT Device_ID FROM TBL_Device
+        #         WHERE Device_Mac = %s
+        # '''
+        # parameter = (Device_Mac, )
+        # Cursor.execute(query, parameter)
+        # results = dictfetchall(Cursor)
+        # Device_ID = results[0]['Device_ID']
+        # Check_Highest_Score('temp', populate_vitaldata['temp'], Device_ID)
+        # Check_Highest_Score(
+        #     'heart_rate', populate_vitaldata['heart_rate'], Device_ID)
+        # Check_Highest_Score('spo2', populate_vitaldata['spo2'], Device_ID)
+        # Check_Highest_Score(
+        #     'batlevel', populate_vitaldata['batlevel'], Device_ID)
 
     # try:
     #     print('SUCCESS')
@@ -487,8 +421,7 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
     # except:
     #     print('ERROR')
 
-    # last_read_date, last_read_time, temp, heart_rate, spo2, batlevel, incorrect_data_flag, device_mac = parameters_to_tbl_device
-    # print('YES')
+    last_read_date, last_read_time, temp, heart_rate, spo2, batlevel, incorrect_data_flag, device_mac = parameters_to_tbl_device
     # headers = {
     #     'Authorization': f'Token {token}',
     #     'Content-Type': 'application/json'
@@ -499,8 +432,7 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
     # res = requests.get(url, headers=headers)
     # data = res.json()
     # print(data)
-    # print('Filter_Message function executed successfully!')
-    # print(populate_vitaldata)
+    print('Filter_Message function executed successfully!')
 
 
 def Get_Mqtt_Data(data_from_gateway):
@@ -508,35 +440,104 @@ def Get_Mqtt_Data(data_from_gateway):
     # Connector = mysql.connect(**config)
     # Cursor = Connector.cursor()
 
+    Token = {
+        'dev': {
+            'URL': 'http://localhost:8000',
+            'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
+        },
+        'prod': {
+            'URL': 'https://bluguard-attendance.herokuapp.com',
+            'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
+        }
+    }
+
     for data in data_from_gateway:
-        if data['type'] == 'Gateway':
-            gateway_mac = data['mac']
-            # query = '''
-            # 	UPDATE TBL_Gateway
-            # 	SET Last_Updated_Time = CURRENT_TIMESTAMP(),
-            # 		Gateway_Status = %s
-            # 	WHERE Gateway_Mac = %s
-            # '''
-            # parameter = ('ONLINE', gateway_mac,)
-            # Cursor.execute(query, parameter)
-            # Connector.commit()
+        tag_id = data['mac']  # 'FEFDD727C6F5'
+        url = f"{Token['dev']['URL']}/search_attended_by_gatewaymac/{tag_id}/"
+        res = requests.get(url, headers={
+            'Authorization': f"Token {Token['dev']['token']}",
+            'Content-Type': 'application/json'
+        })
+        data_ = res.json()
+        print(data_)
 
-        if data['type'] != 'Gateway':
-            Device_Mac = data['mac']
-            Device_Type = Get_Device_Type(Device_Mac)
-            print(f'Device_Type = {Device_Type}')
+        if len(data_['attendee']) != 0:
+            event_id = data_['attendee'][0]['event']
+            url = f"{Token['dev']['URL']}/get_event_name/{event_id}/"
+            res = requests.get(url, headers={
+                'Authorization': f"Token {Token['dev']['token']}"
+            })
+            data = res.json()
+            event_name = data['event_name']
 
-            if Device_Type == 'HSWB004':
-                pass
-                # Process_Quarentine_Band(
-                #     data, gateway_mac, Device_Mac, Device_Type)
-            elif data.get('rawData') is not None:
-                try:
-                    # results = Validate_Raw_Data_Length(Device_Type, data['rawData'])
-                    results = True if len(data['rawData']) > 0 else False
-                    Filter_Message(results, Device_Type, data['rawData'], data,
-                                   gateway_mac=gateway_mac, Device_Mac=Device_Mac)
-                except Exception:
-                    pass
+            attendee = data_['attendee'][0]
+            attendee_id = attendee['id']
+            attendee_name = attendee['attendee_name']
+            timestamp = datetime.now()
+            date = timestamp.date()  # attendee['check_in_date']
+            time = timestamp.time()  # attendee['check_in_time']
+            check_in_date = attendee['check_in_date']
+            check_in_time = attendee['check_in_time']
+            # check_out_date = attendee['check_out_date']
+            # check_out_time = attendee['check_out_time']
+            attendee_id = attendee['id']
+            # print(f'attendee = {attendee}')
+
+            data_ = {}
+            if check_in_date is None:
+                timestamp = datetime.now()
+                date = timestamp.date()
+                time = timestamp.time()
+                data_ = {
+                    'check_in_date': date,
+                    'check_in_time': time,
+                    'is_online': True,
+                    'last_updated': datetime.now()
+                }
+
+                url = f"{Token['dev']['URL']}/create_attendance/{attendee_name}/{date}/{time}/"
+                res = requests.get(url, headers={
+                    'Authorization': f"Token {Token['dev']['token']}",
+                    'Content-Type': 'application/json'
+                })
+                d = res.json()
+                print(d)
+            else:
+                data_ = {'last_updated': datetime.now()}
+
+            url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
+            res = requests.patch(url, headers={
+                'Authorization': f"Token {Token['dev']['token']}",
+            }, data=data_)
+            data_ = res.json()
+
+        # if data['type'] == 'Gateway':
+        #     gateway_mac = data['mac']
+        #     query = '''
+        #     	UPDATE TBL_Gateway
+        #     	SET Last_Updated_Time = CURRENT_TIMESTAMP(),
+        #     		Gateway_Status = %s
+        #     	WHERE Gateway_Mac = %s
+        #     '''
+        #     parameter = ('ONLINE', gateway_mac,)
+        #     Cursor.execute(query, parameter)
+        #     Connector.commit()
+
+        # if data['type'] != 'Gateway':
+        #     Device_Mac = data['mac']
+        #     Device_Type = Get_Device_Type(Device_Mac)
+
+        #     if Device_Type == 'HSWB004':
+        #         pass
+        #         # Process_Quarentine_Band(
+        #         #     data, gateway_mac, Device_Mac, Device_Type)
+        #     elif data.get('rawData') is not None:
+        #         try:
+        #             # results = Validate_Raw_Data_Length(Device_Type, data['rawData'])
+        #             results = True if len(data['rawData']) > 0 else False
+        #             Filter_Message(results, Device_Type, data['rawData'], data,
+        #                            gateway_mac=gateway_mac, Device_Mac=Device_Mac)
+        #         except Exception:
+        #             pass
 
     print('\n\n')

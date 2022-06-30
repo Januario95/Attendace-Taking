@@ -3,6 +3,7 @@ from django.utils import timezone
 
 
 import json
+import random
 from datetime import datetime
 
 
@@ -12,18 +13,9 @@ def default(obj):
     return obj
 
 
-class AttendeeQuerySet(models.QuerySet):
-    def serialize(self):
-        list_values = list(self.values(
-            'id', 'attendee_name', 'tag_id',
-            'check_in_date', 'check_in_time', 'check_out_date',
-            'check_out_time', 'event'))
-        return list_values  # json.dumps(list_values, indent=4)
-
-
-class AttendeeManager(models.Manager):
-    def get_queryset(self):
-        return AttendeeQuerySet(self.model, using=self._db)
+def Get_Random():
+    val = random.random() * 100
+    return round(val, 2)
 
 
 class Event(models.Model):
@@ -38,11 +30,26 @@ class Event(models.Model):
         max_length=128, default='Singapore')
 
     class Meta:
-        verbose_name = ("Event")
-        verbose_name_plural = ("Events")
+        verbose_name = ("Table Event")
+        verbose_name_plural = ("Table Event")
 
     def __str__(self):
         return self.event_name
+
+
+class AttendeeQuerySet(models.QuerySet):
+    def serialize(self):
+        list_values = list(self.values(
+            'id', 'attendee_name', 'tag_id',
+            'check_in_date', 'check_in_time', 'check_out_date',
+            'check_out_time',
+            'event'))
+        return list_values  # json.dumps(list_values, indent=4)
+
+
+class AttendeeManager(models.Manager):
+    def get_queryset(self):
+        return AttendeeQuerySet(self.model, using=self._db)
 
 
 class Attendee(models.Model):
@@ -56,9 +63,10 @@ class Attendee(models.Model):
         blank=True, null=True)
     check_out_time = models.TimeField(
         blank=True, null=True)
-    event = models.ForeignKey(to=Event, on_delete=models.CASCADE)
-    # device_mac = models.CharField(
-    #     max_length=128, unique=True)
+    event = models.ForeignKey(
+        to=Event, on_delete=models.CASCADE,
+        blank=True, null=True
+    )
     is_online = models.BooleanField(default=False)
     last_updated = models.DateTimeField(
         blank=True, null=True)
@@ -78,60 +86,123 @@ class Attendee(models.Model):
         }
         return json.dumps(data, default=default)
 
+    class Meta:
+        verbose_name = ("Table Attendee")
+        verbose_name_plural = ("Table Attendee")
+
     def __str__(self):
         return self.attendee_name
 
 
+class AttendanceQuerySet(models.QuerySet):
+    def serialize(self):
+        list_values = list(self.values(
+            'id', 'attendee_name', 'event',
+            'check_in_date', 'check_in_time', 'check_out_date',
+            'check_out_time'))
+        return list_values  # json.dumps(list_values, indent=4)
+
+
+class AttendanceManager(models.Manager):
+    def get_queryset(self):
+        return AttendeeQuerySet(self.model, using=self._db)
+
+
 class Attendance(models.Model):
-    # attendance_name = models.CharField(max_length=128)
-    attendee = models.ForeignKey(to=Attendee, on_delete=models.CASCADE)
-    check_in = models.DateTimeField()
-    check_out = models.DateTimeField()
+    # attendee_name = models.CharField(
+    #     max_length=128, default='Cinema')
+    # event = models.CharField(
+    #     max_length=128, default='Cinema')
+    attendee = models.ForeignKey(
+        to=Attendee, on_delete=models.CASCADE,
+        default=8)
+    check_in_date = models.DateField(
+        blank=True, null=True)
+    check_in_time = models.TimeField(
+        blank=True, null=True)
+    check_out_date = models.DateField(
+        blank=True, null=True)
+    check_out_time = models.TimeField(
+        blank=True, null=True)
+
+    objects = AttendanceManager()
+
+    def serialize(self):
+        data = {
+            'attendance_id': self.id,
+            'attendee': self.attendee.attendee_name,
+            # 'event': self.event,
+            'check_in_date': self.check_in_date,
+            'check_in_time': self.check_in_time,
+            'check_out_date': self.check_out_date,
+            'check_out_time': self.check_out_time,
+        }
+        return data  # json.dumps(data, default=default)
+
+    class Meta:
+        verbose_name = ("Table Attendance")
+        verbose_name_plural = ("Table Attendance")
 
     def __str__(self):
         return self.attendee.attendee_name
 
 
-class TableDevice(models.Model):
-    device_tag = models.CharField(max_length=50, blank=True, null=True)
-    device_mac = models.CharField(max_length=100, blank=True, null=True)
-    device_status = models.CharField(max_length=20, blank=True, null=True)
-    device_assignment = models.CharField(max_length=30, blank=True, null=True)
-    device_temp = models.DecimalField(
-        max_digits=10, decimal_places=2, blank=True, null=True)
-    device_o2 = models.DecimalField(
-        max_digits=10, decimal_places=2, blank=True, null=True)
-    device_bat = models.DecimalField(
-        max_digits=10, decimal_places=2, blank=True, null=True)
-    device_hr = models.DecimalField(
-        max_digits=10, decimal_places=2, blank=True, null=True)
-    last_read_date = models.DateField(blank=True, null=True)
-    last_read_time = models.TimeField(blank=True, null=True)
-    incorrect_data_flag = models.IntegerField(default=0)
+class TableBeacon(models.Model):
+    type = models.CharField(max_length=100)
+    serial_number = models.CharField(max_length=100)
+    placement_location = models.CharField(max_length=100)
+    last_battery_date = models.DateField()
+    key = models.CharField(max_length=50)
+    event = models.ManyToManyField(to=Event)
 
     def __str__(self):
-        return self.device_tag
+        return f'{self.type} - {self.serial_number}'
 
     class Meta:
-        verbose_name = 'Device'
-        verbose_name_plural = 'Table Device'
+        verbose_name = 'Table Beacon'
+        verbose_name_plural = 'Table Beacon'
 
 
-class TableAlert(models.Model):
-    alert_code = models.IntegerField(null=True, blank=True)
-    alert_reading = models.DecimalField(
-        max_digits=10, decimal_places=2,
-        null=True, blank=True)
-    alert_date = models.DateField(null=True, blank=True)
-    alert_time = models.TimeField(null=True, blank=True)
-    device = models.ForeignKey(to=TableDevice, on_delete=models.CASCADE)
+# class TableDevice(models.Model):
+#     device_tag = models.CharField(max_length=50, blank=True, null=True)
+#     device_mac = models.CharField(max_length=100, blank=True, null=True)
+#     device_status = models.CharField(max_length=20, blank=True, null=True)
+#     device_assignment = models.CharField(max_length=30, blank=True, null=True)
+#     device_temp = models.DecimalField(
+#         max_digits=10, decimal_places=2, blank=True, null=True)
+#     device_o2 = models.DecimalField(
+#         max_digits=10, decimal_places=2, blank=True, null=True)
+#     device_bat = models.DecimalField(
+#         max_digits=10, decimal_places=2, blank=True, null=True)
+#     device_hr = models.DecimalField(
+#         max_digits=10, decimal_places=2, blank=True, null=True)
+#     last_read_date = models.DateField(blank=True, null=True)
+#     last_read_time = models.TimeField(blank=True, null=True)
+#     incorrect_data_flag = models.IntegerField(default=0)
 
-    def __str__(self):
-        return f'{self.alert_code} - {self.alert_reading}'
+#     def __str__(self):
+#         return self.device_tag
 
-    class Meta:
-        verbose_name = 'Alert'
-        verbose_name_plural = 'Table Alert'
+#     class Meta:
+#         verbose_name = 'Device'
+#         verbose_name_plural = 'Table Device'
+
+
+# class TableAlert(models.Model):
+#     alert_code = models.IntegerField(null=True, blank=True)
+#     alert_reading = models.DecimalField(
+#         max_digits=10, decimal_places=2,
+#         null=True, blank=True)
+#     alert_date = models.DateField(null=True, blank=True)
+#     alert_time = models.TimeField(null=True, blank=True)
+#     device = models.ForeignKey(to=TableDevice, on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return f'{self.alert_code} - {self.alert_reading}'
+
+#     class Meta:
+#         verbose_name = 'Alert'
+#         verbose_name_plural = 'Table Alert'
 
 
 # class TblAcknowledgement(models.Model):

@@ -10,12 +10,15 @@ from .views_new import (
     #     Attendee_List_All,
 
     EventViewSet, AttendeeViewSet, AttendanceViewSet,
-    TableDeviceViewSet,
+    TableDeviceViewSet, TableBeaconViewSet,
 
+    delete_event, set_device_offline_online,
     get_event_attendee, search_attended_by_gatewaymac,
-    create_attendance,
+    create_attendance, update_attendance,
 
-    search_device_mac,
+    search_device_mac, search_attendee_by_id,
+    search_attendance, check_out_attendance,
+    get_event_name,
 )
 
 router = DefaultRouter()
@@ -23,16 +26,27 @@ router.register('events', EventViewSet)
 router.register('attendee', AttendeeViewSet)
 router.register('attendance', AttendanceViewSet)
 router.register('tabledevice', TableDeviceViewSet)
+router.register('beacons', TableBeaconViewSet)
 
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('delete_event/<int:event_id>/', delete_event),
+    path('set_device_offline_online/', set_device_offline_online),
+    path('get_event_name/<int:event_id>/', get_event_name),
+    path('check_out_attendance/<int:attendance_id>/<str:check_out_date>/<str:check_out_time>/',
+         check_out_attendance),
+    path('search_attendance/<str:attendee_name>/<str:check_in_date>/<str:check_in_time>/',
+         search_attendance),
+    path('search_attendee_by_id/<str:attendee_id>/', search_attendee_by_id),
     path('search_device_mac/<str:device_mac>/', search_device_mac),
     path('get_event_attendee/<int:event_id>/', get_event_attendee),
     path('search_attended_by_gatewaymac/<str:tag_id>/',
          search_attended_by_gatewaymac),
-    path('create_attendance/<int:attendee_id>/<str:check_in>/<str:check_out>/',
+    path('create_attendance/<str:attendee>/<str:check_in_date>/<str:check_in_time>/',  # <str:check_out_date>/<str:check_out_time>/',
          create_attendance),
+    path('update_attendance/<str:attendee>/<str:check_in_date>/<str:check_in_time>/<str:check_out_date>/<str:check_out_time>/',
+         update_attendance),
 
     path('index/', index, name='index'),
     #     path('Quanrantine_Surveillance_Data/',

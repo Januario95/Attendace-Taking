@@ -11,6 +11,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apiapp.new_dev.urls_new')),
+    path('', include('bluguard37.urls')),
 
 
 

@@ -1,14 +1,14 @@
 from rest_framework import serializers
 from .models import (
-    Event, Attendee, Attendance,
-    TableDevice
+    Event, Attendee, Attendance, TableBeacon
 )
 
 
-class TableDeviceSerializer(serializers.ModelSerializer):
+class BeaconSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TableDevice
+        model = TableBeacon
         fields = '__all__'
+        depth = 1
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -22,11 +22,11 @@ class AttendeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendee
         fields = '__all__'
-        depth = 1
+        depth = 2
 
 
 class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Attendance
         fields = '__all__'
-        depth = 1
+        depth = 2
