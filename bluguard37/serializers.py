@@ -47,3 +47,4 @@ class TableAlertSerializer(serializers.ModelSerializer):
     class Meta:
         model = TableAlert
         fields = '__all__'
+        depth = 2

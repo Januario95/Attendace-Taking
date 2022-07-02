@@ -413,7 +413,7 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
             'temp': 0, 'heart_rate': 0, 'spo2': 0, 'batlevel': 0,
             'incorrect_data_flag': 0, 'date': populate_metadata['date'],
             'time': populate_metadata['time'], 'device_mac': Device_Mac,
-            'device_status': 'ONLINE'
+            'device_status': 'ONLINE', 'gateway_mac': gateway_mac
         }
         # print(json.dumps(data, indent=4))
         res = requests.post(url, headers=headers, data=json.dumps(data))
@@ -454,7 +454,7 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
             'temp': temp, 'heart_rate': heart_rate, 'spo2': spo2,
             'batlevel': batlevel, 'incorrect_data_flag': incorrect_data_flag,
             'date': date, 'time': time, 'device_mac': Device_Mac,
-            'device_status': 'ONLINE'
+            'device_status': 'ONLINE', 'gateway_mac': gateway_mac
         }
         # print(json.dumps(data, indent=4))
         res = requests.post(url, headers=headers, data=json.dumps(data))
@@ -509,8 +509,10 @@ def Get_Mqtt_Data(data_from_gateway):
     # Cursor = Connector.cursor()
 
     for data in data_from_gateway:
+        # print(data)
         if data['type'] == 'Gateway':
             gateway_mac = data['mac']
+            # print(f'gateway_mac = {gateway_mac}')
             # query = '''
             # 	UPDATE TBL_Gateway
             # 	SET Last_Updated_Time = CURRENT_TIMESTAMP(),
@@ -523,8 +525,9 @@ def Get_Mqtt_Data(data_from_gateway):
 
         if data['type'] != 'Gateway':
             Device_Mac = data['mac']
+            # print(f'Device_Mac = {Device_Mac}')
             Device_Type = Get_Device_Type(Device_Mac)
-            print(f'Device_Type = {Device_Type}')
+            # print(f'Device_Type = {Device_Type}')
 
             if Device_Type == 'HSWB004':
                 pass

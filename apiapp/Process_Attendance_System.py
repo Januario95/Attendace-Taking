@@ -452,7 +452,9 @@ def Get_Mqtt_Data(data_from_gateway):
     }
 
     for data in data_from_gateway:
+        # print(data)
         tag_id = data['mac']  # 'FEFDD727C6F5'
+        print(f'Device_Mac = {tag_id}')
         url = f"{Token['dev']['URL']}/search_attended_by_gatewaymac/{tag_id}/"
         res = requests.get(url, headers={
             'Authorization': f"Token {Token['dev']['token']}",
@@ -461,55 +463,59 @@ def Get_Mqtt_Data(data_from_gateway):
         data_ = res.json()
         print(data_)
 
-        if len(data_['attendee']) != 0:
-            event_id = data_['attendee'][0]['event']
-            url = f"{Token['dev']['URL']}/get_event_name/{event_id}/"
-            res = requests.get(url, headers={
-                'Authorization': f"Token {Token['dev']['token']}"
-            })
-            data = res.json()
-            event_name = data['event_name']
+        # if len(data_['attendee']) != 0:
+        #     event_id = data_['attendee'][0]['event']
+        #     url = f"{Token['dev']['URL']}/get_event_name/{event_id}/"
+        #     res = requests.get(url, headers={
+        #         'Authorization': f"Token {Token['dev']['token']}"
+        #     })
+        #     data = res.json()
+        #     event_name = data['event_name']
 
-            attendee = data_['attendee'][0]
-            attendee_id = attendee['id']
-            attendee_name = attendee['attendee_name']
-            timestamp = datetime.now()
-            date = timestamp.date()  # attendee['check_in_date']
-            time = timestamp.time()  # attendee['check_in_time']
-            check_in_date = attendee['check_in_date']
-            check_in_time = attendee['check_in_time']
-            # check_out_date = attendee['check_out_date']
-            # check_out_time = attendee['check_out_time']
-            attendee_id = attendee['id']
-            # print(f'attendee = {attendee}')
+        #     attendee = data_['attendee'][0]
+        #     attendee_id = attendee['id']
+        #     attendee_name = attendee['attendee_name']
+        #     timestamp = datetime.now()
+        #     date = timestamp.date()  # attendee['check_in_date']
+        #     time = timestamp.time()  # attendee['check_in_time']
+        #     try:
+        #         check_in_date = attendee['check_in_date']
+        #         check_in_time = attendee['check_in_time']
+        #     except:
+        #         check_in_date = None
+        #         check_in_time = None
+        #     # check_out_date = attendee['check_out_date']
+        #     # check_out_time = attendee['check_out_time']
+        #     attendee_id = attendee['id']
+        #     # print(f'attendee = {attendee}')
 
-            data_ = {}
-            if check_in_date is None:
-                timestamp = datetime.now()
-                date = timestamp.date()
-                time = timestamp.time()
-                data_ = {
-                    'check_in_date': date,
-                    'check_in_time': time,
-                    'is_online': True,
-                    'last_updated': datetime.now()
-                }
+        #     data_ = {}
+        #     if check_in_date is None:
+        #         timestamp = datetime.now()
+        #         date = timestamp.date()
+        #         time = timestamp.time()
+        #         data_ = {
+        #             'check_in_date': date,
+        #             'check_in_time': time,
+        #             'is_online': True,
+        #             'last_updated': datetime.now()
+        #         }
 
-                url = f"{Token['dev']['URL']}/create_attendance/{attendee_name}/{date}/{time}/"
-                res = requests.get(url, headers={
-                    'Authorization': f"Token {Token['dev']['token']}",
-                    'Content-Type': 'application/json'
-                })
-                d = res.json()
-                print(d)
-            else:
-                data_ = {'last_updated': datetime.now()}
+        #         url = f"{Token['dev']['URL']}/create_attendance/{attendee_name}/{date}/{time}/"
+        #         res = requests.get(url, headers={
+        #             'Authorization': f"Token {Token['dev']['token']}",
+        #             'Content-Type': 'application/json'
+        #         })
+        #         d = res.json()
+        #         # print(d)
+        #     else:
+        #         data_ = {'last_updated': datetime.now()}
 
-            url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
-            res = requests.patch(url, headers={
-                'Authorization': f"Token {Token['dev']['token']}",
-            }, data=data_)
-            data_ = res.json()
+        #     url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
+        #     res = requests.patch(url, headers={
+        #         'Authorization': f"Token {Token['dev']['token']}",
+        #     }, data=data_)
+        #     data_ = res.json()
 
         # if data['type'] == 'Gateway':
         #     gateway_mac = data['mac']

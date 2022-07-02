@@ -12,6 +12,7 @@ class TableAlertAdmin(admin.ModelAdmin):
     list_display = ['id', 'alert_code', 'alert_reading', 'alert_date',
                     'alert_time', 'device_id', 'sent_to_crest',
                     'alert_datetime']
+    ordering = ['-id', ]
 
 
 @admin.register(TableAllDevices)
@@ -60,4 +61,5 @@ class TblGatewayAdmin(admin.ModelAdmin):
                     'gateway_address', 'gateway_mac',
                     'gateway_serial_no', 'gateway_topic',
                     'gateway_latitude', 'gateway_longitude',
-                    'gateway_type']
+                    'gateway_type', 'device_tag', 'last_updated_time',
+                    'gateway_status']

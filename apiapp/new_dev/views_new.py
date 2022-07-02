@@ -13,7 +13,7 @@ from ..models import (
     Event, Attendee, Attendance, TableBeacon
 )
 from bluguard37.models import (
-    TableDevice, TableAllDevices
+    TableDevice, TableAllDevices, TblGateway
 )
 from ..serializers import (
     EventSerializer, AttendeeSerializer,
@@ -264,6 +264,11 @@ def set_device_offline_online(request):
     alltables = TableAllDevices.objects.all()
     data = set_online_to_offline(devices)
     new_data = set_online_to_offline(alltables)
+    gateways = TblGateway.objects.all()
+    for gateway in gateways:
+        if gateway.gateway_status == 'ONLINE':
+            gateway.gateway_status = 'OFFLINE'
+            gateway.save()
     # data = []
     # for device in devices:
     #     last_read_date = device.last_read_date

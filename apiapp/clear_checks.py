@@ -58,7 +58,7 @@ def checkout_attendee():
 # checkout_attendee()
 while True:
     checkout_attendee()
-    sleep(4)
+    sleep(5)
 
 
 # Token = {

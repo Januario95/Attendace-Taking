@@ -41,8 +41,8 @@ class AttendeeQuerySet(models.QuerySet):
     def serialize(self):
         list_values = list(self.values(
             'id', 'attendee_name', 'tag_id',
-            'check_in_date', 'check_in_time', 'check_out_date',
-            'check_out_time',
+            # 'check_in_date', 'check_in_time', 'check_out_date',
+            # 'check_out_time',
             'event'))
         return list_values  # json.dumps(list_values, indent=4)
 
@@ -78,10 +78,10 @@ class Attendee(models.Model):
             'attendee_id': self.id,
             'attendee_name': self.attendee_name,
             'tag_id': self.tag_id,
-            'check_in_date': self.check_in_date,
-            'check_in_time': self.check_in_time,
-            'check_out_date': self.check_out_date,
-            'check_out_time': self.check_out_time,
+            # 'check_in_date': self.check_in_date,
+            # 'check_in_time': self.check_in_time,
+            # 'check_out_date': self.check_out_date,
+            # 'check_out_time': self.check_out_time,
             'event': self.event
         }
         return json.dumps(data, default=default)

@@ -9,6 +9,7 @@ from .views import (
 
     search_device_by_device_mac, update_device,
     filter_alert_by_code_and_device_id,
+    get_all_alerts,
 )
 
 router = DefaultRouter()
@@ -21,6 +22,7 @@ router.register('quarantine', TableQuarantineViewSet)
 router.register('alldevices', TableAllDevicesViewSet)
 
 urlpatterns = [
+    path('get_all_alerts/', get_all_alerts),
     path('bluguard37/', include(router.urls)),
     path('update_device/', update_device),
     path('filter_alert_by_code_and_device_id/',

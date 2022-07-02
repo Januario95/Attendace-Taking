@@ -120,11 +120,12 @@ class TblGateway(models.Model):
     # Field name made lowercase.
     gateway_type = models.CharField(db_column='Gateway_Type', max_length=50)
     device_tag = models.CharField(db_column='Device_Tag', max_length=50)
-    last_updated_time = models.DateTimeField()
+    last_updated_time = models.DateTimeField(auto_now=True)
     gateway_status = models.CharField(
         db_column='Gateway_Status', max_length=50)
 
     class Meta:
+        ordering = ('-gateway_status',)
         verbose_name = 'Table Device Gateway'
         verbose_name_plural = 'Table Device Gateway'
 
@@ -146,24 +147,41 @@ class TableDeviceManager(models.Manager):
         return TableDeviceQuerySet(self.model, using=self._db)
 
 
+class TableAlertQuerySet(models.QuerySet):
+    def serialize(self):
+        list_values = list(self.values(
+            'id', 'alert_code', 'alert_reading', 'alert_date',
+            'alert_time', 'device_id', 'sent_to_crest',
+            'alert_datetime'))
+        return list_values
+
+
+class TableAlertManager(models.Manager):
+    def get_queryset(self):
+        return TableDeviceQuerySet(self.model, using=self._db)
+
+
 class TableAlert(models.Model):
     alert_code = models.ForeignKey(
         to=TblAlertCode,
         on_delete=models.CASCADE
     )
     alert_reading = models.CharField(max_length=50)
-    alert_date = models.DateField()
-    alert_time = models.TimeField()
+    alert_date = models.DateField(auto_now=True)
+    alert_time = models.TimeField(auto_now=True)
     device_id = models.ForeignKey(
         to=TableDevice, on_delete=models.CASCADE
     )
     sent_to_crest = models.IntegerField(default=0)
-    alert_datetime = models.DateTimeField()
+    alert_datetime = models.DateTimeField(auto_now=True)
+
+    objects = TableAlertManager()
 
     def __str__(self):
         return f'{self.alert_code} - {self.alert_reading}'
 
     class Meta:
+        ordering = ('-id',)
         verbose_name = 'Table Alert'
         verbose_name_plural = 'Table Alert'
 
