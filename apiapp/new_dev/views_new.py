@@ -13,7 +13,8 @@ from ..models import (
     Event, Attendee, Attendance, TableBeacon
 )
 from bluguard37.models import (
-    TableDevice, TableAllDevices, TblGateway
+    TableDevice, TableAllDevices, TblGateway,
+    ScriptStatus
 )
 from ..serializers import (
     EventSerializer, AttendeeSerializer,
@@ -193,6 +194,14 @@ def search_attended_by_gatewaymac(request, tag_id):
     else:
         attendee = attendee.serialize()
 
+    script = ScriptStatus.objects.filter(
+        name='Process_Attendance'
+    )
+    if script.exists():
+        script = script.first()
+        script.status = 'ONLINE'
+        script.save()
+
     return JsonResponse({
         'attendee': attendee
     })
@@ -260,6 +269,30 @@ def set_online_to_offline(table):
 @ renderer_classes([JSONRenderer])
 @ renderer_classes([BrowsableAPIRenderer])
 def set_device_offline_online(request):
+    script = ScriptStatus.objects.filter(
+        name='Process Devices data'
+    )
+    if script.exists():
+        script = script.first()
+        script.status = 'OFFLINE'
+        script.save()
+
+    script = ScriptStatus.objects.filter(
+        name='Process_Attendance'
+    )
+    if script.exists():
+        script = script.first()
+        script.status = 'OFFLINE'
+        script.save()
+
+    script = ScriptStatus.objects.filter(
+        name='Clear_checks'
+    )
+    if script.exists():
+        script = script.first()
+        script.status = 'ONLINE'
+        script.save()
+
     devices = TableDevice.objects.all()
     alltables = TableAllDevices.objects.all()
     data = set_online_to_offline(devices)
@@ -269,6 +302,7 @@ def set_device_offline_online(request):
         if gateway.gateway_status == 'ONLINE':
             gateway.gateway_status = 'OFFLINE'
             gateway.save()
+
     # data = []
     # for device in devices:
     #     last_read_date = device.last_read_date

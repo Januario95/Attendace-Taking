@@ -321,3 +321,17 @@ class TableAllDevices(models.Model):
             'incorrect_data_flag': self.incorrect_data_flag
         }
         return data
+
+
+class ScriptStatus(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    status = models.CharField(
+        max_length=50, default='OFFLINE')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Script Status'
+        verbose_name_plural = 'Script Status'

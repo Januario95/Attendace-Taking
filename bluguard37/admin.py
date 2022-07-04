@@ -3,8 +3,13 @@ from django.contrib import admin
 from .models import (
     TblAlertCode, TblDeviceRawLength, TblGateway,
     TableDevice, TableAlert, TableQuarantine,
-    TableAllDevices
+    TableAllDevices, ScriptStatus
 )
+
+
+@admin.register(ScriptStatus)
+class ScriptStatusAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'status', 'description']
 
 
 @admin.register(TableAlert)

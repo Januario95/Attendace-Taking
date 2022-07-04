@@ -3,8 +3,14 @@ from rest_framework import serializers
 from .models import (
     TableDevice, TblAlertCode, TblDeviceRawLength,
     TblGateway, TableAlert, TableQuarantine,
-    TableAllDevices
+    TableAllDevices, ScriptStatus
 )
+
+
+class ScriptStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ScriptStatus
+        fields = '__all__'
 
 
 class TableAllDevicesSerializer(serializers.ModelSerializer):

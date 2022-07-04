@@ -11,13 +11,13 @@ from datetime import datetime
 from .models import (
     TableDevice, TblAlertCode, TblDeviceRawLength,
     TblGateway, TableAlert, TableQuarantine,
-    TableAllDevices,
+    TableAllDevices, ScriptStatus
 )
 from .serializers import (
     TableDeviceSerializer, TblAlertCodeSerializer,
     TblDeviceRawLengthSerializer, TblGatewaySerializer,
     TableAlertSerializer, TableQuarantineSerializer,
-    TableAllDevicesSerializer,
+    TableAllDevicesSerializer, ScriptStatusSerializer
 )
 
 
@@ -168,15 +168,14 @@ def update_all_device_tables(table_type, table, data):
     if table_type == 'device':
         # Check_Highest_Score(
         #     'temp', table.device_temp, "FEFDD727C6F5")
-        pass
-        # Check_Highest_Score(
-        #     'temp', table.device_temp, table.device_mac)
-        # Check_Highest_Score(
-        #     'heart_rate', table.device_o2, table.device_mac)
-        # Check_Highest_Score(
-        #     'spo2', table.device_bat, table.device_mac)
-        # Check_Highest_Score(
-        #     'batlevel', table.device_hr, table.device_mac)
+        Check_Highest_Score(
+            'temp', table.device_temp, table.device_mac)
+        Check_Highest_Score(
+            'heart_rate', table.device_o2, table.device_mac)
+        Check_Highest_Score(
+            'spo2', table.device_bat, table.device_mac)
+        Check_Highest_Score(
+            'batlevel', table.device_hr, table.device_mac)
 
 
 @api_view(['GET', ])
@@ -214,6 +213,15 @@ def update_device(request):
     # incorrect_data_flag = data['incorrect_data_flag']
     # date = data['date']
     # time = data['time']
+
+    script = ScriptStatus.objects.filter(
+        name='Process Devices data'
+    )
+    if script.exists():
+        script = script.first()
+        script.status = 'ONLINE'
+        script.save()
+
     device_mac = data['device_mac']
     gateway_mac = data['gateway_mac']
 
@@ -274,6 +282,24 @@ def search_device_by_device_mac(request, device_mac):
         'device': device,
         'exists': exists
     })
+
+
+@api_view(['DELETE', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def clear_all_alerts(request):
+    alerts = TableAlert.objects.all()
+    for alert in alerts:
+        alert.delete()
+
+    return Response({
+        'deleted': True
+    })
+
+
+class ScriptStatussViewSet(ModelViewSet):
+    queryset = ScriptStatus.objects.all()
+    serializer_class = ScriptStatusSerializer
 
 
 class TableAllDevicesViewSet(ModelViewSet):
