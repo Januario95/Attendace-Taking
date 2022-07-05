@@ -5,6 +5,7 @@ from datetime import datetime
 
 
 def checkout_attendee():
+    print(f'Calling checkout_attendee() ...')
     Token = {
         'dev': {
             'URL': 'http://localhost:8000',
@@ -55,6 +56,7 @@ def checkout_attendee():
                 }
                 res = requests.patch(url, headers=headers, data=data)
                 data = res.json()
+                print(data)
 
                 url = f"{Token['dev']['URL']}/update_attendance/{attendee_name}/{check_in_date}/{check_in_time}/{date}/{time}/"
                 res = requests.get(url, headers={

@@ -18,6 +18,20 @@ def Get_Random():
     return round(val, 2)
 
 
+class EventQuerySet(models.QuerySet):
+    def serialize(self):
+        list_values = list(self.values(
+            'id', 'event_name', 'start_datetime',
+            'end_datetime', 'event_location', 'event_sublocation',
+            'active_event'))
+        return list_values  # json.dumps(list_values, indent=4)
+
+
+class EventManager(models.Manager):
+    def get_queryset(self):
+        return EventQuerySet(self.model, using=self._db)
+
+
 class Event(models.Model):
     event_name = models.CharField(
         max_length=128, unique=True)
@@ -28,21 +42,40 @@ class Event(models.Model):
         max_length=128, default='Singapore')
     event_sublocation = models.CharField(
         max_length=128, default='Singapore')
+    active_event = models.BooleanField(default=False)
+    last_updated = models.DateTimeField(
+        auto_now=True
+    )
+
+    objects = EventManager()
 
     class Meta:
+        ordering = ('-last_updated',)
         verbose_name = ("Table Event")
         verbose_name_plural = ("Table Event")
 
     def __str__(self):
         return self.event_name
 
+    def serialize(self):
+        data = {
+            'id': self.id,
+            'event_name': self.event_name,
+            'start_datetime': self.start_datetime,
+            'end_datetime': self.end_datetime,
+            'event_location': self.event_location,
+            'event_sublocation': self.event_sublocation,
+            'active_event': self.active_event
+        }
+        return data  # json.dumps(data, default=default)
+
 
 class AttendeeQuerySet(models.QuerySet):
     def serialize(self):
         list_values = list(self.values(
             'id', 'attendee_name', 'tag_id',
-            # 'check_in_date', 'check_in_time', 'check_out_date',
-            # 'check_out_time',
+            'check_in_date', 'check_in_time', 'check_out_date',
+            'check_out_time',
             'event'))
         return list_values  # json.dumps(list_values, indent=4)
 
@@ -78,15 +111,16 @@ class Attendee(models.Model):
             'attendee_id': self.id,
             'attendee_name': self.attendee_name,
             'tag_id': self.tag_id,
-            # 'check_in_date': self.check_in_date,
-            # 'check_in_time': self.check_in_time,
-            # 'check_out_date': self.check_out_date,
-            # 'check_out_time': self.check_out_time,
-            'event': self.event
+            'check_in_date': self.check_in_date,
+            'check_in_time': self.check_in_time,
+            'check_out_date': self.check_out_date,
+            'check_out_time': self.check_out_time,
+            'event': self.event.serialize()
         }
-        return json.dumps(data, default=default)
+        return data  # json.dumps(data, default=default)
 
     class Meta:
+        ordering = ('')
         verbose_name = ("Table Attendee")
         verbose_name_plural = ("Table Attendee")
 
@@ -114,8 +148,7 @@ class Attendance(models.Model):
     # event = models.CharField(
     #     max_length=128, default='Cinema')
     attendee = models.ForeignKey(
-        to=Attendee, on_delete=models.CASCADE,
-        default=8)
+        to=Attendee, on_delete=models.CASCADE)
     check_in_date = models.DateField(
         blank=True, null=True)
     check_in_time = models.TimeField(

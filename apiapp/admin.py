@@ -58,9 +58,11 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ['id', 'event_name', 'start_datetime',
                     'end_datetime', 'event_location',
                     'event_sublocation',  # 'attendees_list',
-                    'view_attendees']
+                    'view_attendees', 'active_event',
+                    'last_updated']
     list_filter = ['tablebeacon']
     list_filter = ['event_name']
+    list_editable = ['active_event']
     # list_display_links = ['id', 'event_name']
     # list_editable = ['start_datetime', 'end_datetime']
     #  'event_name']
@@ -86,15 +88,16 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(Attendee)
 class AttendeeAdmin(admin.ModelAdmin):
     list_display = ['id', 'attendee_name', 'tag_id',
-                    # 'view_event',
+                    'event',  # 'view_event',
                     'check_in_date', 'check_in_time',
                     'check_out_date', 'check_out_time',
                     'event_',
                     'last_updated', 'is_online']
     list_display_links = ['id', 'attendee_name']
     list_filter = ['event']
-    # list_editable = ['check_in_date', 'check_in_time',
-    #  'check_out_date', 'check_out_time']
+    list_editable = ['check_in_date', 'check_in_time',
+                     'check_out_date', 'check_out_time',
+                     'is_online']
     search_fields = ['event']
 
     def event_(self, obj):
@@ -109,6 +112,8 @@ class AttendanceAdmin(admin.ModelAdmin):
     list_display = ['id', 'attendee', 'event',
                     'check_in_date', 'check_in_time',
                     'check_out_date', 'check_out_time']  # 'attendee', 'check_in_date',
+    list_editable = ['check_in_date', 'check_in_time',
+                     'check_out_date', 'check_out_time']
 
     def event(self, obj):
         return obj.attendee.event

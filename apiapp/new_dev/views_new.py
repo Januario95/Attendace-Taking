@@ -128,26 +128,33 @@ def update_attendance(request, attendee,
     # check_out_date = datetime.strptime(check_out_date, '%Y-%m-%d')
     # check_out_time = datetime.strptime(check_out_time, '%H:%M:%S.%f')
     attendee = Attendee.objects.filter(attendee_name=attendee)
+    exists = False
     if attendee.exists():
+        print('ATTENDEE exists')
         attendee = attendee.first()
+        print(f'attendee = {attendee}')
         event_name = attendee.event.event_name
         attendance = Attendance.objects.filter(
-            attendee=attendee,
-            check_in_date=check_in_date,
-            check_in_time=check_in_time
+            attendee=attendee
+            # check_in_date=check_in_date,
+            # check_in_time=check_in_time
         )
+        print(f'attendance = {attendance}')
         if attendance.exists():
+            print('ATTENDANCE exists')
             exists = True
-            attendance = attendance.first()
+            attendance = attendance.last()
             print(f'check_out_date = {check_out_date}')
             print(f'check_out_time = {check_out_time}')
             attendance.check_out_date = check_out_date
             attendance.check_out_time = check_out_time
             attendance.save()
             print('Attendance checked-out successfully!')
+        else:
+            print('ATTENDANCE does not exists')
     else:
         attendee = {}
-        exists = False
+        print('ATTENDEE does not exists')
 
     return Response({
         'exists': exists,
@@ -155,25 +162,129 @@ def update_attendance(request, attendee,
     })
 
 
+def set_events_for_attendances(active_event, event):
+    attendees = Attendee.objects.all()
+    for att in attendees:
+        att.event = event
+        att.save()
+
+
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
-def create_attendance(request, attendee,
+def set_event_active_inactive(request,
+                              event_id, event_name):
+    event = Event.objects.filter(
+        id=event_id
+    )
+    exists = False
+    active_event = None
+    if event.exists():
+        event = event.first()
+        if event.active_event == True:
+            event.active_event = False
+            active_event = False
+            event.save()
+        else:
+            event.active_event = True
+            active_event = True
+            event.save()
+            set_events_for_attendances(active_event, event)
+
+        event = event.serialize()
+        exists = True
+    else:
+        event = {}
+
+    return Response({
+        'event': event,
+        'exists': exists,
+        'event_name': event_name,
+        'active_event': active_event,
+    })
+
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def create_attendance(request, tag_id, event_id,
                       check_in_date, check_in_time):
-    attendee = Attendee.objects.filter(attendee_name=attendee)
+
+    event = Event.objects.filter(
+        id=event_id
+    )
+    exists = False
+    print('GETTING...')
+    attendee = Attendee.objects.filter(
+        tag_id=tag_id
+    )
     if attendee.exists():
         attendee = attendee.first()
-        event_name = attendee.event.event_name
-        attendance = Attendance.objects.create(
-            attendee=attendee,
-            check_in_date=check_in_date,
-            check_in_time=check_in_time,
-            # check_out_date=check_out_date,
-            # check_out_time=check_out_time
-        )
-        attendance.save()
-        print('Attendance taken successfully!')
-        exists = True
+        print(f'attendee check_in_date = {attendee.check_in_date}')
+        if attendee.check_in_date is not None and attendee.check_out_date is None:
+            event_name = attendee.event.event_name
+            attendance = Attendance.objects.create(
+                attendee=attendee,
+                check_in_date=check_in_date,
+                check_in_time=check_in_time,
+                # check_out_date=check_out_date,
+                # check_out_time=check_out_time
+            )
+            attendance.save()
+            print('Attendance taken successfully!')
+            exists = True
+
+    # if event.exists():
+    #     event = event.first()
+    #     print(f'event = {event}')
+    #     attendee = Attendee.objects.filter(
+    #         event=event
+    #     )
+    #     if attendee.exists():
+    #         attendee = attendee.first()
+    #         print(f'attendee check_in_date = {attendee.check_in_date}')
+    #         if attendee.check_in_date is None:
+    #             event_name = attendee.event.event_name
+    #             attendance = Attendance.objects.create(
+    #                 attendee=attendee,
+    #                 check_in_date=check_in_date,
+    #                 check_in_time=check_in_time,
+    #                 # check_out_date=check_out_date,
+    #                 # check_out_time=check_out_time
+    #             )
+    #             attendance.save()
+    #             print('Attendance taken successfully!')
+    #             exists = True
+        # else:
+        #     attendee = Attendee.objects.filter(attendee_name=attendee)
+        #     if attendee.exists():
+        #         attendee = attendee.first()
+        #         event_name = attendee.event.event_name
+        #         attendance = Attendance.objects.create(
+        #             attendee=attendee,
+        #             check_in_date=check_in_date,
+        #             check_in_time=check_in_time,
+        #             # check_out_date=check_out_date,
+        #             # check_out_time=check_out_time
+        #         )
+        #         attendance.save()
+        #         print('Attendance taken successfully!')
+        #         exists = True
+
+    # attendee = Attendee.objects.filter(attendee_name=attendee)
+    # if attendee.exists():
+    #     attendee = attendee.first()
+    #     event_name = attendee.event.event_name
+    #     attendance = Attendance.objects.create(
+    #         attendee=attendee,
+    #         check_in_date=check_in_date,
+    #         check_in_time=check_in_time,
+    #         # check_out_date=check_out_date,
+    #         # check_out_time=check_out_time
+    #     )
+    #     attendance.save()
+        # print('Attendance taken successfully!')
+        # exists = True
     else:
         attendee = {}
         exists = False
@@ -192,7 +303,11 @@ def search_attended_by_gatewaymac(request, tag_id):
     if not attendee.exists():
         attendee = []
     else:
+        attendee = attendee.first()
         attendee = attendee.serialize()
+        event = Event.objects.filter(
+
+        )
 
     script = ScriptStatus.objects.filter(
         name='Process_Attendance'
@@ -203,7 +318,7 @@ def search_attended_by_gatewaymac(request, tag_id):
         script.save()
 
     return JsonResponse({
-        'attendee': attendee
+        'attendee': attendee,
     })
 
 
@@ -263,6 +378,53 @@ def set_online_to_offline(table):
                     data.append(row)
 
     return data
+
+
+@ api_view(['GET', ])
+@ renderer_classes([JSONRenderer])
+@ renderer_classes([BrowsableAPIRenderer])
+def delete_all_attendance_by_event(request, event_id):
+    print(f'event_id = {event_id}')
+    event = Event.objects.filter(id=event_id)
+    deleted = False
+    if event.exists():
+        event = event.first()
+        print('EVENT exists')
+        print(f'EVENT = {event}')
+        attendees = Attendee.objects.filter(
+            event=event
+        )
+        if attendees.exists():
+            for att in attendees:
+                attendee = att  # attendee.first()
+                print('ATTENDEE exists')
+                print(f'ATTENDEE = {attendee}')
+                attendances = Attendance.objects.filter(
+                    attendee=attendee
+                )
+                print(attendances)
+                if attendances.exists():
+                    print('ATTENDANCE exists')
+                    for att in attendances:
+                        att.delete()
+                        deleted = True
+
+    return Response({
+        'deleted': deleted
+    })
+
+
+@ api_view(['GET', ])
+@ renderer_classes([JSONRenderer])
+@ renderer_classes([BrowsableAPIRenderer])
+def delete_all_attendance(request):
+    attendences = Attendance.objects.all()
+    for att in attendences:
+        att.delete()
+
+    return Response({
+        'deleted': True
+    })
 
 
 @ api_view(['GET', ])

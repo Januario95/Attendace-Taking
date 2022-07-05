@@ -465,6 +465,27 @@ def Get_Mqtt_Data(data_from_gateway):
 
         if len(data_['attendee']) != 0:
             event_id = data_['attendee']['event']['id']
+            url = f"{Token['dev']['URL']}/events/"
+            res = requests.get(url, headers={
+                'Authorization': f"Token {Token['dev']['token']}"
+            })
+            data = res.json()
+            event_ids = []
+            for row in data:
+                active_event = row['active_event']
+                event_id = row['id']
+                # print(f"active_event = {active_event}")
+                # print(f"event_id = {event_id}")
+                event_ids.append(event_id)
+            print(event_ids)
+
+            # url = f"{Token['dev']['URL']}/set_event_active_inactive/{event_id}/"
+            # res = requests.get(url, headers={
+            #     'Authorization': f"Token {Token['dev']['token']}"
+            # })
+            # data = res.json()
+            # print(json.dumps(data, indent=4))
+
             url = f"{Token['dev']['URL']}/get_event_name/{event_id}/"
             res = requests.get(url, headers={
                 'Authorization': f"Token {Token['dev']['token']}"
@@ -491,7 +512,7 @@ def Get_Mqtt_Data(data_from_gateway):
 
             data_ = {}
             if check_in_date is None:
-                print(f'Device_Mac = {tag_id}')
+                # print(f'Device_Mac = {tag_id}')
                 timestamp = datetime.now()
                 date = timestamp.date()
                 time = timestamp.time()
