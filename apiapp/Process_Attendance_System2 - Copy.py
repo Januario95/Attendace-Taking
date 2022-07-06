@@ -16,12 +16,6 @@ from General_Functions import (
     Create_PK, Validate_Raw_Data_Length
 )
 
-
-def default(obj):
-    if isinstance(obj, datetime):
-        return obj.isoformat()
-    return obj
-
 config = {
     # 'host': 'attendance1.mysql.database.azure.com',
     # 'user': 'attendance',
@@ -470,62 +464,30 @@ def Get_Mqtt_Data(data_from_gateway):
         print(json.dumps(data_, indent=4))
 
         if len(data_['attendee']) != 0:
-            events = data_['attendee']['events']
-            for event in events:
-                active_event = event['active_event']
-                if active_event:
-                    event_id = event['id']
+            print('==============')
+            print(data_['attendee']['events'])
+            
+            # event_id = data_['attendee']['event']['id']
+            # url = f"{Token['dev']['URL']}/events/"
+            # res = requests.get(url, headers={
+            #     'Authorization': f"Token {Token['dev']['token']}"
+            # })
+            # data = res.json()
+            # event_ids = []
+            # for row in data:
+            #     active_event = row['active_event']
+            #     event_id = row['id']
+            #     # print(f"active_event = {active_event}")
+            #     # print(f"event_id = {event_id}")
+            #     # event_ids.append(event_id)
+            # print(event_ids)
 
-                    try:
-                        attendee = data_['attendee']
-                        attendee_id = attendee['attendee_id']
-                    except Exception as e:
-                        attendee = data_
-                        attendee_id = attendee['id']
-
-                    print(json.dumps(attendee, indent=4))
-                        
-                    attendee_name = attendee['attendee_name']
-
-                    data = {
-                        'event_id': event_id,
-                        'attendee_id': attendee_id
-                    }
-
-                    url = f"{Token['dev']['URL']}/create_attendance_by_attendee_id/"
-                    res = requests.post(url, headers={
-                        'Authorization': f"Token {Token['dev']['token']}"
-                    }, json=data)
-                    data = res.json()
-                    # print(data)
-
-
-
-
-
-
-
-                    # event_id = data_['attendee']['event']['id']
-                    # url = f"{Token['dev']['URL']}/events/"
-                    # res = requests.get(url, headers={
-                    #     'Authorization': f"Token {Token['dev']['token']}"
-                    # })
-                    # data = res.json()
-                    # event_ids = []
-                    # for row in data:
-                    #     active_event = row['active_event']
-                    #     event_id = row['id']
-                    #     # print(f"active_event = {active_event}")
-                    #     # print(f"event_id = {event_id}")
-                    #     # event_ids.append(event_id)
-                    # print(event_ids)
-
-                    # url = f"{Token['dev']['URL']}/set_event_active_inactive/{event_id}/"
-                    # res = requests.get(url, headers={
-                    #     'Authorization': f"Token {Token['dev']['token']}"
-                    # })
-                    # data = res.json()
-                    # print(json.dumps(data, indent=4))
+            # # url = f"{Token['dev']['URL']}/set_event_active_inactive/{event_id}/"
+            # # res = requests.get(url, headers={
+            # #     'Authorization': f"Token {Token['dev']['token']}"
+            # # })
+            # # data = res.json()
+            # # print(json.dumps(data, indent=4))
 
             # url = f"{Token['dev']['URL']}/get_event_name/{event_id}/"
             # res = requests.get(url, headers={

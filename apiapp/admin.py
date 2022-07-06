@@ -57,7 +57,7 @@ class TableBeaconAdmin(admin.ModelAdmin):
 class EventAdmin(admin.ModelAdmin):
     list_display = ['id', 'event_name', 'start_datetime',
                     'end_datetime', 'event_location',
-                    'event_sublocation',  # 'attendees_list',
+                    'event_sublocation', 'attendees_list',
                     'view_attendees', 'active_event',
                     'last_updated']
     list_filter = ['tablebeacon']
@@ -68,6 +68,7 @@ class EventAdmin(admin.ModelAdmin):
     #  'event_name']
 
     def view_attendees(self, obj):
+
         url = f'/admin/apiapp/attendee/?event__id__exact={obj.id}'
         return mark_safe(f'''
             <a href="{url}">View Attendees Details</a>
@@ -75,8 +76,9 @@ class EventAdmin(admin.ModelAdmin):
     view_attendees.short_description = 'View Attendees'
 
     def attendees_list(self, obj):
-        objs = [mark_safe(f'<li>{obj.attendee_name}</li>')
-                for obj in obj.attendee_set.all()]
+        objs = [mark_safe(f'<li>{obj["attendee_name"]}</li>')
+                for obj in obj.attendee.all().values()]
+        # print(objs)
         news = ''
         for val in objs:
             news += val
@@ -88,23 +90,36 @@ class EventAdmin(admin.ModelAdmin):
 @admin.register(Attendee)
 class AttendeeAdmin(admin.ModelAdmin):
     list_display = ['id', 'attendee_name', 'tag_id',
-                    'event',  # 'view_event',
-                    'check_in_date', 'check_in_time',
-                    'check_out_date', 'check_out_time',
-                    'event_',
+                    'active_event', 'event_list',
+                    # 'event',  'view_event',
+                    # 'check_in_date', 'check_in_time',
+                    # 'check_out_date', 'check_out_time',
+                    # 'event_',
                     'last_updated', 'is_online']
     list_display_links = ['id', 'attendee_name']
-    list_filter = ['event']
-    list_editable = ['check_in_date', 'check_in_time',
-                     'check_out_date', 'check_out_time',
-                     'is_online']
-    search_fields = ['event']
+    # list_filter = ['event']
+    # list_editable = ['check_in_date', 'check_in_time',
+    #                  'check_out_date', 'check_out_time',
+    #                  'is_online']
+    # search_fields = ['event']
 
     def event_(self, obj):
         return mark_safe(f'''
             <a href="/admin/apiapp/event/">{obj.event}</a>
         ''')
     event_.short_description = 'View Event'
+    
+
+    def event_list(self, obj):
+        objs = [mark_safe(f'<li>{obj["event_name"]}</li>')
+                for obj in obj.event_set.all().values()]
+        # print(objs)
+        news = ''
+        for val in objs:
+            news += val
+
+        return mark_safe(f'<ol>{news}</ol>')
+    event_list.short_description = 'Events'
 
 
 @admin.register(Attendance)
@@ -112,11 +127,13 @@ class AttendanceAdmin(admin.ModelAdmin):
     list_display = ['id', 'attendee', 'event',
                     'check_in_date', 'check_in_time',
                     'check_out_date', 'check_out_time']  # 'attendee', 'check_in_date',
-    list_editable = ['check_in_date', 'check_in_time',
-                     'check_out_date', 'check_out_time']
+    ordering = ['check_in_date', '-check_in_time', ]                                
+    # list_editable = ['check_in_date', 'check_in_time',
+    #                  'check_out_date', 'check_out_time']
 
     def event(self, obj):
-        return obj.attendee.event
+        # return obj.attendee.event_set.first()
+        return obj.event_name
     event.short_description = 'Event'
 
     # def check_in_date(self, obj):

@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from ..models import (
     Event, Attendee, Attendance, TableBeacon
@@ -317,6 +317,110 @@ def create_attendance(request, tag_id, event_id,
     })
 
 
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def checkout_attendance(request):
+    attendances = Attendance.objects.all()
+    for att in attendances:
+        event_name = att.event_name
+        attendee = Attendee.objects.filter(
+            attendee_name=att.attendee
+        )
+        if attendee.exists():
+            attendee = attendee.first()
+            if attendee.is_online:
+                last_updated = attendee.last_updated
+                now = datetime.now()
+                time_diff = now - last_updated
+                secs_delay = timedelta(seconds=15)
+                if time_diff > secs_delay:
+                    attendee.is_online = False
+                    attendee.save()
+                    now = datetime.now()
+                    date = now.date()
+                    time = now.time()
+                    att.check_out_date = date
+                    att.check_out_time = time
+                    att.save()
+                    print(f'{att} checked out')
+
+    return Response({
+        'status': 'Checking-out'
+    })
+
+
+
+
+@api_view(['POST', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def create_attendance_by_attendee_id(request):
+    data = json.loads(request.body)
+    attendee_id = data['attendee_id']
+    event_id = data['event_id']
+    # print(data)
+
+    timestamp = datetime.now()
+    date = timestamp.date()
+    time = timestamp.time()
+
+    attendee = Attendee.objects.filter(
+        id=attendee_id
+    )
+    event = Event.objects.filter(
+        id=event_id
+    )
+    if event.exists():
+        event = event.first()
+        event_name = event.event_name
+
+    if attendee.exists():
+        attendee = attendee.first()
+        attendee.is_online = True
+        attendee.last_updated = timestamp
+        attendee.save()
+
+        attendee_name = attendee.attendee_name
+        attendance = Attendance.objects.filter(
+            attendee=attendee_name,
+            # event_name=event_name
+        )
+        if attendance.exists():
+            attendance = attendance.last()
+            print(f'check_out_time = {attendance.check_out_time}')
+            if attendance.check_out_date is not None:
+                print(f'check_out_date = {attendance.check_out_date}')
+                if attendance.event_name != event_name:
+                    attendance = Attendance.objects.create(
+                        attendee=attendee_name,
+                        event_name=event_name,
+                        check_in_date=date,
+                        check_in_time=time
+                    )
+                    attendance.save()
+                    print(f'{attendee_name} attending different Event "{event_name}"')
+                             
+        else:
+            attendance = Attendance.objects.create(
+                attendee=attendee.attendee_name,
+                event_name=event_name,
+                check_in_date=date,
+                check_in_time=time
+            )
+            attendance.save()
+            print(f'\nAttendance taken for {attendee.attendee_name} for EVENT {event_name}\n')    
+        
+
+    return Response({
+        'created': data
+    })
+
+
+
+
+
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
@@ -326,10 +430,12 @@ def search_attended_by_gatewaymac(request, tag_id):
         attendee = []
     else:
         attendee = attendee.first()
+        # event = Event.objects.filter(
+        #     attendee=attendee
+        # )
+        events = [obj.serialize() for obj in attendee.event_set.all()]               
         attendee = attendee.serialize()
-        event = Event.objects.filter(
-
-        )
+        attendee['events'] = events
 
     script = ScriptStatus.objects.filter(
         name='Process_Attendance'
@@ -344,15 +450,56 @@ def search_attended_by_gatewaymac(request, tag_id):
     })
 
 
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def get_event_by_attendee_id(request, attendee_id):
+    attendee = Attendee.objects.filter(id=attendee_id)
+    if attendee.exists():
+        attendee = attendee.first()
+        events = attendee.event_set.all()
+        events = events.serialize()
+    else:
+        events = []
+    
+    return Response({
+        'events': events
+    })
+
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
 def get_event_attendee(request, event_id):
-    attendees = Attendee.objects.filter(event__id=event_id)
-    if not attendees.exists():
+    attendees = [] #Attendee.objects.filter(event__id=event_id)
+    event = Event.objects.filter(id=event_id)
+    if not event.exists():
+    # if not event.exist():
         attendees = []
     else:
+        data = []
+        event = event.first()
+        attendees = event.attendee.all()
+        for att in attendees:
+            row = att.serialize()
+            row['event_id'] = event_id
+            attendances = Attendance.objects.filter(
+                attendee=att.attendee_name,
+                event_name=event.event_name
+            )
+            if attendances.exists():
+                row_attendance = []
+                for attendance in attendances:
+                    row_attendance.append(attendance.serialize())
+                row['attendance'] = row_attendance
+            print(row)
+            print('\n')
+                
+            data.append(row)
+
         attendees = attendees.serialize()
+        attendees = data
+        # print(data)
 
     return JsonResponse({
         'attendees': attendees

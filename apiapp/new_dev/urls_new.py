@@ -21,6 +21,8 @@ from .views_new import (
     search_attendance, check_out_attendance,
     get_event_name, delete_all_attendance,
     delete_all_attendance_by_event,
+    create_attendance_by_attendee_id,
+    checkout_attendance, get_event_by_attendee_id,
 )
 
 router = DefaultRouter()
@@ -33,6 +35,10 @@ router.register('beacons', TableBeaconViewSet)
 
 urlpatterns = [
      path('', include(router.urls)),
+     path('get_event_by_attendee_id/<int:attendee_id>/', get_event_by_attendee_id),
+     path('checkout_attendance/', checkout_attendance),
+     path('create_attendance_by_attendee_id/',
+          create_attendance_by_attendee_id),
      path('get_attendance_by_attendee_id/<int:attendee_id>/',
           get_attendance_by_attendee_id),
      path('set_event_active_inactive/<int:event_id>/<str:event_name>/',
