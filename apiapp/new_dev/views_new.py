@@ -119,6 +119,28 @@ def search_device_mac(request, device_mac):
     })
 
 
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def get_attendance_by_attendee_id(request, attendee_id):
+    clear_checks = False
+    attendee = Attendee.objects.filter(id=attendee_id)
+    if attendee.exists():
+        attendee = attendee.first()
+        attendance = Attendance.objects.filter(
+            attendee=attendee
+        )
+        if attendance.exists():
+            attendance = attendance.last()
+            if attendance.check_out_date is not None:
+                clear_checks = True
+
+    return Response({
+        'clear_checks': clear_checks
+    })
+
+
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])

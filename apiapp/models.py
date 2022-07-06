@@ -173,6 +173,7 @@ class Attendance(models.Model):
         return data  # json.dumps(data, default=default)
 
     class Meta:
+        ordering = ['-check_in_date', ]
         verbose_name = ("Table Attendance")
         verbose_name_plural = ("Table Attendance")
 

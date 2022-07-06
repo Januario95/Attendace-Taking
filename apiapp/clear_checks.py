@@ -34,24 +34,31 @@ def checkout_attendee():
             attendee_id = row['id']
             last_updated = row['last_updated']
             if last_updated is not None:
-                last_updated = last_updated.split('.')[0]
-                last_updated = datetime.strptime(
-                    last_updated, '%Y-%m-%dT%H:%M:%S')
-                now = datetime.now()
-                diff = now - last_updated
-                seconds = diff.seconds
-                print(f'seconds = {seconds}')
-                if seconds > 60:
-                    url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
-                    data = {
-                        'check_out_date': '',
-                        'check_out_time': '',
-                        'check_in_date': '',
-                        'check_in_time': '',
-                    }
-                    res = requests.patch(url, headers=headers, data=data)
-                    data = res.json()
-                    print(data)
+
+                url = f"{Token['dev']['URL']}/get_attendance_by_attendee_id/{attendee_id}/"
+                res = requests.get(url, headers=headers)
+                data = res.json()
+                clear_checks = data['clear_checks']
+                print(f'clear_checks = {clear_checks}')
+                if clear_checks:
+                    last_updated = last_updated.split('.')[0]
+                    last_updated = datetime.strptime(
+                        last_updated, '%Y-%m-%dT%H:%M:%S')
+                    now = datetime.now()
+                    diff = now - last_updated
+                    seconds = diff.seconds
+                    print(f'seconds = {seconds}')
+                    if seconds > 60:
+                        url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
+                        data = {
+                            'check_out_date': '',
+                            'check_out_time': '',
+                            'check_in_date': '',
+                            'check_in_time': '',
+                        }
+                        res = requests.patch(url, headers=headers, data=data)
+                        data = res.json()
+                        print(data)
     print('\n')
 
 
