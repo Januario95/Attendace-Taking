@@ -1,0 +1,32 @@
+[
+{
+    "model": "apiapp.tablebeacon",
+    "pk": 1,
+    "fields": {
+        "type": "CHECK-OUT",
+        "serial_number": "AAA523",
+        "placement_location": "Kuala Lumpur",
+        "last_battery_date": "2022-06-27",
+        "key": "XXBBXX",
+        "event": [
+            2,
+            1
+        ]
+    }
+},
+{
+    "model": "apiapp.tablebeacon",
+    "pk": 2,
+    "fields": {
+        "type": "CHECK-IN",
+        "serial_number": "AAA234",
+        "placement_location": "Singapore",
+        "last_battery_date": "2022-06-26",
+        "key": "XXAAXX",
+        "event": [
+            2,
+            3
+        ]
+    }
+}
+]

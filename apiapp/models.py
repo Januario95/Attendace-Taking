@@ -51,7 +51,8 @@ class Event(models.Model):
         max_length=128, default='Singapore')
     event_sublocation = models.CharField(
         max_length=128, default='Singapore')
-    attendee = models.ManyToManyField(to='Attendee')
+    attendee = models.ManyToManyField(
+        to='Attendee', blank=True, null=True)
     active_event = models.BooleanField(default=False)
     last_updated = models.DateTimeField(
         auto_now=True
