@@ -1,0 +1,66 @@
+[
+{
+    "model": "apiapp.event",
+    "pk": 1,
+    "fields": {
+        "event_name": "Vancouver Fashion Week",
+        "start_datetime": "2022-06-16T08:57:55",
+        "end_datetime": "2022-06-17T14:25:00",
+        "event_location": "Singapore",
+        "event_sublocation": "Little India, Farrer Park",
+        "active_event": false,
+        "last_updated": "2022-07-06T22:38:34.098",
+        "attendee": []
+    }
+},
+{
+    "model": "apiapp.event",
+    "pk": 2,
+    "fields": {
+        "event_name": "Super Bowl Sunday",
+        "start_datetime": "2022-06-20T09:00:00",
+        "end_datetime": "2022-06-21T10:30:00",
+        "event_location": "Singapore",
+        "event_sublocation": "Tanjong Pagar, Chinatown",
+        "active_event": true,
+        "last_updated": "2022-07-07T20:22:26.733",
+        "attendee": [
+            23,
+            24,
+            25,
+            26,
+            27
+        ]
+    }
+},
+{
+    "model": "apiapp.event",
+    "pk": 3,
+    "fields": {
+        "event_name": "The US Open",
+        "start_datetime": "2022-06-23T11:30:00",
+        "end_datetime": "2022-06-24T12:45:00",
+        "event_location": "Singapore",
+        "event_sublocation": "Raffles Place, Marina, Cecil",
+        "active_event": true,
+        "last_updated": "2022-07-07T20:21:20.050",
+        "attendee": [
+            27
+        ]
+    }
+},
+{
+    "model": "apiapp.event",
+    "pk": 4,
+    "fields": {
+        "event_name": "Football",
+        "start_datetime": "2022-07-06T15:17:31",
+        "end_datetime": "2022-07-07T15:17:33",
+        "event_location": "Singapore",
+        "event_sublocation": "Singapore",
+        "active_event": false,
+        "last_updated": "2022-07-06T22:38:25.700",
+        "attendee": []
+    }
+}
+]
