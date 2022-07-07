@@ -14,9 +14,9 @@ from .models import (
 )
 
 
-@admin.register(Counter)
-class CounterAdmin(admin.ModelAdmin):
-    list_display = ['id', 'counter']
+# @admin.register(Counter)
+# class CounterAdmin(admin.ModelAdmin):
+#     list_display = ['id', 'counter']
 
 
 
