@@ -1,0 +1,101 @@
+[
+{
+    "model": "apiapp.attendee",
+    "pk": 19,
+    "fields": {
+        "attendee_name": "Barack Obama",
+        "tag_id": "D32E22308FB6",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": null
+    }
+},
+{
+    "model": "apiapp.attendee",
+    "pk": 20,
+    "fields": {
+        "attendee_name": "Angela Merkel",
+        "tag_id": "D69AB84C277B",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": null
+    }
+},
+{
+    "model": "apiapp.attendee",
+    "pk": 21,
+    "fields": {
+        "attendee_name": "Emmanuel Macron",
+        "tag_id": "DD1C27F408EF",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": null
+    }
+},
+{
+    "model": "apiapp.attendee",
+    "pk": 22,
+    "fields": {
+        "attendee_name": "Recep Tayyip",
+        "tag_id": "DFFE02679D28",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": null
+    }
+},
+{
+    "model": "apiapp.attendee",
+    "pk": 23,
+    "fields": {
+        "attendee_name": "Vladmir Putin",
+        "tag_id": "FEFDD727C6F5",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": null
+    }
+},
+{
+    "model": "apiapp.attendee",
+    "pk": 24,
+    "fields": {
+        "attendee_name": "Joe Biden",
+        "tag_id": "F108BB3472D6",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": null
+    }
+},
+{
+    "model": "apiapp.attendee",
+    "pk": 25,
+    "fields": {
+        "attendee_name": "Fumio Kishida",
+        "tag_id": "AC233F5A9EE9",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": null
+    }
+},
+{
+    "model": "apiapp.attendee",
+    "pk": 26,
+    "fields": {
+        "attendee_name": "Olaf Scholz",
+        "tag_id": "AC233F5E688C",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": "2022-07-07T18:07:53.810"
+    }
+},
+{
+    "model": "apiapp.attendee",
+    "pk": 27,
+    "fields": {
+        "attendee_name": "Justin Trudeau",
+        "tag_id": "AC233F5E688E",
+        "active_event": null,
+        "is_online": false,
+        "last_updated": "2022-07-07T18:09:33.631"
+    }
+}
+]
