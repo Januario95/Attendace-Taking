@@ -207,7 +207,8 @@ class TableBeacon(models.Model):
     placement_location = models.CharField(max_length=100)
     last_battery_date = models.DateField()
     key = models.CharField(max_length=50)
-    event = models.ManyToManyField(to=Event)
+    event = models.ManyToManyField(
+        to=Event, blank=True, null=True)
 
     def __str__(self):
         return f'{self.type} - {self.serial_number}'
