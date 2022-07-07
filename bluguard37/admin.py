@@ -53,6 +53,7 @@ class TableDeviceAdmin(admin.ModelAdmin):
 @admin.register(TblAlertCode)
 class TblAlertCodeAdmin(admin.ModelAdmin):
     list_display = ['alert_code', 'alert_description']
+    list_display_links = ['alert_code']
 
 
 @admin.register(TblDeviceRawLength)
