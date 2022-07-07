@@ -96,8 +96,8 @@ class TblDeviceRawLength(models.Model):
 
 class TblGateway(models.Model):
     # Field name made lowercase.
-    gateway_id = models.CharField(
-        db_column='Gateway_ID', primary_key=True, max_length=200)
+    # gateway_id = models.CharField(
+    #     db_column='Gateway_ID', primary_key=True, max_length=200)
     # Field name made lowercase.
     gateway_location = models.CharField(
         db_column='Gateway_Location', max_length=200)

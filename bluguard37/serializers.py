@@ -1,9 +1,10 @@
 from rest_framework import serializers
 
 from .models import (
-    TableDevice, TblAlertCode, TblDeviceRawLength,
-    TblGateway, TableAlert, TableQuarantine,
-    TableAllDevices, ScriptStatus
+    TableDevice, TblAlertCode, TblDeviceRawLength, 
+    TableAlert, TableQuarantine,
+    TableAllDevices, ScriptStatus,
+    TblGateway,
 )
 
 

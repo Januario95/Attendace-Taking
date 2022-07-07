@@ -63,7 +63,8 @@ class TblDeviceRawLengthAdmin(admin.ModelAdmin):
 
 @admin.register(TblGateway)
 class TblGatewayAdmin(admin.ModelAdmin):
-    list_display = ['gateway_id', 'gateway_location',
+    # list_display = ['gateway_id', 'gateway_location',
+    list_display = ['gateway_location',
                     'gateway_address', 'gateway_mac',
                     'gateway_serial_no', 'gateway_topic',
                     'gateway_latitude', 'gateway_longitude',
