@@ -97,32 +97,32 @@ class TblDeviceRawLength(models.Model):
 class TblGateway(models.Model):
     # Field name made lowercase.
     gateway_id = models.CharField(
-        db_column='Gateway_ID', primary_key=True, max_length=50)
+        db_column='Gateway_ID', primary_key=True, max_length=200)
     # Field name made lowercase.
     gateway_location = models.CharField(
-        db_column='Gateway_Location', max_length=50)
+        db_column='Gateway_Location', max_length=200)
     # Field name made lowercase.
     gateway_address = models.CharField(
-        db_column='Gateway_Address', max_length=50)
+        db_column='Gateway_Address', max_length=200)
     # Field name made lowercase.
-    gateway_mac = models.CharField(db_column='Gateway_Mac', max_length=50)
+    gateway_mac = models.CharField(db_column='Gateway_Mac', max_length=200)
     # Field name made lowercase.
     gateway_serial_no = models.CharField(
-        db_column='Gateway_Serial_No', max_length=50)
+        db_column='Gateway_Serial_No', max_length=200)
     # Field name made lowercase.
-    gateway_topic = models.CharField(db_column='Gateway_Topic', max_length=50)
+    gateway_topic = models.CharField(db_column='Gateway_Topic', max_length=200)
     # Field name made lowercase.
     gateway_latitude = models.CharField(
-        db_column='Gateway_Latitude', max_length=50)
+        db_column='Gateway_Latitude', max_length=200)
     # Field name made lowercase.
     gateway_longitude = models.CharField(
-        db_column='Gateway_Longitude', max_length=50)
+        db_column='Gateway_Longitude', max_length=200)
     # Field name made lowercase.
-    gateway_type = models.CharField(db_column='Gateway_Type', max_length=50)
-    device_tag = models.CharField(db_column='Device_Tag', max_length=50)
+    gateway_type = models.CharField(db_column='Gateway_Type', max_length=200)
+    device_tag = models.CharField(db_column='Device_Tag', max_length=200)
     last_updated_time = models.DateTimeField(auto_now=True)
     gateway_status = models.CharField(
-        db_column='Gateway_Status', max_length=50)
+        db_column='Gateway_Status', max_length=200)
 
     class Meta:
         ordering = ('-gateway_status',)
