@@ -1,0 +1,30 @@
+[
+{
+    "model": "bluguard37.tbldevicerawlength",
+    "pk": "HSWB001",
+    "fields": {
+        "raw_data_length": 28
+    }
+},
+{
+    "model": "bluguard37.tbldevicerawlength",
+    "pk": "HSWB002",
+    "fields": {
+        "raw_data_length": 56
+    }
+},
+{
+    "model": "bluguard37.tbldevicerawlength",
+    "pk": "HSWB003",
+    "fields": {
+        "raw_data_length": 0
+    }
+},
+{
+    "model": "bluguard37.tbldevicerawlength",
+    "pk": "HSWB004",
+    "fields": {
+        "raw_data_length": 0
+    }
+}
+]

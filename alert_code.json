@@ -1,0 +1,65 @@
+[
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "0",
+    "fields": {
+        "alert_description": "Missing"
+    }
+},
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "1",
+    "fields": {
+        "alert_description": "High Temperature"
+    }
+},
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "2",
+    "fields": {
+        "alert_description": "Low Temperature"
+    }
+},
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "3",
+    "fields": {
+        "alert_description": "High Oxygen"
+    }
+},
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "4",
+    "fields": {
+        "alert_description": "Low Oxygen"
+    }
+},
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "5",
+    "fields": {
+        "alert_description": "High HR"
+    }
+},
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "6",
+    "fields": {
+        "alert_description": "Low HR"
+    }
+},
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "7",
+    "fields": {
+        "alert_description": "Low Bat"
+    }
+},
+{
+    "model": "bluguard37.tblalertcode",
+    "pk": "8",
+    "fields": {
+        "alert_description": "Breach"
+    }
+}
+]

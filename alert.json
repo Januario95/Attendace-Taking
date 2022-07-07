@@ -1,0 +1,1913 @@
+[
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2909,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:27:54.442",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:27:54.442"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2910,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:27:54.466",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:27:54.466"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2911,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:27:54.498",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:27:54.498"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2912,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:27:54.525",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:27:54.525"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2913,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "25.6",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:35:20.984",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:35:20.984"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2914,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "25.6",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:35:37.453",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:35:37.453"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2915,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "25.6",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:35:53.841",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:35:53.841"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2916,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "25.6",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:36:06.176",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:36:06.176"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2917,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "25.1",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:36:22.601",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:36:22.601"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2918,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "25.1",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:36:34.917",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:36:34.917"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2919,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "25.1",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:36:49.301",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:36:49.301"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2920,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "24.7",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:37:01.619",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:37:01.619"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2921,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "24.7",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:37:18.062",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:37:18.063"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2922,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "24.7",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:37:32.459",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:37:32.459"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2923,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "24.2",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:37:46.847",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:37:46.847"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2924,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "24.2",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:37:59.108",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:37:59.108"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2925,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "24.2",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:38:15.544",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:38:15.544"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2926,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "24.2",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:38:32.119",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:38:32.119"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2927,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "23.8",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:38:46.512",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:38:46.512"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2928,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "23.8",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:39:00.893",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:39:00.893"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2929,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "23.8",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:39:15.226",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:39:15.226"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2930,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "23.3",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:39:27.559",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:39:27.559"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2931,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "23.3",
+        "alert_date": "2022-07-06",
+        "alert_time": "09:39:42.754",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-06T09:39:42.755"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2932,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:12:57.916",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:12:57.916"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2933,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:12:57.934",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:12:57.934"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2934,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:12:57.955",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:12:57.955"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2935,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:12:57.977",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:12:57.977"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2936,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:15:26.111",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:15:26.111"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2937,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:15:26.131",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:15:26.131"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2938,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:15:26.170",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:15:26.170"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2939,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:15:26.193",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:15:26.193"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2940,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:15:50.912",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:15:50.912"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2941,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:15:50.931",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:15:50.932"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2942,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:15:50.951",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:15:50.951"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2943,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:15:50.970",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:15:50.970"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2944,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:16:46.346",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:16:46.346"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2945,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:16:46.379",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:16:46.379"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2946,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:16:46.412",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:16:46.412"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2947,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:16:46.433",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:16:46.433"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2948,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:19:33.423",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:19:33.423"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2949,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:19:33.444",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:19:33.444"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2950,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:19:33.471",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:19:33.471"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2951,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:19:33.493",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:19:33.493"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2952,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:20:24.720",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:20:24.720"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2953,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:20:24.741",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:20:24.741"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2954,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:20:24.763",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:20:24.763"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2955,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:20:24.783",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:20:24.783"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2956,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:32:34.231",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:32:34.231"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2957,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:32:34.251",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:32:34.251"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2958,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:32:34.274",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:32:34.274"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2959,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:32:34.300",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:32:34.300"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2960,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:34:43.602",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:34:43.602"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2961,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:34:43.621",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:34:43.621"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2962,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:34:43.655",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:34:43.655"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2963,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:34:43.685",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:34:43.685"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2964,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:36:15.995",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:36:15.995"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2965,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:36:16.013",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:36:16.013"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2966,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:36:16.031",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:36:16.031"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2967,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:36:16.051",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:36:16.051"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2968,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:36:55.041",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:36:55.041"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2969,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:36:55.062",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:36:55.062"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2970,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:36:55.081",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:36:55.081"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2971,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:36:55.103",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:36:55.103"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2972,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:39:04.365",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:39:04.365"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2973,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:39:04.385",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:39:04.385"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2974,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:39:04.404",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:39:04.404"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2975,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:39:04.421",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:39:04.421"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2976,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:41:52.922",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:41:52.922"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2977,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:41:52.941",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:41:52.941"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2978,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:41:52.962",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:41:52.962"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2979,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:41:52.983",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:41:52.983"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2980,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:52:28.254",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:52:28.254"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2981,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:52:28.647",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:52:28.647"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2982,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:52:29.034",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:52:29.034"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2983,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:52:29.532",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:52:29.532"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2984,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:52:52.979",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:52:52.979"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2985,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:52:53.641",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:52:53.641"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2986,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:52:54.597",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:52:54.597"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2987,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "08:52:55.194",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T08:52:55.194"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2988,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:00:48.276",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:00:48.276"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2989,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:00:48.321",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:00:48.321"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2990,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:00:48.370",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:00:48.370"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2991,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:00:48.423",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:00:48.423"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2992,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:01:34.025",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:01:34.025"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2993,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:01:34.080",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:01:34.080"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2994,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:01:34.123",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:01:34.123"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2995,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:01:34.166",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:01:34.166"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2996,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:01:48.121",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:01:48.121"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2997,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:01:48.165",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:01:48.165"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2998,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:01:48.239",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:01:48.239"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 2999,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:01:48.286",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:01:48.286"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3000,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:02:19.325",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:02:19.325"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3001,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:02:19.384",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:02:19.384"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3002,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:02:19.437",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:02:19.437"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3003,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:02:19.486",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:02:19.486"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3004,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:06:54.551",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:06:54.551"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3005,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:06:54.593",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:06:54.593"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3006,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:06:54.635",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:06:54.635"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3007,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:06:54.699",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:06:54.699"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3008,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:09:59.471",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:09:59.471"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3009,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:09:59.518",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:09:59.518"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3010,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:09:59.563",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:09:59.563"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3011,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:09:59.608",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:09:59.608"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3012,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:10:12.035",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:10:12.035"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3013,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:10:12.081",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:10:12.081"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3014,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:10:12.127",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:10:12.127"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3015,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:10:12.169",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:10:12.169"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3016,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:11:32.746",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:11:32.746"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3017,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:11:32.789",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:11:32.789"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3018,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:11:32.833",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:11:32.833"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3019,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:11:33.066",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:11:33.066"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3020,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:14:18.226",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:14:18.226"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3021,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:14:18.269",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:14:18.269"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3022,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:14:18.314",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:14:18.314"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3023,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:14:18.358",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:14:18.358"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3024,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:18:11.992",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:18:11.992"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3025,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:18:12.036",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:18:12.036"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3026,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:18:12.078",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:18:12.078"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3027,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:18:12.118",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:18:12.119"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3028,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:21:15.428",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:21:15.428"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3029,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:21:15.472",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:21:15.472"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3030,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:21:15.516",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:21:15.516"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3031,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:21:15.561",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:21:15.561"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3032,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:26:52.096",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:26:52.096"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3033,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:26:52.227",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:26:52.227"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3034,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:26:52.526",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:26:52.526"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3035,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:26:52.618",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:26:52.618"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3036,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:27:55.753",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:27:55.753"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3037,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:27:55.797",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:27:55.797"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3038,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:27:55.840",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:27:55.840"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3039,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:27:55.881",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:27:55.881"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3040,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:28:24.642",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:28:24.642"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3041,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:28:24.684",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:28:24.684"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3042,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:28:24.731",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:28:24.732"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3043,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:28:24.773",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:28:24.773"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3044,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:33:51.181",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:33:51.181"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3045,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:33:51.224",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:33:51.224"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3046,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:33:51.270",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:33:51.270"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3047,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:33:51.355",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:33:51.355"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3048,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:49:52.183",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:49:52.183"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3049,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:49:52.227",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:49:52.227"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3050,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:49:52.298",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:49:52.298"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3051,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:49:52.360",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:49:52.360"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3052,
+    "fields": {
+        "alert_code": "2",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:54:30.750",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:54:30.750"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3053,
+    "fields": {
+        "alert_code": "6",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:54:30.793",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:54:30.793"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3054,
+    "fields": {
+        "alert_code": "4",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:54:30.837",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:54:30.837"
+    }
+},
+{
+    "model": "bluguard37.tablealert",
+    "pk": 3055,
+    "fields": {
+        "alert_code": "7",
+        "alert_reading": "0",
+        "alert_date": "2022-07-07",
+        "alert_time": "16:54:30.880",
+        "device_id": 10,
+        "sent_to_crest": 1,
+        "alert_datetime": "2022-07-07T16:54:30.880"
+    }
+}
+]

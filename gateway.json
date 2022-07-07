@@ -1,0 +1,155 @@
+[
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T15:46:47",
+    "fields": {
+        "gateway_location": "MALAYSIA",
+        "gateway_address": "MAEPS Secretariat Building, Mardi, 43400 Serdang, Selangor, Malaysia",
+        "gateway_mac": "AC233FC09A4B",
+        "gateway_serial_no": "MY040",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "3.0232842",
+        "gateway_longitude": "101.7159038",
+        "gateway_type": "Alert",
+        "device_tag": "Gateway 2",
+        "last_updated_time": "2022-07-02T22:36:06.923",
+        "gateway_status": "OFFLINE"
+    }
+},
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T15:47:49",
+    "fields": {
+        "gateway_location": "MALAYSIA",
+        "gateway_address": "MAEPS Secretariat Building, Mardi, 43400 Serdang, Selangor, Malaysia",
+        "gateway_mac": "AC233FC09A49",
+        "gateway_serial_no": "MY041",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "3.0232842",
+        "gateway_longitude": "101.7159038",
+        "gateway_type": "Alert",
+        "device_tag": "Gateway 3",
+        "last_updated_time": "2022-07-02T22:36:06.930",
+        "gateway_status": "OFFLINE"
+    }
+},
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T15:48:44",
+    "fields": {
+        "gateway_location": "MALAYSIA",
+        "gateway_address": "MAEPS Secretariat Building, Mardi, 43400 Serdang, Selangor, Malaysia",
+        "gateway_mac": "AC233FC0A45C",
+        "gateway_serial_no": "MY042",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "3.0232842",
+        "gateway_longitude": "101.7159038",
+        "gateway_type": "Alert",
+        "device_tag": "Gateway 4",
+        "last_updated_time": "2022-07-02T22:36:06.951",
+        "gateway_status": "OFFLINE"
+    }
+},
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T15:49:41",
+    "fields": {
+        "gateway_location": "MALAYSIA",
+        "gateway_address": "MAEPS Secretariat Building, Mardi, 43400 Serdang, Selangor, Malaysia",
+        "gateway_mac": "AC233FC09A3C",
+        "gateway_serial_no": "MY043",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "3.0232842",
+        "gateway_longitude": "101.7159038",
+        "gateway_type": "Alert",
+        "device_tag": "Gateway 5",
+        "last_updated_time": "2022-07-02T22:36:06.959",
+        "gateway_status": "OFFLINE"
+    }
+},
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T15:51:00",
+    "fields": {
+        "gateway_location": "MALAYSIA",
+        "gateway_address": "MAEPS Secretariat Building, Mardi, 43400 Serdang, Selangor, Malaysia",
+        "gateway_mac": "AC233FC0A460",
+        "gateway_serial_no": "MY044",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "3.0232842",
+        "gateway_longitude": "101.7159038",
+        "gateway_type": "Alert",
+        "device_tag": "Gateway 6",
+        "last_updated_time": "2022-07-02T22:36:06.965",
+        "gateway_status": "OFFLINE"
+    }
+},
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T15:52:08",
+    "fields": {
+        "gateway_location": "MALAYSIA",
+        "gateway_address": "66 Flora Rd #08-15 Singapore 506912",
+        "gateway_mac": "AC233FC092F4",
+        "gateway_serial_no": "SG050",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "1.3521",
+        "gateway_longitude": "103.8198",
+        "gateway_type": "Alert",
+        "device_tag": "Gateway 1",
+        "last_updated_time": "2022-07-02T22:36:06.972",
+        "gateway_status": "OFFLINE"
+    }
+},
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T15:53:33",
+    "fields": {
+        "gateway_location": "KUWAIT",
+        "gateway_address": "Qebla, Block-12, Fahed Al Salem St.Awtad Tower u2013 9th floor, Kuwait City",
+        "gateway_mac": "AC233FC0A45B",
+        "gateway_serial_no": "ME004",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "29.36746",
+        "gateway_longitude": "47.9678",
+        "gateway_type": "Alert",
+        "device_tag": "Gateway X",
+        "last_updated_time": "2022-07-02T22:36:06.979",
+        "gateway_status": "OFFLINE"
+    }
+},
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T16:01:31",
+    "fields": {
+        "gateway_location": "SINGAPORE",
+        "gateway_address": "5 Elias Green #14-05 Singapore 519961",
+        "gateway_mac": "AC233FC092FA",
+        "gateway_serial_no": "SG051",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "1.3717726",
+        "gateway_longitude": "103.9409175",
+        "gateway_type": "Alert",
+        "device_tag": "Gateway X",
+        "last_updated_time": "2022-07-02T22:36:06.986",
+        "gateway_status": "OFFLINE"
+    }
+},
+{
+    "model": "bluguard37.tblgateway",
+    "pk": "GTW2021-06-18T16:05:01",
+    "fields": {
+        "gateway_location": "SINGAPORE",
+        "gateway_address": "16 Ripple Bay #06-17 Singapore 470605",
+        "gateway_mac": "AC233FC092FC",
+        "gateway_serial_no": "SG052",
+        "gateway_topic": "Monitoring",
+        "gateway_latitude": "1.357107",
+        "gateway_longitude": "103.8194992",
+        "gateway_type": "Alert",
+        "device_tag": "MINEW",
+        "last_updated_time": "2022-07-07T16:57:59.614",
+        "gateway_status": "ONLINE"
+    }
+}
+]

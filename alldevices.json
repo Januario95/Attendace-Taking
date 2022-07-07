@@ -1,0 +1,686 @@
+[
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 1,
+    "fields": {
+        "device_tag": "QB009",
+        "device_mac": "AC233F7C5ABE",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 2,
+    "fields": {
+        "device_tag": "QB010",
+        "device_mac": "AC233F7C5A9C",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 3,
+    "fields": {
+        "device_tag": "QB011",
+        "device_mac": "AC233F7C5AC8",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 4,
+    "fields": {
+        "device_tag": "QB012",
+        "device_mac": "AC233F7C5AB3",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 5,
+    "fields": {
+        "device_tag": "QB013",
+        "device_mac": "AC233F7C5AA8",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 6,
+    "fields": {
+        "device_tag": "QB014",
+        "device_mac": "AC233F7C5AA7",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 7,
+    "fields": {
+        "device_tag": "QB015",
+        "device_mac": "AC233F7C5ABB",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 8,
+    "fields": {
+        "device_tag": "QB016",
+        "device_mac": "AC233F7C5AB7",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 9,
+    "fields": {
+        "device_tag": "QB017",
+        "device_mac": "AC233F7C5AB9",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 10,
+    "fields": {
+        "device_tag": "QB018",
+        "device_mac": "AC233F7C5AAE",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 11,
+    "fields": {
+        "device_tag": "QB019",
+        "device_mac": "AC233F7C5A9B",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 12,
+    "fields": {
+        "device_tag": "QB020",
+        "device_mac": "AC233F7C5AC6",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 13,
+    "fields": {
+        "device_tag": "QB021",
+        "device_mac": "AC233F7C5AA2",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 14,
+    "fields": {
+        "device_tag": "QB022",
+        "device_mac": "AC233F7C5A9F",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 15,
+    "fields": {
+        "device_tag": "QB023",
+        "device_mac": "AC233F7C5AB4",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": null,
+        "device_o2": null,
+        "device_bat": null,
+        "device_hr": null,
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 16,
+    "fields": {
+        "device_tag": "CQ03-0011",
+        "device_mac": "FEFDD727C6F5",
+        "device_type": "HSWB001",
+        "device_status": "ONLINE",
+        "device_assignment": "Assigned",
+        "device_temp": "35.60",
+        "device_o2": "75.00",
+        "device_bat": "98.00",
+        "device_hr": "85.00",
+        "last_read_date": "2022-07-07",
+        "last_read_time": "16:57:53.426",
+        "incorrect_data_flag": 1
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 17,
+    "fields": {
+        "device_tag": "CQ03-0012",
+        "device_mac": "06CB88670302",
+        "device_type": "HSWB003",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 1
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 18,
+    "fields": {
+        "device_tag": "CQ03-0013",
+        "device_mac": "6306CF79A36B",
+        "device_type": "HSWB003",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 1
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 19,
+    "fields": {
+        "device_tag": "CQ03-0001",
+        "device_mac": "C0279257BAAF",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 1
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 20,
+    "fields": {
+        "device_tag": "CQ03-0002",
+        "device_mac": "C73A26F162EB",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 21,
+    "fields": {
+        "device_tag": "CQ03-0003",
+        "device_mac": "C8DDAA6B9BCD",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 22,
+    "fields": {
+        "device_tag": "CQ03-0004",
+        "device_mac": "DD1C27F408EF",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 23,
+    "fields": {
+        "device_tag": "CQ03-0005",
+        "device_mac": "D69AB84C277B",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 24,
+    "fields": {
+        "device_tag": "CQ03-0006",
+        "device_mac": "DFFE02679D28",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 25,
+    "fields": {
+        "device_tag": "CQ03-0008",
+        "device_mac": "E7659831789A",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 26,
+    "fields": {
+        "device_tag": "CQ03-0009",
+        "device_mac": "E6D2C09DE9E6",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 1
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 27,
+    "fields": {
+        "device_tag": "CQ03-0010",
+        "device_mac": "ED27ACAAB363",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 28,
+    "fields": {
+        "device_tag": "QB002",
+        "device_mac": "AC233F7C5AAF",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 29,
+    "fields": {
+        "device_tag": "QB003",
+        "device_mac": "AC233F7C5ABF",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 30,
+    "fields": {
+        "device_tag": "QB004",
+        "device_mac": "AC233F7C5AC0",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 31,
+    "fields": {
+        "device_tag": "QB005",
+        "device_mac": "AC233F7C5AC7",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 32,
+    "fields": {
+        "device_tag": "QB006",
+        "device_mac": "AC233F7C5AB0",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 33,
+    "fields": {
+        "device_tag": "QB007",
+        "device_mac": "AC233F7C5AB8",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 34,
+    "fields": {
+        "device_tag": "QB008",
+        "device_mac": "AC233F7C5A98",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 35,
+    "fields": {
+        "device_tag": "QB025",
+        "device_mac": "AC233F7C5A97",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 36,
+    "fields": {
+        "device_tag": "QB024",
+        "device_mac": "AC233F7C5ABC",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 37,
+    "fields": {
+        "device_tag": "CR03-0007",
+        "device_mac": "D32E22308FB6",
+        "device_type": "HSWB001",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+},
+{
+    "model": "bluguard37.tablealldevices",
+    "pk": 38,
+    "fields": {
+        "device_tag": "QB001",
+        "device_mac": "AC233F7C5AAB",
+        "device_type": "HSWB004",
+        "device_status": "OFFLINE",
+        "device_assignment": "Unassigned",
+        "device_temp": "0.00",
+        "device_o2": "0.00",
+        "device_bat": null,
+        "device_hr": "0.00",
+        "last_read_date": null,
+        "last_read_time": null,
+        "incorrect_data_flag": 0
+    }
+}
+]
