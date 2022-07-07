@@ -22,6 +22,7 @@ def default(obj):
         return obj.isoformat()
     return obj
 
+
 config = {
     # 'host': 'attendance1.mysql.database.azure.com',
     # 'user': 'attendance',
@@ -458,16 +459,15 @@ def Get_Mqtt_Data(data_from_gateway):
     }
 
     for data in data_from_gateway:
-        # print(data)
-        tag_id = data['mac']  # 'FEFDD727C6F5'
-        # print(f'Device_Mac = {tag_id}')
+        print(data)
+        tag_id = data['mac']
         url = f"{Token['dev']['URL']}/search_attended_by_gatewaymac/{tag_id}/"
         res = requests.get(url, headers={
             'Authorization': f"Token {Token['dev']['token']}",
             'Content-Type': 'application/json'
         })
         data_ = res.json()
-        print(json.dumps(data_, indent=4))
+        # print(json.dumps(data_))  # , indent=4))
 
         if len(data_['attendee']) != 0:
             events = data_['attendee']['events']
@@ -483,8 +483,8 @@ def Get_Mqtt_Data(data_from_gateway):
                         attendee = data_
                         attendee_id = attendee['id']
 
-                    print(json.dumps(attendee, indent=4))
-                        
+                    # print(json.dumps(attendee, indent=4))
+
                     attendee_name = attendee['attendee_name']
 
                     data = {
@@ -499,95 +499,94 @@ def Get_Mqtt_Data(data_from_gateway):
                     data = res.json()
                     # print(data)
 
+        else:
+            print('No data to process')
 
+        data.clear()
 
+        # event_id = data_['attendee']['event']['id']
+        # url = f"{Token['dev']['URL']}/events/"
+        # res = requests.get(url, headers={
+        #     'Authorization': f"Token {Token['dev']['token']}"
+        # })
+        # data = res.json()
+        # event_ids = []
+        # for row in data:
+        #     active_event = row['active_event']
+        #     event_id = row['id']
+        #     # print(f"active_event = {active_event}")
+        #     # print(f"event_id = {event_id}")
+        #     # event_ids.append(event_id)
+        # print(event_ids)
 
+        # url = f"{Token['dev']['URL']}/set_event_active_inactive/{event_id}/"
+        # res = requests.get(url, headers={
+        #     'Authorization': f"Token {Token['dev']['token']}"
+        # })
+        # data = res.json()
+        # print(json.dumps(data, indent=4))
 
+        # url = f"{Token['dev']['URL']}/get_event_name/{event_id}/"
+        # res = requests.get(url, headers={
+        #     'Authorization': f"Token {Token['dev']['token']}"
+        # })
+        # data = res.json()
+        # # print(json.dumps(data, indent=4))
+        # event_name = data['event_name']
 
+        # attendee = data_['attendee']
+        # attendee_id = attendee['attendee_id']
+        # attendee_name = attendee['attendee_name']
+        # timestamp = datetime.now()
+        # date = timestamp.date()  # attendee['check_in_date']
+        # time = timestamp.time()  # attendee['check_in_time']
+        # try:
+        #     check_in_date = attendee['check_in_date']
+        #     check_in_time = attendee['check_in_time']
+        # except:
+        #     check_in_date = None
+        #     check_in_time = None
+        # # check_out_date = attendee['check_out_date']
+        # # check_out_time = attendee['check_out_time']
+        # # print(f'attendee = {attendee}')
 
-                    # event_id = data_['attendee']['event']['id']
-                    # url = f"{Token['dev']['URL']}/events/"
-                    # res = requests.get(url, headers={
-                    #     'Authorization': f"Token {Token['dev']['token']}"
-                    # })
-                    # data = res.json()
-                    # event_ids = []
-                    # for row in data:
-                    #     active_event = row['active_event']
-                    #     event_id = row['id']
-                    #     # print(f"active_event = {active_event}")
-                    #     # print(f"event_id = {event_id}")
-                    #     # event_ids.append(event_id)
-                    # print(event_ids)
+        # data_ = {}
+        # if check_in_date is None:
+        #     # print(f'Device_Mac = {tag_id}')
+        #     timestamp = datetime.now()
+        #     date = timestamp.date()
+        #     time = timestamp.time()
+        #     data_ = {
+        #         'check_in_date': date,
+        #         'check_in_time': time,
+        #         'is_online': True,
+        #         'last_updated': datetime.now()
+        #     }
 
-                    # url = f"{Token['dev']['URL']}/set_event_active_inactive/{event_id}/"
-                    # res = requests.get(url, headers={
-                    #     'Authorization': f"Token {Token['dev']['token']}"
-                    # })
-                    # data = res.json()
-                    # print(json.dumps(data, indent=4))
+        #     url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
+        #     res = requests.patch(url, headers={
+        #         'Authorization': f"Token {Token['dev']['token']}",
+        #     }, data=data_)
+        #     data_ = res.json()
 
-            # url = f"{Token['dev']['URL']}/get_event_name/{event_id}/"
-            # res = requests.get(url, headers={
-            #     'Authorization': f"Token {Token['dev']['token']}"
-            # })
-            # data = res.json()
-            # # print(json.dumps(data, indent=4))
-            # event_name = data['event_name']
+        #     url = f"{Token['dev']['URL']}/create_attendance/{tag_id}/{event_id}/{date}/{time}/"
+        #     res = requests.get(url, headers={
+        #         'Authorization': f"Token {Token['dev']['token']}",
+        #         'Content-Type': 'application/json'
+        #     })
+        #     d = res.json()
+        #     # print(d)
+        # else:
+        #     data_ = {
+        #         'is_online': True,
+        #         'last_updated': datetime.now()
+        #     }
 
-            # attendee = data_['attendee']
-            # attendee_id = attendee['attendee_id']
-            # attendee_name = attendee['attendee_name']
-            # timestamp = datetime.now()
-            # date = timestamp.date()  # attendee['check_in_date']
-            # time = timestamp.time()  # attendee['check_in_time']
-            # try:
-            #     check_in_date = attendee['check_in_date']
-            #     check_in_time = attendee['check_in_time']
-            # except:
-            #     check_in_date = None
-            #     check_in_time = None
-            # # check_out_date = attendee['check_out_date']
-            # # check_out_time = attendee['check_out_time']
-            # # print(f'attendee = {attendee}')
-
-            # data_ = {}
-            # if check_in_date is None:
-            #     # print(f'Device_Mac = {tag_id}')
-            #     timestamp = datetime.now()
-            #     date = timestamp.date()
-            #     time = timestamp.time()
-            #     data_ = {
-            #         'check_in_date': date,
-            #         'check_in_time': time,
-            #         'is_online': True,
-            #         'last_updated': datetime.now()
-            #     }
-
-            #     url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
-            #     res = requests.patch(url, headers={
-            #         'Authorization': f"Token {Token['dev']['token']}",
-            #     }, data=data_)
-            #     data_ = res.json()
-
-            #     url = f"{Token['dev']['URL']}/create_attendance/{tag_id}/{event_id}/{date}/{time}/"
-            #     res = requests.get(url, headers={
-            #         'Authorization': f"Token {Token['dev']['token']}",
-            #         'Content-Type': 'application/json'
-            #     })
-            #     d = res.json()
-            #     # print(d)
-            # else:
-            #     data_ = {
-            #         'is_online': True,
-            #         'last_updated': datetime.now()
-            #     }
-
-            #     url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
-            #     res = requests.patch(url, headers={
-            #         'Authorization': f"Token {Token['dev']['token']}",
-            #     }, data=data_)
-            #     data_ = res.json()
+        #     url = f"{Token['dev']['URL']}/attendee/{attendee_id}/"
+        #     res = requests.patch(url, headers={
+        #         'Authorization': f"Token {Token['dev']['token']}",
+        #     }, data=data_)
+        #     data_ = res.json()
 
         # if data['type'] == 'Gateway':
         #     gateway_mac = data['mac']

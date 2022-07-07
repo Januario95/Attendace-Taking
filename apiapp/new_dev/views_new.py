@@ -119,7 +119,6 @@ def search_device_mac(request, device_mac):
     })
 
 
-
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
@@ -317,7 +316,6 @@ def create_attendance(request, tag_id, event_id,
     })
 
 
-
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
@@ -325,32 +323,49 @@ def checkout_attendance(request):
     attendances = Attendance.objects.all()
     for att in attendances:
         event_name = att.event_name
-        attendee = Attendee.objects.filter(
+        attendees = Attendee.objects.filter(
             attendee_name=att.attendee
         )
-        if attendee.exists():
-            attendee = attendee.first()
-            if attendee.is_online:
-                last_updated = attendee.last_updated
-                now = datetime.now()
-                time_diff = now - last_updated
-                secs_delay = timedelta(seconds=15)
-                if time_diff > secs_delay:
-                    attendee.is_online = False
-                    attendee.save()
+        if attendees.exists():
+            for attendee in attendees:
+                if attendee.is_online or att.check_out_date is None:
+                    last_updated = attendee.last_updated
                     now = datetime.now()
-                    date = now.date()
-                    time = now.time()
-                    att.check_out_date = date
-                    att.check_out_time = time
-                    att.save()
-                    print(f'{att} checked out')
+                    time_diff = now - last_updated
+                    print(f'time_diff = {time_diff}')
+                    secs_delay = timedelta(seconds=20)
+                    if time_diff > secs_delay:
+                        attendee.is_online = False
+                        attendee.save()
+                        now = datetime.now()
+                        date = now.date()
+                        time = now.time()
+                        att.check_out_date = date
+                        att.check_out_time = time
+                        att.save()
+                        print(f'{att} checked out')
+
+            # attendee = attendee.last()
+            # if attendee.is_online:
+            #     last_updated = attendee.last_updated
+            #     now = datetime.now()
+            #     time_diff = now - last_updated
+            #     print(f'time_diff = {time_diff}')
+            #     secs_delay = timedelta(seconds=20)
+            #     if time_diff > secs_delay:
+            #         attendee.is_online = False
+            #         attendee.save()
+            #         now = datetime.now()
+            #         date = now.date()
+            #         time = now.time()
+            #         att.check_out_date = date
+            #         att.check_out_time = time
+            #         att.save()
+            #         print(f'{att} checked out')
 
     return Response({
         'status': 'Checking-out'
     })
-
-
 
 
 @api_view(['POST', ])
@@ -360,7 +375,6 @@ def create_attendance_by_attendee_id(request):
     data = json.loads(request.body)
     attendee_id = data['attendee_id']
     event_id = data['event_id']
-    # print(data)
 
     timestamp = datetime.now()
     date = timestamp.date()
@@ -377,7 +391,7 @@ def create_attendance_by_attendee_id(request):
         event_name = event.event_name
 
     if attendee.exists():
-        attendee = attendee.first()
+        attendee = attendee.last()
         attendee.is_online = True
         attendee.last_updated = timestamp
         attendee.save()
@@ -385,7 +399,7 @@ def create_attendance_by_attendee_id(request):
         attendee_name = attendee.attendee_name
         attendance = Attendance.objects.filter(
             attendee=attendee_name,
-            # event_name=event_name
+            event_name=event_name
         )
         if attendance.exists():
             attendance = attendance.last()
@@ -400,8 +414,9 @@ def create_attendance_by_attendee_id(request):
                         check_in_time=time
                     )
                     attendance.save()
-                    print(f'{attendee_name} attending different Event "{event_name}"')
-                             
+                    print(
+                        f'{attendee_name} attending different Event "{event_name}"')
+
         else:
             attendance = Attendance.objects.create(
                 attendee=attendee.attendee_name,
@@ -410,15 +425,12 @@ def create_attendance_by_attendee_id(request):
                 check_in_time=time
             )
             attendance.save()
-            print(f'\nAttendance taken for {attendee.attendee_name} for EVENT {event_name}\n')    
-        
+            print(
+                f'\nAttendance taken for {attendee.attendee_name} for EVENT {event_name}\n')
 
     return Response({
         'created': data
     })
-
-
-
 
 
 @api_view(['GET', ])
@@ -433,7 +445,7 @@ def search_attended_by_gatewaymac(request, tag_id):
         # event = Event.objects.filter(
         #     attendee=attendee
         # )
-        events = [obj.serialize() for obj in attendee.event_set.all()]               
+        events = [obj.serialize() for obj in attendee.event_set.all()]
         attendee = attendee.serialize()
         attendee['events'] = events
 
@@ -450,7 +462,6 @@ def search_attended_by_gatewaymac(request, tag_id):
     })
 
 
-
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
@@ -462,19 +473,20 @@ def get_event_by_attendee_id(request, attendee_id):
         events = events.serialize()
     else:
         events = []
-    
+
     return Response({
         'events': events
     })
+
 
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
 def get_event_attendee(request, event_id):
-    attendees = [] #Attendee.objects.filter(event__id=event_id)
+    attendees = []  # Attendee.objects.filter(event__id=event_id)
     event = Event.objects.filter(id=event_id)
     if not event.exists():
-    # if not event.exist():
+        # if not event.exist():
         attendees = []
     else:
         data = []
@@ -494,7 +506,7 @@ def get_event_attendee(request, event_id):
                 row['attendance'] = row_attendance
             print(row)
             print('\n')
-                
+
             data.append(row)
 
         attendees = attendees.serialize()
@@ -553,30 +565,23 @@ def set_online_to_offline(table):
 @ renderer_classes([JSONRenderer])
 @ renderer_classes([BrowsableAPIRenderer])
 def delete_all_attendance_by_event(request, event_id):
-    print(f'event_id = {event_id}')
     event = Event.objects.filter(id=event_id)
     deleted = False
     if event.exists():
         event = event.first()
-        print('EVENT exists')
-        print(f'EVENT = {event}')
         attendees = Attendee.objects.filter(
             event=event
         )
         if attendees.exists():
             for att in attendees:
-                attendee = att  # attendee.first()
-                print('ATTENDEE exists')
-                print(f'ATTENDEE = {attendee}')
+                attendee = att
                 attendances = Attendance.objects.filter(
-                    attendee=attendee
+                    attendee=attendee.attendee_name,
+                    event_name=event.event_name
                 )
-                print(attendances)
-                if attendances.exists():
-                    print('ATTENDANCE exists')
-                    for att in attendances:
-                        att.delete()
-                        deleted = True
+                for attendance in attendances:
+                    attendance.delete()
+                    deleted = True
 
     return Response({
         'deleted': deleted
