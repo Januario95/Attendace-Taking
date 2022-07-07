@@ -13,6 +13,15 @@ def default(obj):
     return obj
 
 
+class Counter(models.Model):
+    counter = models.IntegerField(default=0)
+
+    def __str_(self):
+        return self.counter
+
+        
+
+
 def Get_Random():
     val = random.random() * 100
     return round(val, 2)

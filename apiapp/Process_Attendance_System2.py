@@ -443,10 +443,6 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
 
 
 def Get_Mqtt_Data(data_from_gateway):
-    # print(data_from_gateway)
-    # Connector = mysql.connect(**config)
-    # Cursor = Connector.cursor()
-
     Token = {
         'dev': {
             'URL': 'http://localhost:8000',
@@ -458,8 +454,20 @@ def Get_Mqtt_Data(data_from_gateway):
         }
     }
 
+
+
     for data in data_from_gateway:
-        print(data)
+        # print(data)
+
+        url = f"{Token['dev']['URL']}/callcounter/"
+        res = requests.get(url, headers={
+            'Authorization': f"Token {Token['dev']['token']}",
+            'Content-Type': 'application/json'
+        })
+        counter = res.json()
+        print(counter)
+
+
         tag_id = data['mac']
         url = f"{Token['dev']['URL']}/search_attended_by_gatewaymac/{tag_id}/"
         res = requests.get(url, headers={
@@ -468,6 +476,7 @@ def Get_Mqtt_Data(data_from_gateway):
         })
         data_ = res.json()
         # print(json.dumps(data_))  # , indent=4))
+        print(len(data_['attendee']))
 
         if len(data_['attendee']) != 0:
             events = data_['attendee']['events']
@@ -497,7 +506,7 @@ def Get_Mqtt_Data(data_from_gateway):
                         'Authorization': f"Token {Token['dev']['token']}"
                     }, json=data)
                     data = res.json()
-                    # print(data)
+                    print(data)
 
         else:
             print('No data to process')

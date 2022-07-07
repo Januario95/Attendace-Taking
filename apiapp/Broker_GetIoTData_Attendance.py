@@ -7,7 +7,8 @@ Created at Thur Apr 22 2021 17:48:43
 import string
 import json
 import datetime
-from Process_Attendance_System2 import Get_Mqtt_Data
+# from Process_Attendance_System2 import Get_Mqtt_Data
+from Presence_Monitoring import Get_Mqtt_Data
 
 
 def Read_Gateway_Data(raw_data):

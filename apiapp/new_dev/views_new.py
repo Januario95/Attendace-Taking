@@ -10,7 +10,8 @@ import json
 from datetime import datetime, timedelta
 
 from ..models import (
-    Event, Attendee, Attendance, TableBeacon
+    Event, Attendee, Attendance, TableBeacon,
+    Counter
 )
 from bluguard37.models import (
     TableDevice, TableAllDevices, TblGateway,
@@ -18,7 +19,8 @@ from bluguard37.models import (
 )
 from ..serializers import (
     EventSerializer, AttendeeSerializer,
-    AttendanceSerializer, BeaconSerializer
+    AttendanceSerializer, BeaconSerializer,
+    CounterSerializer
 )
 from bluguard37.serializers import (
     TableDeviceSerializer
@@ -319,6 +321,80 @@ def create_attendance(request, tag_id, event_id,
 @api_view(['GET', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
+def get_active_mac_ids_online(request, id_card):
+    attendee = Attendee.objects.filter(tag_id=id_card)
+    checked_in = False
+    created = False
+    if attendee.exists():
+        attendee = attendee.first()
+        attendances = Attendance.objects.filter(
+            attendee=attendee.attendee_name)
+        if attendances.exists():
+            pass
+        else:
+            now = datetime.now()
+            date = now.date()
+            time = now.time()
+            event_name = attendee.event_set.all().first().event_name
+            attendance  = Attendance.objects.create(
+                attendee=attendee.attendee_name,
+                event_name=event_name,
+                check_in_date=date,
+                check_in_time=time
+            )
+            attendance.save()
+            created = True
+
+    #it means that id_card is transmitting.
+    #if not checked in then check in this id card
+    #if already checked in then do nothing.
+
+    return Response({
+        'checked_in': checked_in,
+        'created': created
+    })
+
+
+
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def get_active_mac_ids(request, id_card):
+    attendee = Attendee.objects.filter(tag_id=id_card)
+    checked_in = False
+    created = False
+    if attendee.exists():
+        attendee = attendee.first()
+        attendances = Attendance.objects.filter(
+            attendee=attendee.attendee_name)
+        if attendances.exists():
+            for attendance in attendances:
+                # Check if attendane is checked in
+                if attendance.check_in_date is not None:
+                    checked_in = True
+                    now = datetime.now()
+                    date = now.date()
+                    time = now.time()
+                    attendance.check_out_date = date
+                    attendance.check_out_time = time
+                    attendance.save()
+
+    #it means that id_card is not transmitting. so it could be switched off
+    #so we need to check if this id_card is already checked in
+    #if not checked in that means id_card is not present in event yet
+    #if checked in that means id_card was present but now he is not
+
+    return Response({
+        'checked_in': checked_in,
+        'created': created
+    })
+
+
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
 def checkout_attendance(request):
     attendances = Attendance.objects.all()
     for att in attendances:
@@ -328,7 +404,7 @@ def checkout_attendance(request):
         )
         if attendees.exists():
             for attendee in attendees:
-                if attendee.is_online or att.check_out_date is None:
+                if attendee.is_online: #  or att.check_out_date is None:
                     last_updated = attendee.last_updated
                     now = datetime.now()
                     time_diff = now - last_updated
@@ -661,6 +737,32 @@ def set_device_offline_online(request):
     return Response({
         'data': data
     })
+
+
+@ api_view(['GET', ])
+@ renderer_classes([JSONRenderer])
+@ renderer_classes([BrowsableAPIRenderer])
+def callcounter(request):
+    c = Counter.objects.filter(id=1)
+    if c.exists():
+        c = c.first()
+        c.counter += 1
+        c.save()
+        first_time = False
+    else:
+        c = Counter.objects.create(
+            counter=1
+        )
+        c.save()
+        first_time = True
+
+    return Response({
+        'first_time': first_time
+    })
+
+class CounterViewSet(ModelViewSet):
+    queryset = Counter.objects.all()
+    serializer_class = CounterSerializer
 
 
 class TableBeaconViewSet(ModelViewSet):

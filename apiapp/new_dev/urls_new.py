@@ -10,12 +10,13 @@ from .views_new import (
     #     Attendee_List_All,
 
     EventViewSet, AttendeeViewSet, AttendanceViewSet,
-    TableDeviceViewSet, TableBeaconViewSet,
+    TableDeviceViewSet, TableBeaconViewSet, CounterViewSet,
 
     delete_event, set_device_offline_online,
     get_event_attendee, search_attended_by_gatewaymac,
     create_attendance, update_attendance,
     set_event_active_inactive, get_attendance_by_attendee_id,
+    callcounter,
 
     search_device_mac, search_attendee_by_id,
     search_attendance, check_out_attendance,
@@ -23,6 +24,7 @@ from .views_new import (
     delete_all_attendance_by_event,
     create_attendance_by_attendee_id,
     checkout_attendance, get_event_by_attendee_id,
+    get_active_mac_ids, get_active_mac_ids_online,
 )
 
 router = DefaultRouter()
@@ -31,10 +33,14 @@ router.register('attendee', AttendeeViewSet)
 router.register('attendance', AttendanceViewSet)
 router.register('tabledevice', TableDeviceViewSet)
 router.register('beacons', TableBeaconViewSet)
+router.register('counter', CounterViewSet)
 
 
 urlpatterns = [
      path('', include(router.urls)),
+     path('callcounter/', callcounter),
+     path('get_active_mac_ids/<str:id_card>/', get_active_mac_ids),
+     path('get_active_mac_ids_online/<str:id_card>/', get_active_mac_ids_online),
      path('get_event_by_attendee_id/<int:attendee_id>/', get_event_by_attendee_id),
      path('checkout_attendance/', checkout_attendance),
      path('create_attendance_by_attendee_id/',

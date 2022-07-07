@@ -92,14 +92,18 @@ TOKEN = {
         'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
     }
 }
-# url = TOKEN['prod']['URL'] + "/events/"
-# print(url)
-# token = TOKEN['prod']['token']
-# headers = {
-#     'Authorization': f'Token {token}',
-#     'Content-Type': 'application/json'
-# }
-# res = requests.get(url, headers=headers)
+url = TOKEN['prod']['URL'] + "/get_active_mac_ids/"
+token = TOKEN['prod']['token']
+headers = {
+    'Authorization': f'Token {token}',
+    'Content-Type': 'application/json'
+}
+data = {
+    'mac_ids': ['AC233FC092FC', 'AC233F5A9EE9', 'AC233F5E688C', 'AC233F5E688E', 'F108BB3472D6', 'FEFDD727C6F5']
+}
+res = requests.post(url, headers=headers, data=json.dumps(data))
+print(res.json())
+
 # print(json.dumps(res.json(), indent=4))
 
 
@@ -150,37 +154,37 @@ def default(obj):
     return obj
 
 
-Connector = mysql.connect(**config)
-Cursor = Connector.cursor()
+Connector = '' # mysql.connect(**config)
+Cursor = '' # Connector.cursor()
 
 
-query = '''
-    SELECT * FROM TBL_Device;
-'''
-parameter = ('HSWB004', )
-Cursor.execute(query)  # , parameter)
-results = dictfetchall(Cursor)
-data = []
-fields = [
-    'device_tag', 'device_mac', 'device_type',
-    'device_status', 'device_assignment', 'device_temp',
-    'device_o2', 'device_bat', 'device_hr',
-    'incorrect_data_flag',
-    'last_read_date', 'last_read_time'
-]
-for row in results:
-    new_row = {}
-    for key, value in row.items():
-        key = key.lower()
-        if key in fields:
-            new_row[key.lower()] = value
-    data.append(new_row)
+# query = '''
+#     SELECT * FROM TBL_Device;
+# '''
+# parameter = ('HSWB004', )
+# Cursor.execute(query)  # , parameter)
+# results = dictfetchall(Cursor)
+# data = []
+# fields = [
+#     'device_tag', 'device_mac', 'device_type',
+#     'device_status', 'device_assignment', 'device_temp',
+#     'device_o2', 'device_bat', 'device_hr',
+#     'incorrect_data_flag',
+#     'last_read_date', 'last_read_time'
+# ]
+# for row in results:
+#     new_row = {}
+#     for key, value in row.items():
+#         key = key.lower()
+#         if key in fields:
+#             new_row[key.lower()] = value
+#     data.append(new_row)
 
-data = json.dumps(data, default=default, indent=4)
-print(data)
+# data = json.dumps(data, default=default, indent=4)
+# print(data)
 
-with open('all_devices.json', 'w') as f:
-    f.write(data)
+# with open('all_devices.json', 'w') as f:
+#     f.write(data)
 
 
 # row1 = results[0]

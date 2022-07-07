@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 from .models import (
     Event, Attendee,  Attendance,
     # TableDevice, TableAlert,
-    TableBeacon,
+    TableBeacon, Counter,
 
     #     TblAcknowledgement, TblAlert, TblAlertCode,
     #     TblIncoming, TblSubscription, TblUser, TblCrestPatient,
@@ -12,6 +12,12 @@ from .models import (
     #     TblGateway, TblMessage, TblOrganization,
     #     TblWearer
 )
+
+
+@admin.register(Counter)
+class CounterAdmin(admin.ModelAdmin):
+    list_display = ['id', 'counter']
+
 
 
 @admin.register(TableBeacon)
