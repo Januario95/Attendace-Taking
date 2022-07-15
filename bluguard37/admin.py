@@ -48,6 +48,7 @@ class TableDeviceAdmin(admin.ModelAdmin):
                     'device_o2', 'device_bat', 'device_hr',
                     'incorrect_data_flag',
                     'last_read_date', 'last_read_time']
+    list_filter = ('device_type',)
 
 
 @admin.register(TblAlertCode)

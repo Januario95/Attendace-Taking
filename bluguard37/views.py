@@ -21,6 +21,24 @@ from .serializers import (
 )
 
 
+
+@api_view(['GET', ])
+@renderer_classes([JSONRenderer])
+@renderer_classes([BrowsableAPIRenderer])
+def get_id_cards(request):
+    devices = TableDevice.objects.filter(device_type='HSCD005')
+    exists = False
+    device_macs = []
+    if devices.exists():
+        device_macs = [device['device_mac'] for device in devices.serialize()]
+        exists = True
+
+    return Response({
+        'exists': exists,
+        'device_macs': device_macs # devices.serialize()
+    })
+
+
 @api_view(['POST', ])
 @renderer_classes([JSONRenderer])
 @renderer_classes([BrowsableAPIRenderer])
@@ -66,8 +84,6 @@ def Insert_Alert(alert_code, value, device_id):
         alert_code_ = int(last.alert_code.alert_code)
         alert_reading = last.alert_reading
         now = datetime.now()
-        # print(f'new_alert_code = {type(alert_code)}')
-        # print(f'old_alert_code = {type(alert_code_)}')
         diff = now - alert_datetime
         if alert_code == alert_code_:
             # print('EQUALS...')
@@ -101,17 +117,6 @@ def Insert_Alert(alert_code, value, device_id):
         alert.save()
         print('Non-Existing Alert')
 
-    # if alert_code.exists():
-    #     device = device.first()
-    # print(alert.alert_datetime)
-    # alert_code = alert_code.first()
-    # alert = TableAlert.objects.create(
-    #     alert_code=alert_code,
-    #     alert_reading=value,
-    #     device_id=device,
-    #     sent_to_crest=1
-    # )
-    # alert.save()
 
 
 def Check_Highest_Score(Type, value_attr, device_id):
@@ -155,27 +160,28 @@ def Check_Highest_Score(Type, value_attr, device_id):
 
 
 def update_all_device_tables(table_type, table, data):
-    table.device_temp = data['temp']
-    table.device_o2 = data['heart_rate']
-    table.device_bat = data['spo2']
-    table.device_hr = data['batlevel']
-    table.last_read_date = data['date']
-    table.last_read_time = data['time']
-    table.incorrect_data_flag = data['incorrect_data_flag']
-    table.device_status = data['device_status']
-    table.save()
+    try:
+        table.device_temp = data['temp']
+        table.device_o2 = data['heart_rate']
+        table.device_bat = data['spo2']
+        table.device_hr = data['batlevel']
+        table.last_read_date = data['date']
+        table.last_read_time = data['time']
+        table.incorrect_data_flag = data['incorrect_data_flag']
+        table.device_status = data['device_status']
+        table.save()
 
-    if table_type == 'device':
-        # Check_Highest_Score(
-        #     'temp', table.device_temp, "FEFDD727C6F5")
-        Check_Highest_Score(
-            'temp', table.device_temp, table.device_mac)
-        Check_Highest_Score(
-            'heart_rate', table.device_o2, table.device_mac)
-        Check_Highest_Score(
-            'spo2', table.device_bat, table.device_mac)
-        Check_Highest_Score(
-            'batlevel', table.device_hr, table.device_mac)
+        if table_type == 'device':
+            Check_Highest_Score(
+                'temp', table.device_temp, table.device_mac)
+            Check_Highest_Score(
+                'heart_rate', table.device_o2, table.device_mac)
+            Check_Highest_Score(
+                'spo2', table.device_bat, table.device_mac)
+            Check_Highest_Score(
+                'batlevel', table.device_hr, table.device_mac)
+    except:
+        pass
 
 
 @api_view(['GET', ])
@@ -206,13 +212,6 @@ def update_gateway(gateway_mac):
 @renderer_classes([BrowsableAPIRenderer])
 def update_device(request):
     data = json.loads(request.body)
-    # temp = data['temp']
-    # heart_rate = data['heart_rate']
-    # spo2 = data['spo2']
-    # batlevel = data['batlevel']
-    # incorrect_data_flag = data['incorrect_data_flag']
-    # date = data['date']
-    # time = data['time']
 
     script = ScriptStatus.objects.filter(
         name='Process Devices data'
@@ -225,7 +224,6 @@ def update_device(request):
     device_mac = data['device_mac']
     gateway_mac = data['gateway_mac']
 
-    # update_gateway(gateway_mac)
     gateway = TblGateway.objects.filter(
         gateway_mac=gateway_mac
     )
@@ -244,16 +242,6 @@ def update_device(request):
         device = device.first()
         update_all_device_tables('device', device, data)
         update_all_device_tables('none', alltables.first(), data)
-        # update_all_device_tables(quarantines.first(), data)
-        # device.device_temp = temp
-        # device.device_o2 = spo2
-        # device.device_bat = batlevel
-        # device.device_hr = heart_rate
-        # device.last_read_date = date
-        # device.last_read_time = time
-        # device.incorrect_data_flag = incorrect_data_flag
-        # device.device_status = device_status
-        # device.save()
         updated = True
         device = device.serialize()
     else:
@@ -262,7 +250,8 @@ def update_device(request):
 
     return Response({
         'updated': updated,
-        'device': device
+        'device': device,
+        'remark': f"{device.get('device_mac')} was successfully updated!"
     })
 
 

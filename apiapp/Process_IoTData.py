@@ -16,18 +16,7 @@ import mysql.connector as mysql
 from General_Functions import (
     Create_PK, Validate_Raw_Data_Length
 )
-
-
-Token = {
-    'dev': {
-        'URL': 'http://localhost:8000',
-        'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
-    },
-    'prod': {
-        'URL': 'https://bluguard-attendance.herokuapp.com',
-        'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
-    }
-}
+from credentials import Token
 
 
 config = {
@@ -70,9 +59,9 @@ def dictfetchall(cursor):
 
 
 def Insert_Alert(Alert_Code, Alert_Reading, Device_ID):
-    url = f"{Token['dev']['URL']}/filter_alert_by_code_and_device_id/"
+    url = f"{Token['URL']}/filter_alert_by_code_and_device_id/"
     headers = {
-        'Authorization': f"Token {Token['dev']['token']}",
+        'Authorization': f"Token {Token['token']}",
         'Content-Type': 'application/json'
     }
     data = {
@@ -260,9 +249,9 @@ def Get_Status_Batlevel(raw_data,
 
 
 def Get_Device_Type(Device_Mac):
-    url = f"{Token['dev']['URL']}/search_device_by_device_mac/{Device_Mac}/"
+    url = f"{Token['URL']}/search_device_by_device_mac/{Device_Mac}/"
     headers = {
-        'Authorization': f"Token {Token['dev']['token']}",
+        'Authorization': f"Token {Token['token']}",
         'Content-Type': 'application/json'
     }
     res = requests.get(url, headers=headers)
@@ -369,14 +358,11 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
     populate_metadata = Populate_MetaData(data, gateway_mac)
     # print(populate_metadata)
 
-    url = f"{Token['dev']['URL']}/update_device/"
+    url = f"{Token['URL']}/update_device/"
     headers = {
-        'Authorization': f"Token {Token['dev']['token']}",
+        'Authorization': f"Token {Token['token']}",
         'Content-Type': 'application/json'
     }
-
-    # Connector = mysql.connect(**config)
-    # Cursor = Connector.cursor()
 
     query_to_tbl_device = '''
 		UPDATE TBL_Device
@@ -399,8 +385,8 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
         })
         # data_from_json.append(populate_metadata)
         # json_manager.save_json(data_from_json)
-        print('*' * 10, 'INCORRECT_DATA', '*' * 10)
-        print(f'validated = {validated}')
+        # print('*' * 10, 'INCORRECT_DATA', '*' * 10)
+        # print(f'validated = {validated}')
         # print(Raw_Data)
         # print(f'rawData = {data["rawData"]}')
         # print(f'Device_Mac = {Device_Mac}')
@@ -418,7 +404,7 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
         # print(json.dumps(data, indent=4))
         res = requests.post(url, headers=headers, data=json.dumps(data))
         data_ = res.json()
-        # print(data_)
+        print(data_['remark'])
         device_id = data_['device']['id']
     elif validated == True:
         # Data is correct
@@ -429,8 +415,8 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
         # data_from_json = json_manager.load_json()
         # data_from_json.append(populate_vitaldata)
         # json_manager.save_json(data_from_json)
-        print('*' * 10, 'CORRECT_DATA', '*' * 10)
-        print(f'validated = {validated}')
+        # print('*' * 10, 'CORRECT_DATA', '*' * 10)
+        # print(f'validated = {validated}')
         # print(populate_vitaldata)
         # print(f'rawData = {data["rawData"]}')
         # print(f'Device_Mac = {Device_Mac}')
@@ -459,11 +445,10 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
         # print(json.dumps(data, indent=4))
         res = requests.post(url, headers=headers, data=json.dumps(data))
         data_ = res.json()
-        # print(data_)
+        print(data_['remark'])
         device_id = data_['device']['id']
 
-    print('Filter_Message function executed successfully!')
-    print('YES')
+    print('\n')
 
     # query = '''
     # 	SELECT Device_ID FROM TBL_Device
@@ -503,31 +488,53 @@ def Filter_Message(validated, Device_Type, Raw_Data, data, gateway_mac, Device_M
     # print(populate_vitaldata)
 
 
-def Get_Mqtt_Data(data_from_gateway):
-    # print(data_from_gateway)
-    # Connector = mysql.connect(**config)
-    # Cursor = Connector.cursor()
 
+def Process_Mac_IDs(Device_Mac):
+    print(f'Processing {Device_Mac}')
+    url = Token['URL'] + "/get_id_cards/"
+    token = Token['token']	
+    headers = {
+        'Authorization': f'Token {token}'
+    }		
+    res = requests.get(url, headers=headers)
+    data = res.json()
+    ids_cards = data['device_macs']
+
+    if Device_Mac in ids_cards:
+        #it means that id_card is transmitting.
+        #if not checked in then check in this id card
+        #if already checked in then do nothing.
+        url = f"{Token['URL']}/get_active_mac_ids_online/{Device_Mac}/"
+        res = requests.get(url, headers={
+            'Authorization': f"Token {Token['token']}",
+            'Content-Type': 'application/json'
+        })
+        checked_in = res.json()
+        print(checked_in)
+    else:
+        #it means that id_card is not transmitting. so it could be switched off
+        #so we need to check if this id_card is already checked in
+        #if not checked in that means id_card is not present in event yet
+        #if checked in that means id_card was present but now he is not
+        url = f"{Token['URL']}/get_active_mac_ids/{Device_Mac}/"
+        res = requests.get(url, headers={
+            'Authorization': f"Token {Token['token']}",
+            'Content-Type': 'application/json'
+        })
+        checked_in = res.json()
+        print(checked_in)
+
+
+def Get_Mqtt_Data(data_from_gateway):
     for data in data_from_gateway:
-        # print(data)
         if data['type'] == 'Gateway':
             gateway_mac = data['mac']
-            # print(f'gateway_mac = {gateway_mac}')
-            # query = '''
-            # 	UPDATE TBL_Gateway
-            # 	SET Last_Updated_Time = CURRENT_TIMESTAMP(),
-            # 		Gateway_Status = %s
-            # 	WHERE Gateway_Mac = %s
-            # '''
-            # parameter = ('ONLINE', gateway_mac,)
-            # Cursor.execute(query, parameter)
-            # Connector.commit()
 
         if data['type'] != 'Gateway':
             Device_Mac = data['mac']
-            # print(f'Device_Mac = {Device_Mac}')
             Device_Type = Get_Device_Type(Device_Mac)
-            # print(f'Device_Type = {Device_Type}')
+
+            Process_Mac_IDs(Device_Mac)
 
             if Device_Type == 'HSWB004':
                 pass

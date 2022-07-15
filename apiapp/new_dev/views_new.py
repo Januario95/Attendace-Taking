@@ -325,6 +325,7 @@ def get_active_mac_ids_online(request, id_card):
     attendee = Attendee.objects.filter(tag_id=id_card)
     checked_in = False
     created = False
+    remark = None
     if attendee.exists():
         attendee = attendee.first()
         attendances = Attendance.objects.filter(
@@ -344,14 +345,15 @@ def get_active_mac_ids_online(request, id_card):
             )
             attendance.save()
             created = True
+            remark = f'{attendance.attendee} ({attendee.tag_id}) checked in now.'
 
     #it means that id_card is transmitting.
     #if not checked in then check in this id card
     #if already checked in then do nothing.
 
     return Response({
-        'checked_in': checked_in,
-        'created': created
+        # 'checked_in': checked_in,
+        'remark': remark
     })
 
 
@@ -364,6 +366,7 @@ def get_active_mac_ids(request, id_card):
     attendee = Attendee.objects.filter(tag_id=id_card)
     checked_in = False
     created = False
+    remark = None
     if attendee.exists():
         attendee = attendee.first()
         attendances = Attendance.objects.filter(
@@ -379,6 +382,7 @@ def get_active_mac_ids(request, id_card):
                     attendance.check_out_date = date
                     attendance.check_out_time = time
                     attendance.save()
+                    remark = f'{attendance.attendee} checked out now.'
 
     #it means that id_card is not transmitting. so it could be switched off
     #so we need to check if this id_card is already checked in
@@ -386,8 +390,8 @@ def get_active_mac_ids(request, id_card):
     #if checked in that means id_card was present but now he is not
 
     return Response({
-        'checked_in': checked_in,
-        'created': created
+        # 'checked_in': checked_in,
+        'remark': remark
     })
 
 
@@ -404,15 +408,15 @@ def checkout_attendance(request):
         )
         if attendees.exists():
             for attendee in attendees:
-                if attendee.is_online: #  or att.check_out_date is None:
+                if attendee.is_online:
                     last_updated = attendee.last_updated
                     now = datetime.now()
                     time_diff = now - last_updated
-                    print(f'time_diff = {time_diff}')
                     secs_delay = timedelta(seconds=20)
                     if time_diff > secs_delay:
                         attendee.is_online = False
                         attendee.save()
+                        print(f'{attendee.attendee_name} is offline')
                         now = datetime.now()
                         date = now.date()
                         time = now.time()
@@ -421,27 +425,10 @@ def checkout_attendance(request):
                         att.save()
                         print(f'{att} checked out')
 
-            # attendee = attendee.last()
-            # if attendee.is_online:
-            #     last_updated = attendee.last_updated
-            #     now = datetime.now()
-            #     time_diff = now - last_updated
-            #     print(f'time_diff = {time_diff}')
-            #     secs_delay = timedelta(seconds=20)
-            #     if time_diff > secs_delay:
-            #         attendee.is_online = False
-            #         attendee.save()
-            #         now = datetime.now()
-            #         date = now.date()
-            #         time = now.time()
-            #         att.check_out_date = date
-            #         att.check_out_time = time
-            #         att.save()
-            #         print(f'{att} checked out')
-
     return Response({
         'status': 'Checking-out'
     })
+
 
 
 @api_view(['POST', ])
@@ -627,7 +614,7 @@ def set_online_to_offline(table):
 
             row = {}
             if device.device_status == 'ONLINE':
-                if time_diff.seconds > 8:
+                if time_diff.seconds > 12:
                     device.device_status = 'OFFLINE'
                     device.save()
                     row['device_mac'] = device.device_mac
@@ -714,25 +701,6 @@ def set_device_offline_online(request):
         if gateway.gateway_status == 'ONLINE':
             gateway.gateway_status = 'OFFLINE'
             gateway.save()
-
-    # data = []
-    # for device in devices:
-    #     last_read_date = device.last_read_date
-    #     last_read_time = str(device.last_read_time)
-    #     last_read_time = last_read_time.split('.')[0]
-    #     date_time = f'{last_read_date} {last_read_time}'
-    #     date_time = datetime.strptime(date_time, "%Y-%m-%d %H:%M:%S")
-    #     now = datetime.now()
-    #     time_diff = now - date_time
-
-    #     row = {}
-    #     if device.device_status == 'ONLINE':
-    #         if time_diff.seconds > 6:
-    #             device.device_status = 'OFFLINE'
-    #             device.save()
-    #             row['device_mac'] = device.device_mac
-    #             row['device_status'] = device.device_status
-    #             data.append(row)
 
     return Response({
         'data': data

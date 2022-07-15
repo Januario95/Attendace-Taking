@@ -133,18 +133,18 @@ class TblGateway(models.Model):
         return f'{self.gateway_id}'
 
 
-class TableDeviceQuerySet(models.QuerySet):
-    def serialize(self):
-        list_values = list(self.values(
-            'id', 'alert_code', 'alert_reading', 'alert_date',
-            'alert_time', 'device_id', 'sent_to_crest',
-            'alert_datetime'))
-        return list_values
+# class TableDeviceQuerySet(models.QuerySet):
+#     def serialize(self):
+#         list_values = list(self.values(
+#             'id', 'alert_code', 'alert_reading', 'alert_date',
+#             'alert_time', 'device_id', 'sent_to_crest',
+#             'alert_datetime'))
+#         return list_values
 
 
-class TableDeviceManager(models.Manager):
-    def get_queryset(self):
-        return TableDeviceQuerySet(self.model, using=self._db)
+# class TableDeviceManager(models.Manager):
+#     def get_queryset(self):
+#         return TableDeviceQuerySet(self.model, using=self._db)
 
 
 class TableAlertQuerySet(models.QuerySet):

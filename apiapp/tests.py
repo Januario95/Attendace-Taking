@@ -14,8 +14,8 @@ def Process_IoTData():
             'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
         },
         'prod': {
-            'URL': 'https://bluguard-attendance.herokuapp.com',
-            'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
+            'URL': 'https://attendance-bluguard.herokuapp.com',
+            'token': 'b0d5d3983e8416da79454d60d13a9e26cd1ebe45'
         }
     }
 
@@ -88,20 +88,23 @@ TOKEN = {
         'token': 'fd8068e77a29c03af33aed4981333cc2c2f6c5ae'
     },
     'prod': {
-        'URL': 'https://bluguard-attendance.herokuapp.com',
-        'token': '3d7fbc0bc2ea8cb3c5e8afb4a7d289d04880b14f'
+        'URL': 'https://attendance-bluguard.herokuapp.com',
+        'token': 'b0d5d3983e8416da79454d60d13a9e26cd1ebe45'
     }
 }
-url = TOKEN['prod']['URL'] + "/get_active_mac_ids/"
-token = TOKEN['prod']['token']
+url = TOKEN['dev']['URL'] + "/get_id_cards/"
+token = TOKEN['dev']['token']
 headers = {
     'Authorization': f'Token {token}',
-    'Content-Type': 'application/json'
+    # 'Content-Type': 'application/json'
 }
 data = {
     'mac_ids': ['AC233FC092FC', 'AC233F5A9EE9', 'AC233F5E688C', 'AC233F5E688E', 'F108BB3472D6', 'FEFDD727C6F5']
 }
-res = requests.post(url, headers=headers, data=json.dumps(data))
+# res = requests.post(url, headers=headers, data=json.dumps(data))
+# print(res.json())
+
+res = requests.get(url, headers=headers)
 print(res.json())
 
 # print(json.dumps(res.json(), indent=4))
